@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/cmake_install.cmake",
+		"C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/cmake_install.cmake",
+		"C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/src/cmake_install.cmake",
+		"C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/docs/cmake_install.cmake",
+		"C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/cmake_install.cmake",
+		"C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/glm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

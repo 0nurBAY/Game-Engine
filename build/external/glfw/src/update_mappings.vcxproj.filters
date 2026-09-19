@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\2221bd27f655bf62cd60e44d38adb89d\update_mappings.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\src\mappings.h.in">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\CMake\GenerateMappings.cmake" />
+    <None Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\external\glfw\src\CMakeFiles\update_mappings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2A2949D3-4392-3DE8-A777-DF7ECF85B9D5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{640747B3-EAA6-34E6-8995-99569C66215A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

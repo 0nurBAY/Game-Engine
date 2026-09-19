@@ -1,0 +1,70 @@
+cmake_minimum_required(VERSION 3.10)
+project(Engine)
+
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
+add_subdirectory(external/glfw)
+add_subdirectory(external/glm)
+
+add_library(glad external/glad/glad/src/gl.c)
+target_include_directories(glad PUBLIC external/glad/glad/include)
+target_include_directories(glad PUBLIC external/stb)
+target_include_directories(glad PUBLIC external/PerlinNoise)
+
+
+add_executable(engine 
+    src/main.cpp 
+    src/Core/EntityID.cpp 
+    src/Core/UUID.cpp
+    src/Scene/Entity.cpp 
+    src/Scene/Entitymanager.cpp 
+    src/Scene/Scene.cpp 
+    src/Scene/Components/Component.cpp 
+    src/Scene/Components/TransformComponent.cpp 
+    src/Scene/Components/MeshComponent.cpp 
+    src/Renderer/Shader.cpp 
+    src/Renderer/VertexArray.cpp 
+    src/Renderer/VertexBuffer.cpp 
+    src/Renderer/IndexBuffer.cpp
+    src/Renderer/Camera.cpp
+    src/Renderer/Mesh.cpp
+    src/Renderer/Renderer.cpp
+    src/Window/Window.cpp
+    src/Window/Time.cpp
+    src/Core/Input.cpp 
+    src/Renderer/Texture.cpp
+    src/Scene/Components/SpriteComponent.cpp
+    src/Renderer/Material.cpp
+    src/Scene/Components/MaterialComponent.cpp
+    src/Core/Script/Script.cpp
+    src/Core/Script/TestScript.cpp
+    src/Scene/Components/ScriptComponent.cpp
+    src/Core/Script/PlayerScript.cpp
+    src/Core/Script/CameraScript.cpp
+    src/Core/Script/HandsScript.cpp
+    src/Scene/Components/RendererComponent.cpp
+    src/Resource/TextureAtlas.cpp
+    src/Core/Animation.cpp
+    src/Scene/Components/AnimationComponent.cpp
+    src/Core/Script/TestScript2.cpp
+    src/Renderer/SpriteBatch.cpp
+    src/Scene/Components/LightComponent.cpp
+    src/Scene/Components/AmbientLightComponent.cpp
+    src/Renderer/FrameBuffer.cpp
+    src/Renderer/ScreenQuad.cpp
+
+)
+add_custom_command(TARGET engine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/assets"
+    "$<TARGET_FILE_DIR:engine>/assets"
+)
+add_custom_command(TARGET engine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/shaders"
+    "$<TARGET_FILE_DIR:engine>/shaders"
+)
+target_include_directories(engine PRIVATE include)
+target_link_libraries(engine PRIVATE glfw glad glm::glm)

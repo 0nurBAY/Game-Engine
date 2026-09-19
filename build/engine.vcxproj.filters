@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\EntityID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\UUID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Entitymanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\TransformComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\MeshComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\VertexArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\IndexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Window\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Window\Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\SpriteComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\MaterialComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\Script.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\TestScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\ScriptComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\PlayerScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\CameraScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\HandsScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\RendererComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Resource\TextureAtlas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AnimationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\TestScript2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\SpriteBatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\LightComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AmbientLightComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\FrameBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{158FDD72-6A40-30CD-A58E-CE881FAB1AC4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

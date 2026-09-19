@@ -1,0 +1,16 @@
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/glad.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/engine.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/INSTALL.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/CMakeFiles/uninstall.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/CMakeFiles/INSTALL.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/CMakeFiles/ALL_BUILD.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/src/CMakeFiles/glfw.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/src/CMakeFiles/update_mappings.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/src/CMakeFiles/INSTALL.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glfw/docs/CMakeFiles/INSTALL.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/CMakeFiles/INSTALL.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/CMakeFiles/ALL_BUILD.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/glm/CMakeFiles/glm.dir
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/glm/CMakeFiles/INSTALL.dir

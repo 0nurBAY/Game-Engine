@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3E21CCA7-FDBE-3C43-8E14-375D0913A46F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>engine</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">engine.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">engine</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">engine.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">engine</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">engine.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">engine</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">engine.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">engine</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/assets
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>external\glfw\src\Debug\glfw3.lib;Debug\glad.lib;external\glm\glm\Debug\glm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/engine.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/engine.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/assets
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>external\glfw\src\Release\glfw3.lib;Release\glad.lib;external\glm\glm\Release\glm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/engine.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/engine.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/assets
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>external\glfw\src\MinSizeRel\glfw3.lib;MinSizeRel\glad.lib;external\glm\glm\MinSizeRel\glm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/engine.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/engine.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glfw\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\include;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\stb;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\PerlinNoise;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/assets
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>external\glfw\src\RelWithDebInfo\glfw3.lib;RelWithDebInfo\glad.lib;external\glm\glm\RelWithDebInfo\glm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/engine.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/engine.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -SC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine -BC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build --check-stamp-file C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCXXInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeGenericSystem.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeInitializeConfigs.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeLanguageInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeRCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-Initialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\WindowsPaths.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCXXCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeRCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -SC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine -BC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build --check-stamp-file C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCXXInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeGenericSystem.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeInitializeConfigs.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeLanguageInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeRCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-Initialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\WindowsPaths.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCXXCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeRCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -SC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine -BC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build --check-stamp-file C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCXXInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeGenericSystem.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeInitializeConfigs.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeLanguageInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeRCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-Initialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\WindowsPaths.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCXXCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeRCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -SC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine -BC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build --check-stamp-file C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCXXInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeGenericSystem.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeInitializeConfigs.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeLanguageInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeRCInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Compiler\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Linker\MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-Initialize.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows-MSVC.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\Windows.cmake;C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\share\cmake-4.4\Modules\Platform\WindowsPaths.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeCXXCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeRCCompiler.cmake;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\4.4.0-rc3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\main.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\EntityID.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\UUID.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Entity.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Entitymanager.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Scene.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\Component.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\TransformComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\MeshComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Shader.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\VertexArray.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\VertexBuffer.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\IndexBuffer.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Camera.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Mesh.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Renderer.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Window\Window.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Window\Time.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Input.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Texture.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\SpriteComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\Material.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\MaterialComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\Script.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\TestScript.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\ScriptComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\PlayerScript.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\CameraScript.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\HandsScript.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\RendererComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Resource\TextureAtlas.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Animation.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AnimationComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\Script\TestScript2.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\SpriteBatch.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\LightComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AmbientLightComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\FrameBuffer.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\ZERO_CHECK.vcxproj">
+      <Project>{8AE019D3-7FD4-3C4B-B254-3298047B8015}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\glad.vcxproj">
+      <Project>{65F7FC4E-062F-3E46-9E62-EB1311964BF7}</Project>
+      <Name>glad</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\external\glfw\src\glfw.vcxproj">
+      <Project>{E0D5E495-5B99-324B-9ABC-3C6BE3F10C44}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\external\glm\glm\glm.vcxproj">
+      <Project>{5176612C-723D-312C-ADD3-1935A44E8E8D}</Project>
+      <Name>glm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

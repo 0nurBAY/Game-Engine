@@ -1,0 +1,5 @@
+# CMake generation dependency list for this directory.
+C:/Users/obayo/Downloads/cmake-4.4.0-rc3-windows-x86_64/cmake-4.4.0-rc3-windows-x86_64/share/cmake-4.4/Modules/FindDoxygen.cmake
+C:/Users/obayo/Downloads/cmake-4.4.0-rc3-windows-x86_64/cmake-4.4.0-rc3-windows-x86_64/share/cmake-4.4/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/obayo/Downloads/cmake-4.4.0-rc3-windows-x86_64/cmake-4.4.0-rc3-windows-x86_64/share/cmake-4.4/Modules/FindPackageMessage.cmake
+C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/external/glfw/docs/CMakeLists.txt

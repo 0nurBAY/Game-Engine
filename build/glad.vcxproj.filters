@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\external\glad\glad\src\gl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{158FDD72-6A40-30CD-A58E-CE881FAB1AC4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
