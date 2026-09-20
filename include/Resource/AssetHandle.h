@@ -3,10 +3,10 @@
 
 #include "Core/UUID.h"
 #include "Core/EntityID.h"
-
+#include "Resource/AssetHandleBase.h"
 #include <string>
 
-template<typename A> class AssetHandle
+template<typename A> class AssetHandle : public AssetHandleBase
 {
 private:
     // UUID uuid;
