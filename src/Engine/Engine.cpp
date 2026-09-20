@@ -8,15 +8,7 @@
 #include <sstream>
 
 
-std::string ReadShader(const std::string &path){
-    std::ifstream file(path);
-    if(!file.is_open()){ std::cout<<"!FILE "<<path<<" couldn't open\n"; return "";}
-    std::stringstream shader;
-    shader << file.rdbuf();
-
-    file.close();
-    return shader.str();
-}
+std::string ReadShader(const std::string &path);
 
 void Engine::ReadResources(const std::string &path){
     std::ifstream file(path);
@@ -37,6 +29,8 @@ void Engine::ReadResources(const std::string &path){
             printf("ARG: %s\n",arg.c_str());
         }
         printf("\n");
+        AssetLoader loader;
+        loader.AssetLoad(resource,resoursmanager,assets);
     }
     file.close();
 }
