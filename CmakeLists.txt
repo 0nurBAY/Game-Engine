@@ -55,7 +55,8 @@ add_executable(engine
     src/Renderer/FrameBuffer.cpp
     src/Renderer/ScreenQuad.cpp
     src/Engine/Engine.cpp
-    src/Resource/Assetloader.cpp
+    src/Core/AssetLoader.cpp
+    src/Core/SceneLoader.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD

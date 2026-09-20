@@ -8,6 +8,7 @@ class TransformComp: public Component
 {       
 public:
     TransformComp(/* args */);
+    TransformComp(glm::vec2 position,float rotation,glm::vec2 scale);
     glm::vec2 position;
     float rotation;
     glm::vec2 scale;

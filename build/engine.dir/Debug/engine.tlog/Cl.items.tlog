@@ -38,4 +38,5 @@ C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AmbientLigh
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\FrameBuffer.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\FrameBuffer.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\ScreenQuad.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Engine\Engine.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\Engine.obj
-C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Resource\Assetloader.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\Assetloader.obj
+C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\AssetLoader.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\AssetLoader.obj
+C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\SceneLoader.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\SceneLoader.obj

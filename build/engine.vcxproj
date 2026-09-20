@@ -532,7 +532,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp" />
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Engine\Engine.cpp" />
-    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Resource\Assetloader.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\AssetLoader.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\SceneLoader.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

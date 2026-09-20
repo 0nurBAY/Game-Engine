@@ -121,7 +121,10 @@
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Engine\Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Resource\Assetloader.cpp">
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\AssetLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\SceneLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

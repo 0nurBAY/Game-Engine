@@ -1,7 +1,8 @@
 //Engine.cpp
 #include "Engine/Engine.h"
 #include "Scene/Entity.h"
-#include "Resource/Assetloader.h"
+#include "Core/Assetloader.h"
+#include "Core/Sceneloader.h"
 
 #include <iostream>
 #include <fstream>
@@ -14,6 +15,7 @@ void Engine::ReadResources(const std::string &path){
     std::ifstream file(path);
     if(!file.is_open()){ std::cout<<"!FILE "<<path<<" couldn't open\n"; return;}
     std::string line;
+    AssetLoader loader;
     while (std::getline(file,line)){
         if(line.empty() || line[0]=='#') continue;
         std::stringstream ss(line);
@@ -28,25 +30,36 @@ void Engine::ReadResources(const std::string &path){
         for(auto& arg:resource.args){
             printf("ARG: %s\n",arg.c_str());
         }
-        printf("\n");
-        AssetLoader loader;
-        loader.AssetLoad(resource,resoursmanager,assets);
+        std::cout<<"\n";
+        loader.LoadAsset(resource,resoursmanager,assets);
     }
     file.close();
-}
-void Engine::IncludeAsset(const std::string &type, const std::string &name, const std::vector<std::string> &args){
-    resoursmanager.IncludeItem<Texture>(name,args[0].c_str());
 }
 void Engine::ReadScenes(const std::string &path){
     std::ifstream file(path);
     if(!file.is_open()){ std::cout<<"!FILE "<<path<<" couldn't open\n"; return;}
     std::string line;
+    SceneLoader loader;
     while (std::getline(file,line)){
-
+        if(line.empty() || line[0]=='#') continue;
+        std::stringstream ss(line);
+        ParsedResource resource;
+        ss >> resource.type;
+        ss >> resource.name;
+        std::string args;
+        while(ss >> args){
+            resource.args.push_back(args);
+        }
+        printf("TYPE: %s\nNAME: %s\n",resource.type.c_str(),resource.name.c_str());
+        for(auto& arg:resource.args){
+            printf("ARG: %s\n",arg.c_str());
+        }
+        std::cout<<"\n";
+        loader.LoadScene(resource,resoursmanager,assets);
     }
+    PushScene(loader.GetScene());
     file.close();
 }
-
 Engine::Engine():
 window(1200,1200,"Pencere"),
 input(window),
@@ -63,7 +76,7 @@ void Engine::Init(){
         OnEvent(event);
     });
     ReadResources("resources/resources.res");
-
+    ReadScenes("resources/scene1.lvl");
 }
 
 void Engine::PushScene(std::unique_ptr<Scene> scene){

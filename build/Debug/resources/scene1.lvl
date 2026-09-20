@@ -1,0 +1,41 @@
+SCENE Scene1
+
+ENTITY Player
+COMPONENT Transform 300 200 0 6 5
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 2
+COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
+COMPONENT Animation 
+ENTITYINIT Player
+
+ENTITY Player3
+COMPONENT Transform 300 000 0 6 5
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 2
+COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
+COMPONENT Animation 
+ENTITYINIT Player3
+
+ENTITY Player4
+COMPONENT Transform 300 -200 0 6 5
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 2
+COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
+COMPONENT Animation 
+ENTITYINIT Player4
+
+ENTITY Player2
+COMPONENT Transform -200 200 0 6 5
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 1
+COMPONENT Sprite CharacterAtlas BlackWalk_Down00
+COMPONENT Animation 
+ENTITYINIT Player2
+
+ENTITY Light
+COMPONENT Transform 150 200 0 1 1
+COMPONENT Light 0.5 0.5 0.5 1.0 500.0
+
+ENTITY AmbientLight
+COMPONENT Transform 0 0 0 0 0
+COMPONENT Ambient 0.2 0.2 0.2 1.0

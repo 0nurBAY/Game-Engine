@@ -14,7 +14,7 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
     items.clear();
     lights.clear();
     items.reserve(scene.GetEntityManager().GetSize());
-    glm::vec4 ambient = glm::vec4(0.0f);
+    glm::vec4 ambient = glm::vec4(0.7f);
     Shader*  currentshader = nullptr;
     Texture* currenttexture = nullptr;
     Texture* currentnormal = nullptr;
