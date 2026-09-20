@@ -124,7 +124,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>	</Message>
+      <Message>		</Message>
       <Command>setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/assets
 if %errorlevel% neq 0 goto :cmEnd
@@ -136,6 +136,15 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/resources C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Debug/resources
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -203,7 +212,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>	</Message>
+      <Message>		</Message>
       <Command>setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/assets
 if %errorlevel% neq 0 goto :cmEnd
@@ -215,6 +224,15 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/resources C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/Release/resources
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -282,7 +300,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>	</Message>
+      <Message>		</Message>
       <Command>setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/assets
 if %errorlevel% neq 0 goto :cmEnd
@@ -294,6 +312,15 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/resources C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/MinSizeRel/resources
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -360,7 +387,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message>	</Message>
+      <Message>		</Message>
       <Command>setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/assets C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/assets
 if %errorlevel% neq 0 goto :cmEnd
@@ -372,6 +399,15 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
 C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/shaders C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/shaders
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -E copy_directory C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/resources C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/RelWithDebInfo/resources
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -495,6 +531,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AmbientLightComponent.cpp" />
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Engine\Engine.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

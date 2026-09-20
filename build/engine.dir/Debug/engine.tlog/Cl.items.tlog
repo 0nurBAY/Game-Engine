@@ -37,3 +37,4 @@ C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\LightCompon
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\AmbientLightComponent.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\AmbientLightComponent.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\FrameBuffer.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\FrameBuffer.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\ScreenQuad.obj
+C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Engine\Engine.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\Engine.obj

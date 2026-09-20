@@ -54,6 +54,7 @@ add_executable(engine
     src/Scene/Components/AmbientLightComponent.cpp
     src/Renderer/FrameBuffer.cpp
     src/Renderer/ScreenQuad.cpp
+    src/Engine/Engine.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD
@@ -65,6 +66,11 @@ add_custom_command(TARGET engine POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     "${CMAKE_SOURCE_DIR}/shaders"
     "$<TARGET_FILE_DIR:engine>/shaders"
+)
+add_custom_command(TARGET engine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/resources"
+    "$<TARGET_FILE_DIR:engine>/resources"
 )
 target_include_directories(engine PRIVATE include)
 target_link_libraries(engine PRIVATE glfw glad glm::glm)
