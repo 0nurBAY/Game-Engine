@@ -1,0 +1,15 @@
+SCENE Scene1
+ENTITY Player
+COMPONENT Transform 300 200 0 12 10
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 2
+COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
+COMPONENT Animation 
+ENTITYINIT Player
+ENTITY Player2
+COMPONENT Transform 000 200 0 12 10
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 1
+COMPONENT Sprite CharacterAtlas BlackWalk_Down00
+COMPONENT Animation 
+ENTITYINIT Player2

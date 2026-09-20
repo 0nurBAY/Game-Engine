@@ -1,4 +1,5 @@
 //AssetLoader.h
+#pragma once
 #include "Resource/ResourceManagerplus.h"
 #include "Resource/AssetHandleBase.h"
 
@@ -25,5 +26,5 @@ private:
     void MaterialAdd     (ParsedResource& resource, ResourceManagerPlus& resourcemanager,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets);
     void TextureAtlasAdd (ParsedResource& resource, ResourceManagerPlus& resourcemanager);
 public:
-    void AssetLoad(ParsedResource& resource, ResourceManagerPlus& resourcemanager,std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>>& assets);
+    void LoadAsset(ParsedResource& resource, ResourceManagerPlus& resourcemanager,std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>>& assets);
 };

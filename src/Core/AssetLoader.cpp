@@ -1,6 +1,6 @@
 //AssetLoader.cpp
 
-#include "Resource/AssetLoader.h"
+#include "Core/AssetLoader.h"
 
 #include <iostream>
 #include <fstream>
@@ -16,7 +16,7 @@ std::string ReadShader(const std::string &path){
     return shader.str();
 }
 
-void AssetLoader::AssetLoad(ParsedResource &resource, ResourceManagerPlus &resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets){
+void AssetLoader::LoadAsset(ParsedResource &resource, ResourceManagerPlus &resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets){
     if(resource.type == "TEXTURE"){
         TextureLoad(resource, resourcemanager);
         assets.emplace(resource.name,std::make_unique<AssetHandle<Texture>>(resource.name.c_str()));

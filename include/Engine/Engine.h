@@ -37,7 +37,7 @@ private:
     void GameLoop();
     void ReadResources(const std::string &path);
     void ReadScenes(const std::string &path);
-    void IncludeAsset(const std::string &type, const std::string &name, const std::vector<std::string> &args);
+    
 public:
     Engine();
 
