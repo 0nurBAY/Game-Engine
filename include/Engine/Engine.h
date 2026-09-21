@@ -36,6 +36,7 @@ private:
     // void Physics();
     // void Shutdown();
     void GameLoop();
+    void ReadResourcesFile(const std::string &path);
     void ReadResources(const std::string &path);
     void ReadScenes(const std::string &path);
     

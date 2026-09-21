@@ -24,9 +24,9 @@ void HandsScript::OnEvent(Event& event){
         [this](KeyPressedEvent& event){
             int key = event.GetKey();
             if(key==87||key==65||key==83||key==68)return;
-            std::cout<<"1\n";
+            // std::cout<<"1\n";
             if(key==257) {
-                std::cout<<"2\n";
+                // std::cout<<"2\n";
                 ApplySignes();
                 return;
             }

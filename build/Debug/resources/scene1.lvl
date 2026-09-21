@@ -55,11 +55,11 @@ ENTITYINIT Player2
 
 ENTITY Light
 COMPONENT Transform 150 200 0 1 1
-COMPONENT Light 0.8 0.8 0.8 1.0 500.0
+COMPONENT Light 0.5 0.5 0.5 1.0 500.0
 
 ENTITY AmbientLight
 COMPONENT Transform 0 0 0 0 0
-COMPONENT Ambient 0.4 0.4 0.4 1.0
+COMPONENT Ambient 0.2 0.2 0.2 1.0
 
 ENTITY Camera
 COMPONENT Camera Player
@@ -76,4 +76,3 @@ ENTITYINIT Road
 ENTITY Hand
 COMPONENT Script HandScript
 ENTITYINIT Hand
-
