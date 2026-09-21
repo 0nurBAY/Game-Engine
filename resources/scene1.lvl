@@ -65,3 +65,15 @@ ENTITY Camera
 COMPONENT Camera Player
 COMPONENT Script CameraScript
 ENTITYINIT Camera
+
+ENTITY Road
+COMPONENT Transform 000 000 0 12 10
+COMPONENT Material RoadMat
+COMPONENT Renderer 1 1
+COMPONENT Sprite EnviormentAtlas Road1
+ENTITYINIT Road
+
+ENTITY Hand
+COMPONENT Script HandScript
+ENTITYINIT Hand
+
