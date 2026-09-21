@@ -76,4 +76,3 @@ ENTITYINIT Road
 ENTITY Hand
 COMPONENT Script HandScript
 ENTITYINIT Hand
-
