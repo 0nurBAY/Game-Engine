@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "RelWithDebInfo/engine.exe"
+			"path" : "Release/engine.exe"
 		},
 		{
-			"path" : "RelWithDebInfo/engine.pdb"
+			"path" : "Release/engine.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -79,7 +79,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG -std:c++17"
 				}
 			],
 			"includes" : 
@@ -175,11 +175,11 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "glm::@d090a432591bc19a3a56"
+			"id" : "glfw::@ca12bac854c2ac6b2230"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@ca12bac854c2ac6b2230"
+			"id" : "glm::@d090a432591bc19a3a56"
 		},
 		{
 			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
@@ -191,11 +191,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO",
 				"role" : "flags"
 			},
 			{
@@ -204,17 +204,17 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "external\\glfw\\src\\RelWithDebInfo\\glfw3.lib",
+				"fragment" : "external\\glfw\\src\\Release\\glfw3.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "RelWithDebInfo\\glad.lib",
+				"fragment" : "Release\\glad.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "external\\glm\\glm\\RelWithDebInfo\\glm.lib",
+				"fragment" : "external\\glm\\glm\\Release\\glm.lib",
 				"role" : "libraries"
 			},
 			{
