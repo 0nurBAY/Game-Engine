@@ -12,7 +12,7 @@ private:
     float walked =0.0f;
     glm::vec2 goal;
     glm::vec2 lastdirection;
-    float delay=0.0f;
+    float delay=5.0f;
     float timepased=0.0f;
 
 public:

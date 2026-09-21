@@ -57,6 +57,8 @@ add_executable(engine
     src/Engine/Engine.cpp
     src/Core/AssetLoader.cpp
     src/Core/SceneLoader.cpp
+    src/Core/ScriptManager.cpp
+    src/Scene/Components/CameraComponent.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD

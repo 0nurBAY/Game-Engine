@@ -14,6 +14,7 @@ private:
     
 
 public:
+    void OnCreate   ()           override;
     void Update(float deltatime) override;
     void SetCamera(Camera* camera);
     void SetTarget(Entity* target);
