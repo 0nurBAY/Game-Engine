@@ -183,7 +183,7 @@ void Engine::OnEvent(Event& event){
     dispatcher.Dispatcher<MousePressedEvent>(
         [](MousePressedEvent& event)
         {
-            // std::cout << "Key pressed: "<<event.GetButton() <<"\n";
+            // std::cout << "Mouse pressed: "<<event.GetButton() <<"\n";
         }
     );
     dispatcher.Dispatcher<CursorMoveEvent>(
