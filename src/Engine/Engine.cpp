@@ -3,6 +3,7 @@
 #include "Scene/Entity.h"
 #include "Core/Assetloader.h"
 #include "Core/Sceneloader.h"
+#include "Core/ScriptManager.h"
 
 #include <iostream>
 #include <fstream>
@@ -55,7 +56,8 @@ void Engine::ReadScenes(const std::string &path){
             printf("ARG: %s\n",arg.c_str());
         }
         std::cout<<"\n";
-        loader.LoadScene(resource,resoursmanager,assets);
+        std::cout << "Engine::Init: Camera pointer: " << &camera << "\n";
+        loader.LoadScene(resource,resoursmanager,assets,scriptmanager,&input,camera);
     }
     PushScene(loader.GetScene());
     file.close();
@@ -69,7 +71,7 @@ renderer(camera,window.GetWidth(),window.GetHeight(),ReadShader("shaders/deneme.
 }
 
 void Engine::Init(){
-    std::cout <<"CCCCCCCCCCCCCCCCCCCCC\n";
+    scriptmanager.Init();
     camera.SetPosition(glm::vec3(0.0f,0.0f,0.0f));
     camera.SetWorldSize(100000.0f, 100000.0f, 50000.0f, -50000.0f, 50000.0f, -50000.0f);
     window.SetEventCallBack([this](Event& event){
@@ -101,7 +103,6 @@ Scene* Engine::GetActiveScene() const{
 }
 
 void Engine::Run(){
-    std::cout <<"BBBBBBBBBBBBBBBB\n";
     running = true;
     Init();
     GameLoop();

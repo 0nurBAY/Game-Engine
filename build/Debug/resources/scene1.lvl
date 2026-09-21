@@ -1,35 +1,56 @@
 SCENE Scene1
 
 ENTITY Player
-COMPONENT Transform 300 200 0 6 5
+COMPONENT Transform 300 200 0 12 10
 COMPONENT Material PlayerMat
 COMPONENT Renderer 2 2
 COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
 COMPONENT Animation 
+COMPONENT Script PlayerScript
+ADDANIMATION PlayerWalk_Up PlayerWalk_up
+ADDANIMATION PlayerWalk_Down PlayerWalk_down
+ADDANIMATION PlayerWalk_Right PlayerWalk_right
+ADDANIMATION PlayerWalk_Left PlayerWalk_left
+ADDANIMATION PlayerWalk_UpLeft PlayerWalk_upleft
+ADDANIMATION PlayerWalk_DownLeft PlayerWalk_downleft
+ADDANIMATION PlayerWalk_UpRight PlayerWalk_upright
+ADDANIMATION PlayerWalk_DownRight PlayerWalk_downright
+
+ADDANIMATION PlayerIdle_Up PlayerIdle_up
+ADDANIMATION PlayerIdle_Down PlayerIdle_down
+ADDANIMATION PlayerIdle_Right PlayerIdle_right
+ADDANIMATION PlayerIdle_Left PlayerIdle_left
+ADDANIMATION PlayerIdle_UpLeft PlayerIdle_upleft
+ADDANIMATION PlayerIdle_DownLeft PlayerIdle_downleft
+ADDANIMATION PlayerIdle_UpRight PlayerIdle_upright
+ADDANIMATION PlayerIdle_DownRight PlayerIdle_downright
 ENTITYINIT Player
 
-ENTITY Player3
-COMPONENT Transform 300 000 0 6 5
-COMPONENT Material PlayerMat
-COMPONENT Renderer 2 2
-COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
-COMPONENT Animation 
-ENTITYINIT Player3
-
-ENTITY Player4
-COMPONENT Transform 300 -200 0 6 5
-COMPONENT Material PlayerMat
-COMPONENT Renderer 2 2
-COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
-COMPONENT Animation 
-ENTITYINIT Player4
-
 ENTITY Player2
-COMPONENT Transform -200 200 0 6 5
+COMPONENT Transform -200 200 0 12 10
 COMPONENT Material PlayerMat
 COMPONENT Renderer 2 1
 COMPONENT Sprite CharacterAtlas BlackWalk_Down00
 COMPONENT Animation 
+COMPONENT Script NPC1Script
+
+ADDANIMATION BlackWalk_Up BlackWalk_up
+ADDANIMATION BlackWalk_Down BlackWalk_down
+ADDANIMATION BlackWalk_Right BlackWalk_right
+ADDANIMATION BlackWalk_Left BlackWalk_left
+ADDANIMATION BlackWalk_UpLeft BlackWalk_upleft
+ADDANIMATION BlackWalk_DownLeft BlackWalk_downleft
+ADDANIMATION BlackWalk_UpRight BlackWalk_upright
+ADDANIMATION BlackWalk_DownRight BlackWalk_downright
+
+ADDANIMATION BlackIdle_Up BlackIdle_up
+ADDANIMATION BlackIdle_Down BlackIdle_down
+ADDANIMATION BlackIdle_Right BlackIdle_right
+ADDANIMATION BlackIdle_Left BlackIdle_left
+ADDANIMATION BlackIdle_UpLeft BlackIdle_upleft
+ADDANIMATION BlackIdle_DownLeft BlackIdle_downleft
+ADDANIMATION BlackIdle_UpRight BlackIdle_upright
+ADDANIMATION BlackIdle_DownRight BlackIdle_downright
 ENTITYINIT Player2
 
 ENTITY Light
@@ -39,3 +60,8 @@ COMPONENT Light 0.5 0.5 0.5 1.0 500.0
 ENTITY AmbientLight
 COMPONENT Transform 0 0 0 0 0
 COMPONENT Ambient 0.2 0.2 0.2 1.0
+
+ENTITY Camera
+COMPONENT Camera Player
+COMPONENT Script CameraScript
+ENTITYINIT Camera

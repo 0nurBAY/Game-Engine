@@ -12,6 +12,7 @@
 #include "Scene/Components/AnimationComponent.h"
 #include "Scene/Components/LightComponent.h"
 #include "Scene/Components/AmbientLightComponent.h"
+#include "Scene/Components/CameraComponent.h"
 
 #include <string>
 #include <unordered_map>

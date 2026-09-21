@@ -40,3 +40,5 @@ C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Renderer\ScreenQuad.cpp;C:\U
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Engine\Engine.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\Engine.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\AssetLoader.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\AssetLoader.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\SceneLoader.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\SceneLoader.obj
+C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\ScriptManager.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\ScriptManager.obj
+C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\CameraComponent.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Debug\CameraComponent.obj

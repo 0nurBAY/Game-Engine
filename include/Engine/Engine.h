@@ -7,6 +7,7 @@
 #include "Renderer/Camera.h"
 #include "Resource/ResourceManagerPlus.h"
 #include "Resource/AssetHandleBase.h"
+#include "Core/ScriptManager.h"
 #include "Core/Input.h"
 #include "Event/Events.h"
 #include "Window/Time.h"
@@ -22,8 +23,8 @@ private:
     Input input;
     Camera camera;
     Renderer renderer;
+    ScriptManager scriptmanager;
     //Audio
-    //Assets
     Time time;
     ResourceManagerPlus resoursmanager;
     std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>> assets;

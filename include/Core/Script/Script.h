@@ -6,7 +6,7 @@ class Input;
 class Event;
 class Script
 {
-private:
+protected:
     Entity* entity  = nullptr;
     Input* input    = nullptr;  
 public:
