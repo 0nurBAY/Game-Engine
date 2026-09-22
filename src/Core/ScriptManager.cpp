@@ -4,9 +4,10 @@
 #include "Core/Script/TestScript2.h"
 #include "Core/Script/CameraScript.h"
 #include "Core/Script/HandsScript.h"
+#include <Windows.h>
 std::unique_ptr<Script> ScriptManager::CreateScript(const std::string &name){
     auto it = scripts.find(name);
-    if(it==scripts.end()) return nullptr;
+    if(it==scripts.end()) throw std::runtime_error("");
     auto script = it->second();
     return std::move(script);
 }

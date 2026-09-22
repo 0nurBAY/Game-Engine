@@ -10,8 +10,8 @@
 class EntityManager
 {
 private:
-    uint32_t Nextid = 1;
-    UUID uuid;
+    uint64_t Nextid = 1;
+    EUUID uuid;
     std::unordered_map<uint64_t,std::unique_ptr<Entity>> entities; 
     std::stack<uint64_t> destroy_queue;
 public:

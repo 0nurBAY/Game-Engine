@@ -2,7 +2,7 @@
 #pragma once
 #include <cstdint>
 #include <set>
-class UUID
+class EUUID
 {
 private:
     std::uint64_t uuid;
@@ -13,7 +13,7 @@ public:
 
     std::uint64_t Value() const;
 
-    bool operator==(const UUID& other) const;
+    bool operator==(const EUUID& other) const;
 
     std::set<uint64_t> GetAll();
 
