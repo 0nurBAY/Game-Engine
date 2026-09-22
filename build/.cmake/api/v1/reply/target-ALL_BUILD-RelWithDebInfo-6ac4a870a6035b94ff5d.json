@@ -22,10 +22,10 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "glfw::@ca12bac854c2ac6b2230"
+			"id" : "glm::@d090a432591bc19a3a56"
 		},
 		{
-			"id" : "glm::@d090a432591bc19a3a56"
+			"id" : "glfw::@ca12bac854c2ac6b2230"
 		},
 		{
 			"id" : "glad::@6890427a1f51a3e7e1df"
@@ -47,10 +47,10 @@
 	"orderDependencies" : 
 	[
 		{
-			"id" : "glfw::@ca12bac854c2ac6b2230"
+			"id" : "glm::@d090a432591bc19a3a56"
 		},
 		{
-			"id" : "glm::@d090a432591bc19a3a56"
+			"id" : "glfw::@ca12bac854c2ac6b2230"
 		},
 		{
 			"id" : "glad::@6890427a1f51a3e7e1df"

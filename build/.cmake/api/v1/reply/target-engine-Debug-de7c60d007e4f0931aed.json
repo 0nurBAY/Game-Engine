@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "MinSizeRel/engine.exe"
+			"path" : "Debug/engine.exe"
 		},
 		{
-			"path" : "MinSizeRel/engine.pdb"
+			"path" : "Debug/engine.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -79,7 +79,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17"
 				}
 			],
 			"includes" : 
@@ -171,11 +171,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glfw::@ca12bac854c2ac6b2230"
+			"id" : "glm::@d090a432591bc19a3a56"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "glm::@d090a432591bc19a3a56"
+			"id" : "glfw::@ca12bac854c2ac6b2230"
 		},
 		{
 			"backtrace" : 2,
@@ -191,11 +191,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /INCREMENTAL:NO",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL",
 				"role" : "flags"
 			},
 			{
@@ -204,17 +204,17 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "external\\glfw\\src\\MinSizeRel\\glfw3.lib",
+				"fragment" : "external\\glfw\\src\\Debug\\glfw3.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "MinSizeRel\\glad.lib",
+				"fragment" : "Debug\\glad.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "external\\glm\\glm\\MinSizeRel\\glm.lib",
+				"fragment" : "external\\glm\\glm\\Debug\\glm.lib",
 				"role" : "libraries"
 			},
 			{
