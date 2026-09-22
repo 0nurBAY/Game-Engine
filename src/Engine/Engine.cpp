@@ -9,7 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
-
+#include <Windows.h>
 std::string ReadShader(const std::string &path);
 
 void Engine::ReadResourcesFile(const std::string &path){
@@ -42,8 +42,15 @@ void Engine::ReadResourcesFile(const std::string &path){
             while(ss >> args){
                 resource.args.push_back(args);
             }
+            try{
             if(scene) sceneloader.LoadScene(resource,resoursmanager,assets,scriptmanager,&input,camera);
             else assetloader.LoadAsset(resource,resoursmanager,assets);
+            }
+            catch(const std::exception& e){
+                std::cerr << "Exception: " << e.what() << "\n";
+                MessageBoxA(nullptr,e.what(),"Load Error",MB_OK|MB_ICONERROR);
+                std::exit(EXIT_FAILURE);
+            }
         }
         if(scene) PushScene(sceneloader.GetScene());
         file.close();

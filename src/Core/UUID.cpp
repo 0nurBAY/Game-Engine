@@ -3,15 +3,15 @@
 #include <iostream>
 #include <random>
 
-std::uint64_t UUID::Value() const{
+std::uint64_t EUUID::Value() const{
     return uuid;
 }
 
-bool UUID::operator==(const UUID& other) const{
+bool EUUID::operator==(const EUUID& other) const{
     return uuid == other.uuid;
 }
 
-uint64_t UUID::GetID(){
+uint64_t EUUID::GetID(){
     while (true){
     static std::random_device rd;
 
@@ -26,10 +26,10 @@ uint64_t UUID::GetID(){
     };
     }
 }
-std::set<uint64_t> UUID::GetAll(){
+std::set<uint64_t> EUUID::GetAll(){
     return UUID_map;
 }
 
-void UUID::RemoveID(std::uint64_t id){
+void EUUID::RemoveID(std::uint64_t id){
     UUID_map.erase(id);
 }
