@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 struct ParsedResource{
     std::string file;
     uint64_t line;
@@ -20,7 +21,7 @@ class AssetLoader
 private:
     uint64_t currentline = 0;
     std::unordered_map<std::string,std::function<void(ParsedResource& resource, ResourceManagerPlus& resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets)>> loaders;
-
+    std::unordered_set<std::string> loaded_assets;
     void TextureLoad     (ParsedResource& resource, ResourceManagerPlus& resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets);
     void ShaderLoad      (ParsedResource& resource, ResourceManagerPlus& resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets);
     void MeshLoad        (ParsedResource& resource, ResourceManagerPlus& resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets);
