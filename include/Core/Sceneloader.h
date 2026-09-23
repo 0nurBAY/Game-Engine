@@ -20,6 +20,7 @@ class SceneLoader
 private:
     uint64_t currentline = 0;
     std::unordered_map<std::string,std::function<void(Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera)>> commands;
+    std::unordered_map<std::string,uint16_t> substitute;
     std::unique_ptr<Scene> currentscene = nullptr;
     std::unordered_map<std::string,uint64_t> ids;
     uint64_t currentID;
@@ -37,9 +38,11 @@ private:
     void EntityInit         (Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera);
     void AddComponent       (Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera);
     void AddAnimation       (Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera);
+    void Import             (Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera);
+    std::string SubstituteArgs     (std::string line, std::vector<std::string> args);
 public:
     void Init();
     void LineCounter(){currentline++;}
-    void LoadScene(ParsedResource& resource, ResourceManagerPlus& resourcemanager,std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>>& assets,ScriptManager& scriptmanager,Input* input, Camera& camera);
+    void LoadScene(ParsedResource& resource,std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>>& assets,ScriptManager& scriptmanager,Input* input, Camera& camera);
     std::unique_ptr<Scene> GetScene();
 };

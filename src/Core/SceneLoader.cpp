@@ -4,13 +4,18 @@
 #include "Core/AssetLoader.h"
 #include <glm/glm.hpp>
 #include <stdexcept>
+#include <fstream>
+#include <sstream>
 void SceneLoader::Init(){
-        
-    commands.emplace("SCENE",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){CreateScene(entity,resource,assets,scriptmanager,input,camera);});
-    commands.emplace("ENTITY",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){CreateEntity(entity,resource,assets,scriptmanager,input,camera);});
-    commands.emplace("COMPONENT",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddComponent(entity,resource,assets,scriptmanager,input,camera);});
-    commands.emplace("ENTITYINIT",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){EntityInit(entity,resource,assets,scriptmanager,input,camera);});
+    substitute.emplace("NAME",0);
+    substitute.emplace("XPOS",1);
+    substitute.emplace("YPOS",2);
+    commands.emplace("SCENE",       [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){CreateScene(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("ENTITY",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){CreateEntity(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("COMPONENT",   [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddComponent(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("ADDANIMATION",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddAnimation(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("ENTITYINIT",  [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){EntityInit(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("IMPORT",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){Import(entity,resource,assets,scriptmanager,input,camera);});
 
     commands.emplace("Transform",   [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->TransformComponent(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Material",    [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->MaterialComp(entity,resource,assets,scriptmanager,input,camera);});
@@ -23,7 +28,7 @@ void SceneLoader::Init(){
     commands.emplace("Camera",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->CameraComp(entity,resource,assets,scriptmanager,input,camera);});
 
 }
-void SceneLoader::LoadScene(ParsedResource &resource, ResourceManagerPlus &resourcemanager, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager &scriptmanager,Input *input,Camera &camera){
+void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager &scriptmanager,Input *input,Camera &camera){
     // std::cout << "SceneLoader::LoadScene: Camera pointer: " << &camera << "\n";
     this->currentline++;
     resource.line = this->currentline;
@@ -140,7 +145,7 @@ void SceneLoader::CameraComp(Entity *entity, ParsedResource &resource, std::unor
     throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
     uint64_t targetid = it->second;
     // std::cout << "SceneLoader::CameraComp: Camera pointer: " << &camera << "\n";
-    auto* component = entity->AddComponent<CameraComponent>(&camera,currentscene.get()->FindEntity(targetid));
+    entity->AddComponent<CameraComponent>(&camera,currentscene.get()->FindEntity(targetid));
     
 }
 void SceneLoader::CreateScene(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
@@ -164,14 +169,6 @@ void SceneLoader::AddComponent(Entity *entity, ParsedResource &resource, std::un
     }
     it->second(entitya,resource,assets,scriptmanager,input,camera);
 }
-    
-void SceneLoader::EntityInit(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
-    if(!currentID) 
-    throw std::runtime_error("No Entity found: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
-        
-    currentscene->FindEntity(currentID)->init();
-}
-
 void SceneLoader::AddAnimation(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     if(!currentID)
     throw std::runtime_error("No Entity found: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
@@ -185,4 +182,71 @@ void SceneLoader::AddAnimation(Entity *entity, ParsedResource &resource, std::un
     }
     auto& handle = *static_cast<AssetHandle<Animation>*>(it->second.get());
     animationcomp->AddAnimation(resource.name,handle);
+}
+void SceneLoader::EntityInit(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    if(!currentID) 
+    throw std::runtime_error("No Entity found: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+        
+    currentscene->FindEntity(currentID)->init();
+}
+
+void SceneLoader::Import(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    int line_num = currentline;
+    currentline = 0;
+    if(resource.args.size()<3) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()>3) throw std::runtime_error("To many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    std::ifstream importfile("resources/" + resource.name);
+    if(!importfile.is_open()) throw std::runtime_error("Failed to open import file: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    std::string line;
+    while(std::getline(importfile,line)){
+        if(line.empty() || line[0]=='#') {
+            currentline++;
+            continue;
+        }
+        try{
+            std::cout << "UnImported line: " << line << "\n";
+            line = SubstituteArgs(line,resource.args);
+            std::cout << "Imported line: " << line << "\n";
+        }
+        catch(const std::exception& e){
+            throw std::runtime_error("Error processing line: " + line + "\n" + e.what());
+        }
+        std::stringstream ss(line);
+        ParsedResource resource2;
+        resource2.file = resource.name;
+        ss >> resource2.type;
+        ss >> resource2.name;
+        std::string args;
+        while(ss >> args){
+            resource2.args.push_back(args);
+        }
+        LoadScene(resource2,assets,scriptmanager,input,camera);
+
+    }
+    currentline = line_num;
+}
+std::string SceneLoader::SubstituteArgs(std::string line, std::vector<std::string> args){
+    try{
+        std::stof(args[1]);
+        std::stof(args[2]);
+    }
+    catch(const std::exception& e){
+        throw std::runtime_error("Error substituting arguments in line: " + line + "\n" + e.what());
+    }
+
+    while(true){
+        size_t start=0;
+        size_t last =0;
+        start = line.find("{",last);
+        if(start==std::string::npos) break;
+        last = line.find("}",start);
+        if(last==std::string::npos) throw std::runtime_error("Unmatched { in line: " + line);
+        std::string key = line.substr(start+1,last-start-1);
+        auto it = substitute.find(key);
+        if(it==substitute.end()) throw std::runtime_error("Unknown substitution key: " + key + " in line: " + line);
+        line.replace(start,last-start+1,args[it->second]);
+    }
+    std::cout << "Importing line: " << line << "\n";
+
+    return line;
 }

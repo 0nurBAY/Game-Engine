@@ -1,0 +1,26 @@
+
+ENTITY {NAME}
+COMPONENT Transform {XPOS} {YPOS} 0 12 10
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 2
+COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
+COMPONENT Animation 
+COMPONENT Script PlayerScript
+ADDANIMATION PlayerWalk_Up PlayerWalk_up
+ADDANIMATION PlayerWalk_Down PlayerWalk_down
+ADDANIMATION PlayerWalk_Right PlayerWalk_right
+ADDANIMATION PlayerWalk_Left PlayerWalk_left
+ADDANIMATION PlayerWalk_UpLeft PlayerWalk_upleft
+ADDANIMATION PlayerWalk_DownLeft PlayerWalk_downleft
+ADDANIMATION PlayerWalk_UpRight PlayerWalk_upright
+ADDANIMATION PlayerWalk_DownRight PlayerWalk_downright
+
+ADDANIMATION PlayerIdle_Up PlayerIdle_up
+ADDANIMATION PlayerIdle_Down PlayerIdle_down
+ADDANIMATION PlayerIdle_Right PlayerIdle_right
+ADDANIMATION PlayerIdle_Left PlayerIdle_left
+ADDANIMATION PlayerIdle_UpLeft PlayerIdle_upleft
+ADDANIMATION PlayerIdle_DownLeft PlayerIdle_downleft
+ADDANIMATION PlayerIdle_UpRight PlayerIdle_upright
+ADDANIMATION PlayerIdle_DownRight PlayerIdle_downright
+ENTITYINIT {NAME}
