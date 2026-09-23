@@ -43,7 +43,7 @@ void Engine::ReadResourcesFile(const std::string &path){
                 resource.args.push_back(args);
             }
             try{
-            if(scene) sceneloader.LoadScene(resource,resoursmanager,assets,scriptmanager,&input,camera);
+            if(scene) sceneloader.LoadScene(resource,assets,scriptmanager,&input,camera);
             else assetloader.LoadAsset(resource,resoursmanager,assets);
             }
             catch(const std::exception& e){
@@ -57,56 +57,6 @@ void Engine::ReadResourcesFile(const std::string &path){
     }
 }
 
-void Engine::ReadResources(const std::string &path){
-    std::ifstream file(path);
-    if(!file.is_open()){ std::cout<<"!FILE "<<path<<" couldn't open\n"; return;}
-    std::string line;
-    AssetLoader loader;
-    while (std::getline(file,line)){
-        if(line.empty() || line[0]=='#') continue;
-        std::stringstream ss(line);
-        ParsedResource resource;
-        ss >> resource.type;
-        ss >> resource.name;
-        std::string args;
-        while(ss >> args){
-            resource.args.push_back(args);
-        }
-        printf("TYPE: %s\nNAME: %s\n",resource.type.c_str(),resource.name.c_str());
-        for(auto& arg:resource.args){
-            printf("ARG: %s\n",arg.c_str());
-        }
-        std::cout<<"\n";
-        loader.LoadAsset(resource,resoursmanager,assets);
-    }
-    file.close();
-}
-void Engine::ReadScenes(const std::string &path){
-    std::ifstream file(path);
-    if(!file.is_open()){ std::cout<<"!FILE "<<path<<" couldn't open\n"; return;}
-    std::string line;
-    SceneLoader loader;
-    while (std::getline(file,line)){
-        if(line.empty() || line[0]=='#') continue;
-        std::stringstream ss(line);
-        ParsedResource resource;
-        ss >> resource.type;
-        ss >> resource.name;
-        std::string args;
-        while(ss >> args){
-            resource.args.push_back(args);
-        }
-        printf("TYPE: %s\nNAME: %s\n",resource.type.c_str(),resource.name.c_str());
-        for(auto& arg:resource.args){
-            printf("ARG: %s\n",arg.c_str());
-        }
-        std::cout<<"\n";
-        std::cout << "Engine::Init: Camera pointer: " << &camera << "\n";
-        loader.LoadScene(resource,resoursmanager,assets,scriptmanager,&input,camera);
-    }
-    PushScene(loader.GetScene());
-    file.close();
-}
 Engine::Engine():
 window(1200,1200,"Pencere"),
 input(window),

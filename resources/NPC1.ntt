@@ -1,0 +1,26 @@
+ENTITY {NAME}
+COMPONENT Transform {XPOS} {YPOS} 0 12 10
+COMPONENT Material PlayerMat
+COMPONENT Renderer 2 1
+COMPONENT Sprite CharacterAtlas BlackWalk_Down00
+COMPONENT Animation 
+COMPONENT Script NPC1Script
+
+ADDANIMATION BlackWalk_Up BlackWalk_up
+ADDANIMATION BlackWalk_Down BlackWalk_down
+ADDANIMATION BlackWalk_Right BlackWalk_right
+ADDANIMATION BlackWalk_Left BlackWalk_left
+ADDANIMATION BlackWalk_UpLeft BlackWalk_upleft
+ADDANIMATION BlackWalk_DownLeft BlackWalk_downleft
+ADDANIMATION BlackWalk_UpRight BlackWalk_upright
+ADDANIMATION BlackWalk_DownRight BlackWalk_downright
+
+ADDANIMATION BlackIdle_Up BlackIdle_up
+ADDANIMATION BlackIdle_Down BlackIdle_down
+ADDANIMATION BlackIdle_Right BlackIdle_right
+ADDANIMATION BlackIdle_Left BlackIdle_left
+ADDANIMATION BlackIdle_UpLeft BlackIdle_upleft
+ADDANIMATION BlackIdle_DownLeft BlackIdle_downleft
+ADDANIMATION BlackIdle_UpRight BlackIdle_upright
+ADDANIMATION BlackIdle_DownRight BlackIdle_downright
+ENTITYINIT {NAME}
