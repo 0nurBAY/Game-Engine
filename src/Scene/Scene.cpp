@@ -31,10 +31,12 @@ void Scene::OnEvent(Event &event){
     entitymanager.EventEntities(event);
 }
 
-EntityManager& Scene::GetEntityManager(){
+EntityManager &Scene::GetEntityManager(){
     return entitymanager;
 }
-
+Camera *Scene::GetEntityCamera() const{
+    return camera;
+}
 void Scene::Activate(){
     if(active||destroyed) return;
     active = true;
@@ -45,11 +47,12 @@ void Scene::Exit(){
     active = false;
     OnExit();
 }
-void Scene::Init(){
+void Scene::Init(Camera *camera){
     if(inited||destroyed) return;
     inited = true;
+    this->camera = camera;
     for(auto&[id,entity]:entitymanager.GetEntites()){
-        entity->init();
+        entity->init(this);
     }
     OnCreate();
 }

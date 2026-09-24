@@ -19,7 +19,7 @@ void AnimationComponent::AnimationUpdate(float dt,ResourceManagerPlus* resourceM
     else animation->Update(dt);
     SpriteComponent* spritecomp = owner->GetComponent<SpriteComponent>();
     if(!spritecomp){
-        std::cout<<owner->GetName()<<"Entity'sinin SpriteComponenti yok\n";
+        std::cout<<owner->GetName()<<" Entity'sinin SpriteComponenti yok\n";
         return;
     }
     spritecomp->SetSprite(animation->GetCurrentFrame());

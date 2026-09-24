@@ -4,6 +4,7 @@ COMPONENT Material PlayerMat
 COMPONENT Renderer 2 1
 COMPONENT Sprite CharacterAtlas BlackWalk_Down00
 COMPONENT Animation 
+COMPONENT Drag 
 COMPONENT Script NPC1Script
 
 ADDANIMATION BlackWalk_Up BlackWalk_up

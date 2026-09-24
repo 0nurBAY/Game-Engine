@@ -1,0 +1,10 @@
+^C:\USERS\OBAYO\ONEDRIVE\DESKTOP\CODES3\2DENGINE\EXTERNAL\GLM\GLM\CMAKELISTS.TXT
+setlocal
+C:\Users\obayo\Downloads\cmake-4.4.0-rc3-windows-x86_64\cmake-4.4.0-rc3-windows-x86_64\bin\cmake.exe -SC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine -BC:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build --check-stamp-file C:/Users/obayo/OneDrive/Desktop/codes3/2DEngine/build/external/glm/glm/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

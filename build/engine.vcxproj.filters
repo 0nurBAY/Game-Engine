@@ -133,6 +133,9 @@
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\CameraComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\DragComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\CMakeLists.txt" />

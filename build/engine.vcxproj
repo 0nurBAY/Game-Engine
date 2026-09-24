@@ -536,6 +536,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\SceneLoader.cpp" />
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\ScriptManager.cpp" />
     <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\CameraComponent.cpp" />
+    <ClCompile Include="C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\DragComponent.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
