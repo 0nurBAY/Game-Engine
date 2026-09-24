@@ -41,7 +41,9 @@ public:
     void SetSize(float width, float height,float w, float h);
     void SetWorldSize(float width, float height, float r, float l, float t, float b);
     glm::vec2 ScreentoWorld(float ScreenX,float ScreenY);
+    glm::vec2 ScreentoWorld(glm::vec2 ScreenPos);
     glm::vec2 WorldToScreen(float WindowX,float WindowY);
+    glm::vec2 WorldToScreen(glm::vec2 WindowPos);
     glm::vec3 GetPosition() const;
     float GetRotation() const;
     float GetZoom    () const;

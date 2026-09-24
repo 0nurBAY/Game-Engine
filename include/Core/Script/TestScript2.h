@@ -8,10 +8,10 @@ class TestScript2 :public Script
 {
 private:
     bool arrived = true;
-    float walktime;
+    float walktime; 
     float walked =0.0f;
     glm::vec2 goal;
-    glm::vec2 lastdirection;
+    glm::vec2 lastdirection = glm::vec2(0.0f,-1.0f);
     float delay=5.0f;
     float timepased=0.0f;
 

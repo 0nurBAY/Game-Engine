@@ -15,5 +15,5 @@ public:
     virtual void OnCreate () {};
     virtual void OnDestroy() {};
 protected:
-    Entity* owner;
+    Entity* owner = nullptr;
 };

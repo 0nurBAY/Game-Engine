@@ -13,16 +13,19 @@
 #include "Scene/Components/LightComponent.h"
 #include "Scene/Components/AmbientLightComponent.h"
 #include "Scene/Components/CameraComponent.h"
+#include "Scene/Components/DragComponent.h"
 
 #include <string>
 #include <unordered_map>
 #include <memory>
 #include <typeindex>
 #include <iostream>
+class Scene;
 
 class Entity
 {
 private:
+    Scene* scene;
     std::uint64_t id;
     std::uint64_t uuid;
     std::string name;
@@ -35,8 +38,9 @@ public:
     std::uint64_t   GetID()     const;
     std::uint64_t   GetUUID()   const;
     std::string     GetName()   const;
+    Scene*     GetScene()   const;
 
-    void init();
+    void init(Scene* scene);
     void OnDestroy();
     bool IsDestroy();
     void DestroyerMark();

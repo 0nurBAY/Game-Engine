@@ -30,7 +30,10 @@ std::string Entity::GetName() const
 {
     return name;
 }
-
+Scene *Entity::GetScene() const
+{
+    return scene;
+}
 void Entity::ListComponents() const{
     std::cout << "Components:\n";
     for(auto& map:components){
@@ -59,11 +62,13 @@ void Entity::OnEvent(Event &event){
 }
 
 
-void Entity::init(){
+void Entity::init(Scene *scene){
     if(inited||pendingDestroy) return;
     inited = true;
+    this->scene = scene;
     for(auto& map:components){
         map.second->OnCreate();
+        map.second->AddOwner(this);
     }
 
 }

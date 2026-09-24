@@ -39,26 +39,26 @@ void main()
     color.rgb = vec3(r,g,b);
 //
     ////Blur
-    ////vec4 blur = color;
-    ////blur += texture(Texture,uv+vec2(1/Resx,0.0));
-    ////blur += texture(Texture,uv+vec2(-1/Resx,0.0));
-    ////blur += texture(Texture,uv+vec2(0.0,1/Resy));
-    ////blur += texture(Texture,uv+vec2(0.0,-1/Resy));
-    ////blur *= 0.2;
-    ////color = color*0.4 + blur*0.6;
+    vec4 blur = color;
+    blur += texture(Texture,uv+vec2(1/Resx,0.0));
+    blur += texture(Texture,uv+vec2(-1/Resx,0.0));
+    blur += texture(Texture,uv+vec2(0.0,1/Resy));
+    blur += texture(Texture,uv+vec2(0.0,-1/Resy));
+    blur *= 0.2;
+    color = color*0.4 + blur*0.6;
     //
 //
     ////çok hafif parlama
     float flick = sin(time*10.0);
     color.rgb *= 1.0 + flick*0.02;
 //
-    ////float effect = smoothstep(0.3,0.7,distance);
-    ////color.rgb *= 1.0-effect*0.8;
+    float effect = smoothstep(0.3,0.7,distance);
+    color.rgb *= 1.0-effect*0.8;
 //
 //
-    ////float noise = random(uv) -0.5;
-    ////noise *= 0.05;
-    ////color.rgb += noise;
+    float noise = random(uv) -0.5;
+    noise *= 0.05;
+    color.rgb += noise;
 //
 //
     //float scanliney = smoothstep(0.35,0.6,fract(gl_FragCoord.y/10.0)*2.0);
@@ -70,6 +70,6 @@ void main()
     float scanlinex = smoothstep(0.35,0.45,fract(gl_FragCoord.x/15.0)*2.0);
     color.rgb *= 0.9 +scanlinex*0.1;
 
-    FragColor = texture(Texture,TexCoords);
+    FragColor = color;
 }
 

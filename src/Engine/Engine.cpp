@@ -58,7 +58,7 @@ void Engine::ReadResourcesFile(const std::string &path){
 }
 
 Engine::Engine():
-window(1200,1200,"Pencere"),
+window(1200,600,"Pencere"),
 input(window),
 camera(window.GetWidth(),window.GetHeight()),
 renderer(camera,window.GetWidth(),window.GetHeight(),ReadShader("shaders/deneme.vert").c_str(),ReadShader("shaders/deneme.frag").c_str())
@@ -79,7 +79,7 @@ void Engine::Init(){
 
 void Engine::PushScene(std::unique_ptr<Scene> scene){
     scenestack.push_back(std::move(scene));
-    scenestack.back()->Init();
+    scenestack.back()->Init(&camera);
     scenestack.back()->Activate();
 }
 

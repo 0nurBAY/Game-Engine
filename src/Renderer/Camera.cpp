@@ -107,9 +107,28 @@ glm::vec2 Camera::ScreentoWorld(float ScreenX, float ScreenY){
     pos+=glm::vec2(position.x,position.y);
     return pos;
 }
+glm::vec2 Camera::ScreentoWorld(glm::vec2 ScreenPos){
+    glm::vec2 asp = glm::vec2(GetWorldWidthAspect(),GetWorldHeightAspect());
+    glm::vec2 pos = glm::vec2(ScreenPos.x-resW * 0.5f,resH * 0.5f -ScreenPos.y);
+    pos *= asp;
+    pos+=glm::vec2(position.x,position.y);
+    return pos;
+}
+
 
 glm::vec2 Camera::WorldToScreen(float WindowX,float WindowY){
     glm::vec2 pos = glm::vec2(WindowX-position.x,WindowY-position.y);  
+    glm::vec2 asp = glm::vec2(GetWorldWidthAspect(),GetWorldHeightAspect());
+    pos /= asp;
+    
+
+    pos.x = resW * 0.5f + pos.x;
+    pos.y = resH * 0.5f - pos.y;
+
+    return pos;
+}
+glm::vec2 Camera::WorldToScreen(glm::vec2 WindowPos){
+    glm::vec2 pos = glm::vec2(WindowPos.x-position.x,WindowPos.y-position.y);  
     glm::vec2 asp = glm::vec2(GetWorldWidthAspect(),GetWorldHeightAspect());
     pos /= asp;
     

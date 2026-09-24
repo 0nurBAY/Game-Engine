@@ -5,6 +5,7 @@ COMPONENT Material PlayerMat
 COMPONENT Renderer 2 2
 COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
 COMPONENT Animation 
+COMPONENT Drag 
 COMPONENT Script PlayerScript
 ADDANIMATION PlayerWalk_Up PlayerWalk_up
 ADDANIMATION PlayerWalk_Down PlayerWalk_down
