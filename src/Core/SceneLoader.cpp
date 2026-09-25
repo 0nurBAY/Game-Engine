@@ -27,6 +27,7 @@ void SceneLoader::Init(){
     commands.emplace("Script",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->ScriptComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Camera",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->CameraComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Drag",        [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->DragComp(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("State",       [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->StateComp(entity,resource,assets,scriptmanager,input,camera);});
 
 }
 void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager &scriptmanager,Input *input,Camera &camera){
@@ -153,6 +154,11 @@ void SceneLoader::CameraComp(Entity *entity, ParsedResource &resource, std::unor
 void SceneLoader::DragComp(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     if(resource.args.size()>0) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     entity->AddComponent<DragComponent>();
+
+}
+void SceneLoader::StateComp(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    if(resource.args.size()>0) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    entity->AddComponent<StateComponent>();
 
 }
 void SceneLoader::CreateScene(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){

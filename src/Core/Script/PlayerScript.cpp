@@ -16,6 +16,8 @@ void PlayerScript::Update(float deltatime){
     if(i->IsKeyDown(GLFW_KEY_D)){direction.x +=1.0f;}
     if (glm::length(direction) > 0.0f)  direction = glm::normalize(direction);
     transform->position+=direction*spd*deltatime;
+    if(direction==lastdirection)return;
+    animation->SetDirection(direction);
     if(direction.x<0.0f&&direction.y<0.0f)  {animation->RequestAnimation("PlayerWalk_DownLeft" );}
     if(direction.x<0.0f&&direction.y>0.0f)  {animation->RequestAnimation("PlayerWalk_UpLeft"   );}
     if(direction.x<0.0f&&direction.y==0.0f) {animation->RequestAnimation("PlayerWalk_Left"     );}

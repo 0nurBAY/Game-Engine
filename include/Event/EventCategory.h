@@ -9,6 +9,6 @@ enum class EventCategory{
     Keyboard        = 1<<1,
     Mouse           = 1<<2,
     MouseButton     = 1<<3,
-    Application     = 1<<4
-
+    Application     = 1<<4,
+    State           = 1<<5
 };

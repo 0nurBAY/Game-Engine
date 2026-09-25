@@ -21,13 +21,13 @@ void CameraScript::Update(float deltatime){
     FolowTarget(deltatime);
 
     if(i->IsKeyDown(GLFW_KEY_Q)) {
-        std::cout << "Geted: " <<camera->GetZoom() <<"\n";
+        // std::cout << "Geted: " <<camera->GetZoom() <<"\n";
         // std::cout << "Value: " <<camera->GetZoom()*0.8f*deltatime <<"\n";
         camera->SetZoom(camera->GetZoom()*0.8f);
         // std::cout << "Seted: " <<camera->GetZoom() <<"\n";
     }
     if(i->IsKeyDown(GLFW_KEY_E)) {
-        std::cout << "Geted: " <<camera->GetZoom() <<"\n";
+        // std::cout << "Geted: " <<camera->GetZoom() <<"\n";
         // std::cout << "Value: " <<camera->GetZoom()*1.2f <<"\n";
         camera->SetZoom(camera->GetZoom()*1.2f);
         // std::cout << "Seted: " <<camera->GetZoom() <<"\n";

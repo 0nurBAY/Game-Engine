@@ -67,8 +67,8 @@ void Entity::init(Scene *scene){
     inited = true;
     this->scene = scene;
     for(auto& map:components){
-        map.second->OnCreate();
         map.second->AddOwner(this);
+        map.second->OnCreate();
     }
 
 }

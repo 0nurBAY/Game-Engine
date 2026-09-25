@@ -2,10 +2,20 @@
 
 #include "Scene/Components/AnimationComponent.h"
 #include "Scene/Entity.h"
+#include "Event/Events.h"
 AnimationComponent::AnimationComponent(){}
+
 void AnimationComponent::AddAnimation(std::string name, const AssetHandle<Animation> &animation){
     if(animations.empty())current_animation = name;
     animations.insert({name,animation});
+}
+void AnimationComponent::OnEvent(Event &event){
+    EventDispatcher dispather(event);
+    dispather.Dispatcher<StateChangeEvent>(
+        [this](StateChangeEvent& event){
+            std::cout<<"Test1: "<<event.GetState()<<"\n";
+    
+        });
 }
 void AnimationComponent::AnimationUpdate(float dt,ResourceManagerPlus* resourceManager){
     
@@ -48,4 +58,7 @@ std::shared_ptr<Animation> AnimationComponent::FindAnimation(ResourceManagerPlus
     auto it = animations.find(current_animation);
     if(it==animations.end()) return nullptr;
     return resourceManager->Resolve<Animation>((it->second).GetName());
+}
+void AnimationComponent::SetDirection(glm::vec2 dir){
+    direction = dir;
 }
