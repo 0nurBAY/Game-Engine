@@ -60,6 +60,7 @@ add_executable(engine
     src/Core/ScriptManager.cpp
     src/Scene/Components/CameraComponent.cpp
     src/Scene/Components/DragComponent.cpp
+    src/Scene/Components/StateComponent.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD

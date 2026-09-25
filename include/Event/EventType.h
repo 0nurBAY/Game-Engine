@@ -15,6 +15,8 @@ enum class EventType{
     MouseReleased,
 
     MouseMoved,
-    MouseScrolled
+    MouseScrolled,
+
+    StateChage
 
 };

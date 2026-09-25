@@ -14,6 +14,7 @@
 #include "Scene/Components/AmbientLightComponent.h"
 #include "Scene/Components/CameraComponent.h"
 #include "Scene/Components/DragComponent.h"
+#include "Scene/Components/StateComponent.h"
 
 #include <string>
 #include <unordered_map>
