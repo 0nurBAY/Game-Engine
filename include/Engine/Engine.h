@@ -18,6 +18,7 @@
 class Engine
 {
 private:
+    float timepassed=0;
     std::vector<std::unique_ptr<Scene>> scenestack;
     Window window;
     Input input;

@@ -112,13 +112,19 @@ void Engine::Update(){
     Scene* currentscene = GetActiveScene();
     
     time.Update();
-    input.Update();
-    window.clear();
-    camera.Update(time.GetDeltaTime());
-    if(currentscene){
-    currentscene->Update(time.GetDeltaTime());
-    currentscene->AnimationUpdate(time.GetDeltaTime(),&resoursmanager);
-    }
+    // while(timepassed<0.000125){
+        input.Update();
+        window.clear();
+        float dt = time.GetDeltaTime();
+        camera.Update(dt);
+        if(currentscene){
+        currentscene->Update(dt);
+        currentscene->AnimationUpdate(dt,&resoursmanager);
+        }
+        timepassed+=time.GetDeltaTime();
+    // }
+    // timepassed -= 0.000125;
+    // std::cout<<"FPS: "<<1/dt<<"\n";
 
 }
 void Engine::GameLoop(){

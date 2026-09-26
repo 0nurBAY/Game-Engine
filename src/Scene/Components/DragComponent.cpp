@@ -13,6 +13,7 @@ void DragComponent::OnEvent(Event &event){
         [this](MousePressedEvent &event){
             // std::cout << "Mouse button down: " << event.GetButton() <<"\n";
             if(event.GetButton() == 0)  {
+                
                 auto* cam = owner->GetScene()->GetEntityCamera();
                 is_mouse_button=true;
                 auto* tr = owner->GetComponent<TransformComp>();
@@ -46,5 +47,5 @@ void DragComponent::Update(float dt){
     auto* cam = owner->GetScene()->GetEntityCamera();
     glm::vec2 npos = cam->ScreentoWorld(mpos);
     owner->GetComponent<TransformComp>()->position = glm::vec2(npos.x + offset.x,npos.y - offset.y);
-    owner->GetComponent<StateComponent>()->SetState("Holding");
+    owner->GetComponent<StateComponent>()->SetState("Hold");
 }

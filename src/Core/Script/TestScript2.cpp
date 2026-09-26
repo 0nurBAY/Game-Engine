@@ -10,29 +10,23 @@ void TestScript2::Update(float deltatime){
     Decide(deltatime);
     auto* e = GetEntity();
     auto* animation = e->GetComponent<AnimationComponent>();
+    auto* state     = e->GetComponent<StateComponent>();
     if(arrived){
-        if(lastdirection.x<0.0f&&lastdirection.y<0.0f)  {animation->RequestAnimation("BlackIdle_DownLeft" );}
-        if(lastdirection.x<0.0f&&lastdirection.y>0.0f)  {animation->RequestAnimation("BlackIdle_UpLeft"   );}
-        if(lastdirection.x<0.0f&&lastdirection.y==0.0f) {animation->RequestAnimation("BlackIdle_Left"     );}
-        if(lastdirection.x==0.0f&&lastdirection.y<0.0f) {animation->RequestAnimation("BlackIdle_Down"     );}
-        if(lastdirection.x==0.0f&&lastdirection.y>0.0f) {animation->RequestAnimation("BlackIdle_Up"       );}
-        if(lastdirection.x>0.0f&&lastdirection.y<0.0f)  {animation->RequestAnimation("BlackIdle_DownRight");}
-        if(lastdirection.x>0.0f&&lastdirection.y>0.0f)  {animation->RequestAnimation("BlackIdle_UpRight"  );}
-        if(lastdirection.x>0.0f&&lastdirection.y==0.0f) {animation->RequestAnimation("BlackIdle_Right"    );}
+        state->SetState("Idle");
         return;
     }
 
     auto* transform = e->GetComponent<TransformComp>();
     transform->position+=goal*500.0f*deltatime;
-    if(goal.x<0.0f&&goal.y<0.0f)  {animation->RequestAnimation("BlackWalk_DownLeft" );}
-    if(goal.x<0.0f&&goal.y>0.0f)  {animation->RequestAnimation("BlackWalk_UpLeft"   );}
-    if(goal.x<0.0f&&goal.y==0.0f) {animation->RequestAnimation("BlackWalk_Left"     );}
-    if(goal.x==0.0f&&goal.y<0.0f) {animation->RequestAnimation("BlackWalk_Down"     );}
-    if(goal.x==0.0f&&goal.y>0.0f) {animation->RequestAnimation("BlackWalk_Up"       );}
-    if(goal.x>0.0f&&goal.y<0.0f)  {animation->RequestAnimation("BlackWalk_DownRight");}
-    if(goal.x>0.0f&&goal.y>0.0f)  {animation->RequestAnimation("BlackWalk_UpRight"  );}
-    if(goal.x>0.0f&&goal.y==0.0f) {animation->RequestAnimation("BlackWalk_Right"    );}
-
+    if(goal.x<0.0f&&goal.y<0.0f)  {animation->SetDirection(Directions::DOWNLEFT);}
+    if(goal.x<0.0f&&goal.y>0.0f)  {animation->SetDirection(Directions::UPLEFT);}
+    if(goal.x<0.0f&&goal.y==0.0f) {animation->SetDirection(Directions::LEFT);}
+    if(goal.x==0.0f&&goal.y<0.0f) {animation->SetDirection(Directions::DOWN);}
+    if(goal.x==0.0f&&goal.y>0.0f) {animation->SetDirection(Directions::UP);}
+    if(goal.x>0.0f&&goal.y<0.0f)  {animation->SetDirection(Directions::DOWNRIGHT);}
+    if(goal.x>0.0f&&goal.y>0.0f)  {animation->SetDirection(Directions::UPRIGHT);}
+    if(goal.x>0.0f&&goal.y==0.0f) {animation->SetDirection(Directions::RIGHT);}
+    state->SetState("Walk");
     
 }
 

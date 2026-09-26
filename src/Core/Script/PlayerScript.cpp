@@ -8,6 +8,7 @@ void PlayerScript::Update(float deltatime){
     auto* i = GetInput();
     auto* transform = e->GetComponent<TransformComp>();
     auto* animation = e->GetComponent<AnimationComponent>();
+    auto* state     = e->GetComponent<StateComponent>();
     float spd = 500.0f;
     glm::vec2 direction(0.0f,0.0f);
     if(i->IsKeyDown(GLFW_KEY_W)){direction.y +=1.0f;}
@@ -16,25 +17,15 @@ void PlayerScript::Update(float deltatime){
     if(i->IsKeyDown(GLFW_KEY_D)){direction.x +=1.0f;}
     if (glm::length(direction) > 0.0f)  direction = glm::normalize(direction);
     transform->position+=direction*spd*deltatime;
-    if(direction==lastdirection)return;
-    animation->SetDirection(direction);
-    if(direction.x<0.0f&&direction.y<0.0f)  {animation->RequestAnimation("PlayerWalk_DownLeft" );}
-    if(direction.x<0.0f&&direction.y>0.0f)  {animation->RequestAnimation("PlayerWalk_UpLeft"   );}
-    if(direction.x<0.0f&&direction.y==0.0f) {animation->RequestAnimation("PlayerWalk_Left"     );}
-    if(direction.x==0.0f&&direction.y<0.0f) {animation->RequestAnimation("PlayerWalk_Down"     );}
-    if(direction.x==0.0f&&direction.y>0.0f) {animation->RequestAnimation("PlayerWalk_Up"       );}
-    if(direction.x>0.0f&&direction.y<0.0f)  {animation->RequestAnimation("PlayerWalk_DownRight");}
-    if(direction.x>0.0f&&direction.y>0.0f)  {animation->RequestAnimation("PlayerWalk_UpRight"  );}
-    if(direction.x>0.0f&&direction.y==0.0f) {animation->RequestAnimation("PlayerWalk_Right"    );}
-    if(direction.x==0.0f&&direction.y==0.0f){
-        if(lastdirection.x<0.0f&&lastdirection.y<0.0f)  {animation->RequestAnimation("PlayerIdle_DownLeft" );}
-        if(lastdirection.x<0.0f&&lastdirection.y>0.0f)  {animation->RequestAnimation("PlayerIdle_UpLeft"   );}
-        if(lastdirection.x<0.0f&&lastdirection.y==0.0f) {animation->RequestAnimation("PlayerIdle_Left"     );}
-        if(lastdirection.x==0.0f&&lastdirection.y<0.0f) {animation->RequestAnimation("PlayerIdle_Down"     );}
-        if(lastdirection.x==0.0f&&lastdirection.y>0.0f) {animation->RequestAnimation("PlayerIdle_Up"       );}
-        if(lastdirection.x>0.0f&&lastdirection.y<0.0f)  {animation->RequestAnimation("PlayerIdle_DownRight");}
-        if(lastdirection.x>0.0f&&lastdirection.y>0.0f)  {animation->RequestAnimation("PlayerIdle_UpRight"  );}
-        if(lastdirection.x>0.0f&&lastdirection.y==0.0f) {animation->RequestAnimation("PlayerIdle_Right"    );}
-    }
-    if(direction!=glm::vec2(0.0f,0.0f))lastdirection = direction;
+    
+    if(direction.x<0.0f&&direction.y<0.0f)  {animation->SetDirection(Directions::DOWNLEFT);}
+    if(direction.x<0.0f&&direction.y>0.0f)  {animation->SetDirection(Directions::UPLEFT);}
+    if(direction.x<0.0f&&direction.y==0.0f) {animation->SetDirection(Directions::LEFT);}
+    if(direction.x==0.0f&&direction.y<0.0f) {animation->SetDirection(Directions::DOWN);}
+    if(direction.x==0.0f&&direction.y>0.0f) {animation->SetDirection(Directions::UP);}
+    if(direction.x>0.0f&&direction.y<0.0f)  {animation->SetDirection(Directions::DOWNRIGHT);}
+    if(direction.x>0.0f&&direction.y>0.0f)  {animation->SetDirection(Directions::UPRIGHT);}
+    if(direction.x>0.0f&&direction.y==0.0f) {animation->SetDirection(Directions::RIGHT);}
+    if(direction.x==0.0f&&direction.y==0.0f){state->SetState("Idle");}
+    else{state->SetState("Walk");}
 }

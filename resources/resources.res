@@ -54,6 +54,12 @@ ATLAS_ADD CharacterAtlas PlayerWalk_UpLeft01 32.0 300.0 16.0 20.0
 ATLAS_ADD CharacterAtlas PlayerWalk_UpLeft02 16.0 320.0 16.0 20.0
 ATLAS_ADD CharacterAtlas PlayerWalk_UpLeft03 0.0 340.0 16.0 20.0
 
+ATLAS_ADD CharacterAtlas PlayerHold_Down00 80.0 220.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerHold_Down01 80.0 200.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerHold_Down02 80.0 220.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerHold_Down03 80.0 180.0 16.0 20.0
+
+
 
 ATLAS_ADD CharacterAtlas BlackWalk_Up00 64.0 100.0 16.0 20.0
 ATLAS_ADD CharacterAtlas BlackWalk_Up01 64.0 120.0 16.0 20.0
@@ -94,6 +100,11 @@ ATLAS_ADD CharacterAtlas BlackWalk_UpLeft00 48.0 100.0 16.0 20.0
 ATLAS_ADD CharacterAtlas BlackWalk_UpLeft01 32.0 120.0 16.0 20.0
 ATLAS_ADD CharacterAtlas BlackWalk_UpLeft02 16.0 140.0 16.0 20.0
 ATLAS_ADD CharacterAtlas BlackWalk_UpLeft03 0.0 160.0 16.0 20.0
+
+ATLAS_ADD CharacterAtlas BlackHold_Down00 80.0 40.0 16.0 20.0
+ATLAS_ADD CharacterAtlas BlackHold_Down01 80.0 20.0 16.0 20.0
+ATLAS_ADD CharacterAtlas BlackHold_Down02 80.0 40.0 16.0 20.0
+ATLAS_ADD CharacterAtlas BlackHold_Down03 80.0 0.0 16.0 20.0
 
 
 TEXTUREATLAS EnviormentAtlas EnviormentSprite 185 162
@@ -142,6 +153,7 @@ ANIMATION PlayerIdle_upright 0.1 once PlayerWalk_UpRight00
 ANIMATION PlayerIdle_upleft 0.1 once PlayerWalk_UpLeft00
 ANIMATION PlayerIdle_downleft 0.1 once PlayerWalk_DownLeft00
 
+ANIMATION PlayerHold_down 0.1 loop PlayerHold_Down00 PlayerHold_Down01 PlayerHold_Down02 PlayerHold_Down03
 
 #black animations
 ANIMATION BlackWalk_down 0.1 loop BlackWalk_Down00 BlackWalk_Down01 BlackWalk_Down02 BlackWalk_Down03
@@ -163,3 +175,5 @@ ANIMATION BlackIdle_downright 0.1 once BlackWalk_DownRight00
 ANIMATION BlackIdle_upright 0.1 once BlackWalk_UpRight00
 ANIMATION BlackIdle_upleft 0.1 once BlackWalk_UpLeft00
 ANIMATION BlackIdle_downleft 0.1 once BlackWalk_DownLeft00
+
+ANIMATION BlackHold_down 0.1 loop BlackHold_Down00 BlackHold_Down01 BlackHold_Down02 BlackHold_Down03
