@@ -9,8 +9,8 @@ std::string StateComponent::GetState() const{
 }
 
 void StateComponent::SetState(std::string name){
-    if(state==name)return;
-
+    std::cout<<owner->GetName()<<" State_Changed to "<<name<<"\n";
+    // if(state==name)return;
     state = name;
     StateChangeEvent event(state);
     owner->OnEvent(event);

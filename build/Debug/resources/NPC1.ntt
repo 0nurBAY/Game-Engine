@@ -8,21 +8,26 @@ COMPONENT Drag
 COMPONENT State 
 COMPONENT Script NPC1Script
 
-ADDANIMATION BlackWalk_Up BlackWalk_up
-ADDANIMATION BlackWalk_Down BlackWalk_down
-ADDANIMATION BlackWalk_Right BlackWalk_right
-ADDANIMATION BlackWalk_Left BlackWalk_left
-ADDANIMATION BlackWalk_UpLeft BlackWalk_upleft
-ADDANIMATION BlackWalk_DownLeft BlackWalk_downleft
-ADDANIMATION BlackWalk_UpRight BlackWalk_upright
-ADDANIMATION BlackWalk_DownRight BlackWalk_downright
+ADDANIMATION Walk Up BlackWalk_up
+ADDANIMATION Walk Down BlackWalk_down
+ADDANIMATION Walk Right BlackWalk_right
+ADDANIMATION Walk Left BlackWalk_left
+ADDANIMATION Walk UpLeft BlackWalk_upleft
+ADDANIMATION Walk DownLeft BlackWalk_downleft
+ADDANIMATION Walk UpRight BlackWalk_upright
+ADDANIMATION Walk DownRight BlackWalk_downright
+ANIMATOINQUEUE Walk 0
 
-ADDANIMATION BlackIdle_Up BlackIdle_up
-ADDANIMATION BlackIdle_Down BlackIdle_down
-ADDANIMATION BlackIdle_Right BlackIdle_right
-ADDANIMATION BlackIdle_Left BlackIdle_left
-ADDANIMATION BlackIdle_UpLeft BlackIdle_upleft
-ADDANIMATION BlackIdle_DownLeft BlackIdle_downleft
-ADDANIMATION BlackIdle_UpRight BlackIdle_upright
-ADDANIMATION BlackIdle_DownRight BlackIdle_downright
+ADDANIMATION Idle Up BlackIdle_up
+ADDANIMATION Idle Down BlackIdle_down
+ADDANIMATION Idle Right BlackIdle_right
+ADDANIMATION Idle Left BlackIdle_left
+ADDANIMATION Idle UpLeft BlackIdle_upleft
+ADDANIMATION Idle DownLeft BlackIdle_downleft
+ADDANIMATION Idle UpRight BlackIdle_upright
+ADDANIMATION Idle DownRight BlackIdle_downright
+ANIMATOINQUEUE Idle 1
+
+ADDANIMATION Hold None BlackHold_down
+ANIMATOINQUEUE Hold 2
 ENTITYINIT {NAME}

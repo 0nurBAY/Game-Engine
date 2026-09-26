@@ -8,21 +8,26 @@ COMPONENT Animation
 COMPONENT Drag 
 COMPONENT State
 COMPONENT Script PlayerScript
-ADDANIMATION PlayerWalk_Up PlayerWalk_up
-ADDANIMATION PlayerWalk_Down PlayerWalk_down
-ADDANIMATION PlayerWalk_Right PlayerWalk_right
-ADDANIMATION PlayerWalk_Left PlayerWalk_left
-ADDANIMATION PlayerWalk_UpLeft PlayerWalk_upleft
-ADDANIMATION PlayerWalk_DownLeft PlayerWalk_downleft
-ADDANIMATION PlayerWalk_UpRight PlayerWalk_upright
-ADDANIMATION PlayerWalk_DownRight PlayerWalk_downright
+ADDANIMATION Walk Up PlayerWalk_up
+ADDANIMATION Walk Down PlayerWalk_down
+ADDANIMATION Walk Right PlayerWalk_right
+ADDANIMATION Walk Left PlayerWalk_left
+ADDANIMATION Walk UpLeft PlayerWalk_upleft
+ADDANIMATION Walk DownLeft PlayerWalk_downleft
+ADDANIMATION Walk UpRight PlayerWalk_upright
+ADDANIMATION Walk DownRight PlayerWalk_downright
+ANIMATOINQUEUE Walk 1
 
-ADDANIMATION PlayerIdle_Up PlayerIdle_up
-ADDANIMATION PlayerIdle_Down PlayerIdle_down
-ADDANIMATION PlayerIdle_Right PlayerIdle_right
-ADDANIMATION PlayerIdle_Left PlayerIdle_left
-ADDANIMATION PlayerIdle_UpLeft PlayerIdle_upleft
-ADDANIMATION PlayerIdle_DownLeft PlayerIdle_downleft
-ADDANIMATION PlayerIdle_UpRight PlayerIdle_upright
-ADDANIMATION PlayerIdle_DownRight PlayerIdle_downright
+ADDANIMATION Idle Up PlayerIdle_up
+ADDANIMATION Idle Down PlayerIdle_down
+ADDANIMATION Idle Right PlayerIdle_right
+ADDANIMATION Idle Left PlayerIdle_left
+ADDANIMATION Idle UpLeft PlayerIdle_upleft
+ADDANIMATION Idle DownLeft PlayerIdle_downleft
+ADDANIMATION Idle UpRight PlayerIdle_upright
+ADDANIMATION Idle DownRight PlayerIdle_downright
+ANIMATOINQUEUE Idle 0
+
+ADDANIMATION Hold None PlayerHold_down
+ANIMATOINQUEUE Hold 2
 ENTITYINIT {NAME}

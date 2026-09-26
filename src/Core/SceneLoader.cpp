@@ -14,6 +14,7 @@ void SceneLoader::Init(){
     commands.emplace("ENTITY",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){CreateEntity(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("COMPONENT",   [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddComponent(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("ADDANIMATION",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddAnimation(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("ANIMATOINQUEUE",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddAnimationQueue(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("ENTITYINIT",  [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){EntityInit(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("IMPORT",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){Import(entity,resource,assets,scriptmanager,input,camera);});
 
@@ -28,7 +29,15 @@ void SceneLoader::Init(){
     commands.emplace("Camera",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->CameraComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Drag",        [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->DragComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("State",       [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->StateComp(entity,resource,assets,scriptmanager,input,camera);});
-
+    directions.emplace("Up",Directions::UP);
+    directions.emplace("Down",Directions::DOWN);
+    directions.emplace("Left",Directions::LEFT);
+    directions.emplace("Right",Directions::RIGHT);
+    directions.emplace("UpRight",Directions::UPRIGHT);
+    directions.emplace("UpLeft",Directions::UPLEFT);
+    directions.emplace("DownRight",Directions::DOWNRIGHT);
+    directions.emplace("DownLeft",Directions::DOWNLEFT);
+    directions.emplace("None",Directions::NONE);
 }
 void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager &scriptmanager,Input *input,Camera &camera){
     // std::cout << "SceneLoader::LoadScene: Camera pointer: " << &camera << "\n";
@@ -40,9 +49,9 @@ void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::st
         printf("\t-ARG: %s\n",arg.c_str());
     }
     std::cout<<"\n";
-    if(resource.name.empty()) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.name.empty()) throw std::runtime_error("0No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     auto it = commands.find(resource.type.c_str());
-    if(it == commands.end()) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(it == commands.end()) throw std::runtime_error("0No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     it->second(nullptr,resource,assets,scriptmanager,input,camera);
 
 }
@@ -185,16 +194,18 @@ void SceneLoader::AddComponent(Entity *entity, ParsedResource &resource, std::un
 void SceneLoader::AddAnimation(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     if(!currentID)
     throw std::runtime_error("No Entity found: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
-    if(resource.args.size()<1) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
-    if(resource.args.size()>1) throw std::runtime_error("To many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()<2) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()>2) throw std::runtime_error("To many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     auto* animationcomp = currentscene->FindEntity(currentID)->GetComponent<AnimationComponent>();
-    auto it = assets.find(resource.args[0]);
+    auto it = assets.find(resource.args[1]);
     if(it==assets.end()) {
-        throw std::runtime_error("Asset not found: " + resource.args[0] + "\n" + resource.file + " - " +std::to_string(resource.line));
+        throw std::runtime_error("Asset not found: " + resource.args[1] + "\n" + resource.file + " - " +std::to_string(resource.line));
         return;
     }
     auto& handle = *static_cast<AssetHandle<Animation>*>(it->second.get());
-    animationcomp->AddAnimation(resource.name,handle);
+    auto dir = directions.find(resource.args[0]);
+    if(dir == directions.end()) throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
+    animationcomp->AddAnimation(resource.name,dir->second,handle);
 }
 void SceneLoader::EntityInit(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     if(!currentID) 
@@ -260,4 +271,8 @@ std::string SceneLoader::SubstituteArgs(std::string line, std::vector<std::strin
     std::cout << "Importing line: " << line << "\n";
 
     return line;
+}
+void SceneLoader::AddAnimationQueue(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    auto* animationcomp = currentscene->FindEntity(currentID)->GetComponent<AnimationComponent>();
+    animationcomp->AddQueue(resource.name,std::stoi(resource.args[0]));
 }

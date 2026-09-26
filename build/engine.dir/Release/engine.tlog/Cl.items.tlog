@@ -43,3 +43,4 @@ C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\SceneLoader.cpp;C:\User
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Core\ScriptManager.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Release\ScriptManager.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\CameraComponent.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Release\CameraComponent.obj
 C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\DragComponent.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Release\DragComponent.obj
+C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\src\Scene\Components\StateComponent.cpp;C:\Users\obayo\OneDrive\Desktop\codes3\2DEngine\build\engine.dir\Release\StateComponent.obj

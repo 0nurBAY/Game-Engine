@@ -10,7 +10,7 @@ class StateChangeEvent : public Event
 private:
     std::string state;
 public:
-    StateChangeEvent(std::string name):state(name){std::cout<<"StateChangeEvent\n";}
+    StateChangeEvent(std::string name):state(name){}
     std::string GetState()const{return state;}
     EventType GetType() const override{
        return EventType::StateChage;
