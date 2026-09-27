@@ -12,7 +12,7 @@ void TestScript2::Update(float deltatime){
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
     if(arrived){
-        state->SetState("Idle");
+        state->RequestState("Idle");
         return;
     }
 
@@ -26,7 +26,7 @@ void TestScript2::Update(float deltatime){
     if(goal.x>0.0f&&goal.y<0.0f)  {animation->SetDirection(Directions::DOWNRIGHT);}
     if(goal.x>0.0f&&goal.y>0.0f)  {animation->SetDirection(Directions::UPRIGHT);}
     if(goal.x>0.0f&&goal.y==0.0f) {animation->SetDirection(Directions::RIGHT);}
-    state->SetState("Walk");
+    state->RequestState("Walk");
     
 }
 

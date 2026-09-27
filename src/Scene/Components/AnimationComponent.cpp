@@ -4,10 +4,7 @@
 
 AnimationComponent::AnimationComponent(){}
 
-void AnimationComponent::AddAnimation(
-    std::string state,
-    Directions dir,
-    const AssetHandle<Animation> &animation)
+void AnimationComponent::AddAnimation(std::string state,Directions dir,const AssetHandle<Animation> &animation)
 {
     // std::cout
     //     << "\n========================================\n"
@@ -50,13 +47,11 @@ void AnimationComponent::OnEvent(Event &event)
             //     << "[AnimationComponent] STATE CHANGE EVENT RECEIVED\n"
             //     << "  New State  : " << event.GetState() << "\n";
 
-            RequestAnimation(event.GetState());
+            request = event.GetState();
         });
 }
 
-void AnimationComponent::AnimationUpdate(
-    float dt,
-    ResourceManagerPlus* resourceManager)
+void AnimationComponent::AnimationUpdate(float dt,ResourceManagerPlus* resourceManager)
 {
     // std::cout
     //     << "\n\n"
@@ -138,25 +133,12 @@ void AnimationComponent::AnimationUpdate(
     //     << "[AnimationComponent] SPRITE UPDATED\n"
     //     << "  Entity : " << owner->GetName() << "\n"
     //     << "########################################\n";
+    if(animation->IsComplete()){
+        owner->GetComponent<StateComponent>()->Complete();
+    }
 }
 
-void AnimationComponent::RequestAnimation(const std::string &name)
-{
-    // std::cout
-    //     << "\n----------------------------------------\n"
-    //     << "[AnimationComponent] REQUEST ANIMATION\n"
-    //     << "  Requested : " << name << "\n"
-    //     << "  Queue Size Before : " << requests.size() << "\n";
-
-    requests.push_back(name);
-
-    // std::cout
-    //     << "  Queue Size After  : " << requests.size() << "\n"
-    //     << "----------------------------------------\n";
-}
-
-void AnimationComponent::Play(
-    ResourceManagerPlus* resourceManager)
+void AnimationComponent::Play(ResourceManagerPlus* resourceManager)
 {
     // std::cout
     //     << "\n[AnimationComponent] PLAY\n"
@@ -168,7 +150,7 @@ void AnimationComponent::Play(
     //     << "    Requests      : " << requests.size() << "\n";
 
     // Önce bekleyen request'lerden hangisinin seçileceğine karar ver.
-    Decide();
+    // Decide();
 
     // std::cout
     //     << "  After Decide:\n"
@@ -321,12 +303,10 @@ void AnimationComponent::Reset()
 {
     // std::cout
     //     << "[AnimationComponent] RESET FLAG SET\n";
-
     reset = 1;
 }
 
-std::shared_ptr<Animation> AnimationComponent::FindAnimation(
-    ResourceManagerPlus* resourceManager)
+std::shared_ptr<Animation> AnimationComponent::FindAnimation(ResourceManagerPlus* resourceManager)
 {
     // std::cout
     //     << "\n[AnimationComponent] FIND ANIMATION\n"

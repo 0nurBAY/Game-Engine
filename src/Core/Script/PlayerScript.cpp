@@ -2,6 +2,7 @@
 #include "Core/Script/PlayerScript.h"
 #include "Scene/Entity.h"
 #include "Core/Input.h"
+#include "Event/Events.h"
 #include <iostream>
 void PlayerScript::Update(float deltatime){
     auto* e = GetEntity();
@@ -26,6 +27,16 @@ void PlayerScript::Update(float deltatime){
     if(direction.x>0.0f&&direction.y<0.0f)  {animation->SetDirection(Directions::DOWNRIGHT);}
     if(direction.x>0.0f&&direction.y>0.0f)  {animation->SetDirection(Directions::UPRIGHT);}
     if(direction.x>0.0f&&direction.y==0.0f) {animation->SetDirection(Directions::RIGHT);}
-    if(direction.x==0.0f&&direction.y==0.0f){state->SetState("Idle");}
-    else{state->SetState("Walk");}
+    if(direction.x==0.0f&&direction.y==0.0f){state->RequestState("Idle");}
+    else{state->RequestState("Walk");}
+
+}
+void PlayerScript::OnEvent(Event &event){
+    // EventDispatcher dispatcher(event);
+    // dispatcher.Dispatcher<MousePressedEvent>(
+    //     [this](MousePressedEvent& event){
+    //         auto state = this->GetEntity()->GetComponent<StateComponent>();
+    //         state->RequestState("Attack");
+    //     }
+    // );
 }

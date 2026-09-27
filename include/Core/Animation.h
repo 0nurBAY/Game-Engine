@@ -21,6 +21,7 @@ public:
 
     const std::string& GetCurrentFrame() const;
     bool IsFinished() const;
+    bool IsComplete() const;
  
     std::size_t GetCurrentFrameIndex() const;
 };

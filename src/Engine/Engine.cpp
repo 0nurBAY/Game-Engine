@@ -125,6 +125,8 @@ void Engine::Update(){
     // }
     // timepassed -= 0.000125;
     // std::cout<<"FPS: "<<1/dt<<"\n";
+    // system("cls");
+
 
 }
 void Engine::GameLoop(){

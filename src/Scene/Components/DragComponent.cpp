@@ -47,5 +47,5 @@ void DragComponent::Update(float dt){
     auto* cam = owner->GetScene()->GetEntityCamera();
     glm::vec2 npos = cam->ScreentoWorld(mpos);
     owner->GetComponent<TransformComp>()->position = glm::vec2(npos.x + offset.x,npos.y - offset.y);
-    owner->GetComponent<StateComponent>()->SetState("Hold");
+    owner->GetComponent<StateComponent>()->RequestState("Hold");
 }
