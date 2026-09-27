@@ -58,9 +58,48 @@ ATLAS_ADD CharacterAtlas PlayerHold_Down00 80.0 220.0 16.0 20.0
 ATLAS_ADD CharacterAtlas PlayerHold_Down01 80.0 200.0 16.0 20.0
 ATLAS_ADD CharacterAtlas PlayerHold_Down02 80.0 220.0 16.0 20.0
 ATLAS_ADD CharacterAtlas PlayerHold_Down03 80.0 180.0 16.0 20.0
+#-------------------------------------------------------------
+ATLAS_ADD CharacterAtlas PlayerAttack_Down00 96.0 200.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Down01 96.0 180.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Down02 112.0 180.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Down03 96.0 180.0 16.0 20.0
 
+ATLAS_ADD CharacterAtlas PlayerAttack_DownRight00 96.0 240.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_DownRight01 112.0 240.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_DownRight02 128.0 240.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_DownRight03 112.0 240.0 16.0 20.0
 
+ATLAS_ADD CharacterAtlas PlayerAttack_Right00 112.0 300.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Right01 128.0 300.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Right02 128.0 320.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Right03 128.0 300.0 16.0 20.0
 
+ATLAS_ADD CharacterAtlas PlayerAttack_UpRight00 80.0 300.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_UpRight01 80.0 320.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_UpRight02 80.0 340.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_UpRight03 80.0 320.0 16.0 20.0
+
+ATLAS_ADD CharacterAtlas PlayerAttack_Up00 32.0 320.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Up01 32.0 340.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Up02 16.0 340.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Up03 32.0 340.0 16.0 20.0
+
+ATLAS_ADD CharacterAtlas PlayerAttack_UpLeft00 32.0 280.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_UpLeft01 16.0 280.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_UpLeft02 0.0 280.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_UpLeft03 16.0 280.0 16.0 20.0
+
+ATLAS_ADD CharacterAtlas PlayerAttack_Left00 16.0 220.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Left01 0.0 220.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Left02 0.0 200.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_Left03 0.0 220.0 16.0 20.0
+
+ATLAS_ADD CharacterAtlas PlayerAttack_DownLeft00 48.0 220.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_DownLeft01 48.0 200.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_DownLeft02 48.0 180.0 16.0 20.0
+ATLAS_ADD CharacterAtlas PlayerAttack_DownLeft03 48.0 200.0 16.0 20.0
+
+#NPC frames
 ATLAS_ADD CharacterAtlas BlackWalk_Up00 64.0 100.0 16.0 20.0
 ATLAS_ADD CharacterAtlas BlackWalk_Up01 64.0 120.0 16.0 20.0
 ATLAS_ADD CharacterAtlas BlackWalk_Up02 64.0 140.0 16.0 20.0
@@ -155,7 +194,17 @@ ANIMATION PlayerIdle_downleft 0.1 once PlayerWalk_DownLeft00
 
 ANIMATION PlayerHold_down 0.1 loop PlayerHold_Down00 PlayerHold_Down01 PlayerHold_Down02 PlayerHold_Down03
 
-#black animations
+ANIMATION PlayerAttack_down 0.1 loop PlayerAttack_Down00 PlayerAttack_Down01 PlayerAttack_Down02 PlayerAttack_Down03
+ANIMATION PlayerAttack_right 0.1 loop PlayerAttack_Right00 PlayerAttack_Right01 PlayerAttack_Right02 PlayerAttack_Right03
+ANIMATION PlayerAttack_up 0.1 loop PlayerAttack_Up00 PlayerAttack_Up01 PlayerAttack_Up02 PlayerAttack_Up03
+ANIMATION PlayerAttack_left 0.1 loop PlayerAttack_Left00 PlayerAttack_Left01 PlayerAttack_Left02 PlayerAttack_Left03
+
+ANIMATION PlayerAttack_downright 0.1 loop PlayerAttack_DownRight00 PlayerAttack_DownRight01 PlayerAttack_DownRight02 PlayerAttack_DownRight03
+ANIMATION PlayerAttack_upright 0.1 loop PlayerAttack_UpRight00 PlayerAttack_UpRight01 PlayerAttack_UpRight02 PlayerAttack_UpRight03
+ANIMATION PlayerAttack_upleft 0.1 loop PlayerAttack_UpLeft00 PlayerAttack_UpLeft01 PlayerAttack_UpLeft02 PlayerAttack_UpLeft03
+ANIMATION PlayerAttack_downleft 0.1 loop PlayerAttack_DownLeft00 PlayerAttack_DownLeft01 PlayerAttack_DownLeft02 PlayerAttack_DownLeft03
+
+#NPC animations
 ANIMATION BlackWalk_down 0.1 loop BlackWalk_Down00 BlackWalk_Down01 BlackWalk_Down02 BlackWalk_Down03
 ANIMATION BlackWalk_right 0.1 loop BlackWalk_Right00 BlackWalk_Right01 BlackWalk_Right02 BlackWalk_Right03
 ANIMATION BlackWalk_up 0.1 loop BlackWalk_Up00 BlackWalk_Up01 BlackWalk_Up02 BlackWalk_Up03

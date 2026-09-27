@@ -6,7 +6,7 @@ COMPONENT Renderer 2 2
 COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
 COMPONENT Animation 
 COMPONENT Drag 
-COMPONENT State
+COMPONENT State Idle
 COMPONENT Script PlayerScript
 ADDANIMATION Walk Up PlayerWalk_up
 ADDANIMATION Walk Down PlayerWalk_down
@@ -16,6 +16,17 @@ ADDANIMATION Walk UpLeft PlayerWalk_upleft
 ADDANIMATION Walk DownLeft PlayerWalk_downleft
 ADDANIMATION Walk UpRight PlayerWalk_upright
 ADDANIMATION Walk DownRight PlayerWalk_downright
+STATEPRIORITY Walk 1 0 Ignore
+
+ADDANIMATION Attack Down PlayerAttack_down
+ADDANIMATION Attack Right PlayerAttack_right
+ADDANIMATION Attack Up PlayerAttack_up
+ADDANIMATION Attack Left PlayerAttack_left
+ADDANIMATION Attack DownRight PlayerAttack_downright
+ADDANIMATION Attack UpRight PlayerAttack_upright
+ADDANIMATION Attack UpLeft PlayerAttack_upleft
+ADDANIMATION Attack DownLeft PlayerAttack_downleft
+STATEPRIORITY Attack 2 0.4 Restart
 
 ADDANIMATION Idle Up PlayerIdle_up
 ADDANIMATION Idle Down PlayerIdle_down
@@ -25,4 +36,8 @@ ADDANIMATION Idle UpLeft PlayerIdle_upleft
 ADDANIMATION Idle DownLeft PlayerIdle_downleft
 ADDANIMATION Idle UpRight PlayerIdle_upright
 ADDANIMATION Idle DownRight PlayerIdle_downright
+STATEPRIORITY Idle 0 0 Ignore
+
+ADDANIMATION Hold None PlayerHold_down
+STATEPRIORITY Hold 3 0 Ignore
 ENTITYINIT {NAME}

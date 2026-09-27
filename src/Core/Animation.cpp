@@ -46,3 +46,6 @@ size_t Animation::GetCurrentFrameIndex() const{
 bool Animation::IsFinished() const{
     return !loop && currentFrame == frames.size()-1;
 }
+bool Animation::IsComplete() const{
+    return currentFrame == frames.size()-1;
+}

@@ -70,6 +70,6 @@ void main()
     float scanlinex = smoothstep(0.35,0.45,fract(gl_FragCoord.x/15.0)*2.0);
     color.rgb *= 0.9 +scanlinex*0.1;
 
-    FragColor = color;
+    FragColor = texture(Texture,TexCoords);
 }
 

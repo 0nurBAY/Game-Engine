@@ -5,7 +5,7 @@ COMPONENT Renderer 2 1
 COMPONENT Sprite CharacterAtlas BlackWalk_Down00
 COMPONENT Animation 
 COMPONENT Drag 
-COMPONENT State 
+COMPONENT State Idle
 COMPONENT Script NPC1Script
 
 ADDANIMATION Walk Up BlackWalk_up
@@ -16,7 +16,8 @@ ADDANIMATION Walk UpLeft BlackWalk_upleft
 ADDANIMATION Walk DownLeft BlackWalk_downleft
 ADDANIMATION Walk UpRight BlackWalk_upright
 ADDANIMATION Walk DownRight BlackWalk_downright
-ANIMATOINQUEUE Walk 0
+STATEPRIORITY Walk 1 0 Ignore
+
 
 ADDANIMATION Idle Up BlackIdle_up
 ADDANIMATION Idle Down BlackIdle_down
@@ -26,8 +27,8 @@ ADDANIMATION Idle UpLeft BlackIdle_upleft
 ADDANIMATION Idle DownLeft BlackIdle_downleft
 ADDANIMATION Idle UpRight BlackIdle_upright
 ADDANIMATION Idle DownRight BlackIdle_downright
-ANIMATOINQUEUE Idle 1
+STATEPRIORITY Idle 0 0 Ignore
 
 ADDANIMATION Hold None BlackHold_down
-ANIMATOINQUEUE Hold 2
+STATEPRIORITY Hold 3 0 Ignore
 ENTITYINIT {NAME}
