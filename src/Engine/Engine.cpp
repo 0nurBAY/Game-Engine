@@ -61,12 +61,14 @@ Engine::Engine():
 window(1200,600,"Pencere"),
 input(window),
 camera(window.GetWidth(),window.GetHeight()),
-renderer(camera,window.GetWidth(),window.GetHeight(),ReadShader("shaders/deneme.vert").c_str(),ReadShader("shaders/deneme.frag").c_str())
+renderer(camera,window.GetWidth(),window.GetHeight(),ReadShader("shaders/deneme.vert").c_str(),ReadShader("shaders/deneme.frag").c_str()),
+time(1.0f/60.0f)
 {
 }
 
 void Engine::Init(){
     scriptmanager.Init();
+    physics.Init();
     camera.SetPosition(glm::vec3(0.0f,0.0f,0.0f));
     camera.SetWorldSize(100000.0f, 100000.0f, 50000.0f, -50000.0f, 50000.0f, -50000.0f);
     window.SetEventCallBack([this](Event& event){
@@ -110,22 +112,19 @@ void Engine::Stop(){
 void Engine::Update(){
     //Daha sonra her Scene'i döndürür ve hepsine update verir ve hepsi kendi içinde aktif olan kısımlarını döndürür
     Scene* currentscene = GetActiveScene();
-    
     time.Update();
-    // while(timepassed<0.000125){
-        input.Update();
-        window.clear();
-        float dt = time.GetDeltaTime();
-        camera.Update(dt);
-        if(currentscene){
+    float dt = time.GetDeltaTime();
+    float fixed_dt = time.GetFixedDeltaTime();
+    input.Update();
+    window.clear();
+    camera.Update(dt);
+    if(currentscene){
         currentscene->Update(dt);
+        physics.FixedUpdate(fixed_dt,dt,currentscene);
         currentscene->AnimationUpdate(dt,&resoursmanager);
-        }
-        timepassed+=time.GetDeltaTime();
-    // }
-    // timepassed -= 0.000125;
-    // std::cout<<"FPS: "<<1/dt<<"\n";
-    // system("cls");
+    }
+    
+
 
 
 }

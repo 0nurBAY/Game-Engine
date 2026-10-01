@@ -41,6 +41,10 @@ void Entity::ListComponents() const{
     }
 }
 
+std::uint32_t Entity::GetType() const{
+    return componenttypes;
+}
+
 void Entity::UpdateComponents(float dt){
     if(pendingDestroy||!inited) return;
     for(auto& component: components){

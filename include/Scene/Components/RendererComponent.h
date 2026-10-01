@@ -13,4 +13,5 @@ public:
     void SetZ    (float new_z);
     unsigned int  GetLayer();
     float         GetZ();
+    CopmonentCategory GetCategory() const override;
 };

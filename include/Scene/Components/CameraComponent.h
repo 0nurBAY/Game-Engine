@@ -14,6 +14,8 @@ public:
 
     Entity* GetCameraEntity();
     Entity* GetTarget();
-    Camera*  GetCamera();
+    Camera* GetCamera();
+
+    CopmonentCategory GetCategory() const override;
 };
 

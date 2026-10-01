@@ -4,6 +4,9 @@
 
 AnimationComponent::AnimationComponent(){}
 
+CopmonentCategory AnimationComponent::GetCategory() const{
+    return (CopmonentCategory::Animation);
+}
 void AnimationComponent::AddAnimation(std::string state,Directions dir,const AssetHandle<Animation> &animation)
 {
     // std::cout

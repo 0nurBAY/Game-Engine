@@ -54,3 +54,18 @@ void TestScript2::Decide(float deltatime){
         arrived = false;
     }
 }
+
+void TestScript2::OnEvent(Event &event){
+    EventDispatcher dispatcher(event);
+    // dispatcher.Dispatcher<MousePressedEvent>(
+    //     [this](MousePressedEvent& event){
+    //         auto state = this->GetEntity()->GetComponent<StateComponent>();
+    //         state->RequestState("Attack");
+    //     }
+    // );
+    dispatcher.Dispatcher<CollisionEvent>(
+        [this](CollisionEvent& event){
+            std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther();
+        }
+    );
+}

@@ -17,6 +17,10 @@ enum class EventType{
     MouseMoved,
     MouseScrolled,
 
-    StateChage
+    StateChage,
+
+    PhysicsEntityAdd,
+    PhysicsEntityRemove,
+    OnCollision
 
 };

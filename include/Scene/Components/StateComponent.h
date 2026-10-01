@@ -37,5 +37,6 @@ public:
     void        RequestState(std::string state);
     void        AddState(std::string state,int queue,float time,bool complete_info,Retrigger_mod retrigger_event);
     void        Complete();
+    CopmonentCategory GetCategory() const override;
 
 };

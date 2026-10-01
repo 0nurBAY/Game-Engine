@@ -18,5 +18,6 @@ public:
     void OnCreate() override;
     void OnDestroy() override;
     void OnEvent(Event& event) override;
+    CopmonentCategory GetCategory() const override;
 };
 #include "Scene/Components/ScriptComponent.inl"

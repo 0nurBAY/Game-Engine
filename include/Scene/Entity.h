@@ -15,6 +15,7 @@
 #include "Scene/Components/CameraComponent.h"
 #include "Scene/Components/DragComponent.h"
 #include "Scene/Components/StateComponent.h"
+#include "Scene/Components/ColliderComponent.h"
 
 #include <string>
 #include <unordered_map>
@@ -33,6 +34,7 @@ private:
     std::unordered_map<std::type_index, std::unique_ptr<Component>> components;
     bool inited = false;
     bool pendingDestroy = false;
+    std::uint32_t componenttypes = 0;
 public:
     Entity(std::uint64_t id,std::uint64_t uuid,std::string name);
     ~Entity();
@@ -52,6 +54,8 @@ public:
     void UpdateComponents(float dt);
     void UpdateAnimations(float dt,ResourceManagerPlus* resoursmanager);
     void ListComponents  () const;
+    std::uint32_t GetType() const;
+    
     void OnEvent         (Event& event);
     
 };

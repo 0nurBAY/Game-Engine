@@ -9,3 +9,7 @@ MaterialComponent::MaterialComponent(AssetHandle<Material> material):material(ma
 AssetHandle<Material> MaterialComponent::GetMaterial() const{
     return material;
 }
+
+CopmonentCategory MaterialComponent::GetCategory() const{
+    return (CopmonentCategory::Rendering);
+}

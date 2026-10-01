@@ -6,3 +6,7 @@ MeshComponent::MeshComponent(AssetHandle<Mesh> mesh) : mesh(mesh){}
 AssetHandle<Mesh> MeshComponent::GetMesh() const{
     return mesh;
 }
+
+CopmonentCategory MeshComponent::GetCategory() const{
+    return CopmonentCategory::Rendering;
+}

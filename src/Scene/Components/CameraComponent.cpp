@@ -8,3 +8,7 @@ target(target){}
 Entity *CameraComponent::GetCameraEntity(){return owner;}
 Entity *CameraComponent::GetTarget()      {return target;}
 Camera *CameraComponent::GetCamera()      {return camera;}
+
+CopmonentCategory CameraComponent::GetCategory() const{
+    return (CopmonentCategory::Camera);
+}

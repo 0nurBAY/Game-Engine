@@ -13,5 +13,6 @@ private:
 public:
     MeshComponent(AssetHandle<Mesh> mesh);
     AssetHandle<Mesh> GetMesh() const;
+    CopmonentCategory GetCategory() const override;
 };
 

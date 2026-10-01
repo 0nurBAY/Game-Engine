@@ -35,6 +35,7 @@ public:
     void Reset();
     void Decide();
     void SetDirection(Directions drequest);
+    CopmonentCategory  GetCategory() const override;
     std::shared_ptr<Animation> FindAnimation(ResourceManagerPlus* resourceManager);
 };
 

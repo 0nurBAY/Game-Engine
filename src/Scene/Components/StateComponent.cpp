@@ -7,6 +7,11 @@
 
 StateComponent::StateComponent(std::string first_state):current_state(first_state){
 }
+
+CopmonentCategory StateComponent::GetCategory() const{
+    return (CopmonentCategory::State);
+}
+
 void StateComponent::OnCreate(){
     ChangeState(current_state);
 }
@@ -85,22 +90,22 @@ void StateComponent::ChangeState(std::string state){
     auto& data = it->second;
 
 
-    std::cout
-        << "\n========================================\n"
-        << "[StateComponent] STATE CHANGED\n"
-        << "  Entity       : " << owner->GetName() << "\n"
-        << "  Previous     : " << current_state << "\n"
-        << "  New State    : " << state << "\n"
-        << "\n"
-        << "  --- State Data ---\n"
-        << "  Priority     : " << data.priority << "\n"
-        << "  Min Timer    : " << data.min_timer << "\n"
-        << "  Complete     : " << (data.complete ? "true" : "false") << "\n"
-        << "  Retrigger    : " << static_cast<int>(data.retrigger) << "\n"
-        << "\n"
-        << "  State Complete : false\n"
-        << "  Time Passed    : 0\n"
-        << "========================================\n";
+    // std::cout
+    //     << "\n========================================\n"
+    //     << "[StateComponent] STATE CHANGED\n"
+    //     << "  Entity       : " << owner->GetName() << "\n"
+    //     << "  Previous     : " << current_state << "\n"
+    //     << "  New State    : " << state << "\n"
+    //     << "\n"
+    //     << "  --- State Data ---\n"
+    //     << "  Priority     : " << data.priority << "\n"
+    //     << "  Min Timer    : " << data.min_timer << "\n"
+    //     << "  Complete     : " << (data.complete ? "true" : "false") << "\n"
+    //     << "  Retrigger    : " << static_cast<int>(data.retrigger) << "\n"
+    //     << "\n"
+    //     << "  State Complete : false\n"
+    //     << "  Time Passed    : 0\n"
+    //     << "========================================\n";
 
 
     current_state = state;

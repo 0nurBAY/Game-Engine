@@ -14,3 +14,7 @@ unsigned int RendererComponent::GetLayer(){
 float RendererComponent::GetZ(){
     return z;
 }
+
+CopmonentCategory RendererComponent::GetCategory() const{
+    return (CopmonentCategory::Rendering);
+}

@@ -9,6 +9,6 @@ private:
     AssetHandle<Material> material;
 public:
     MaterialComponent(AssetHandle<Material> material);
-    
     AssetHandle<Material> GetMaterial() const;
+    CopmonentCategory GetCategory() const override;
 };

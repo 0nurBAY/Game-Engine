@@ -4,7 +4,7 @@
 #include <iostream>
 
 std::uint64_t EntityManager::CreateEntity(const std::string& name) {
-    EntityID id(Nextid++);//Sürekli olarak 1 arttıracak
+    EntityID id(Nextid++);//Sürekli olarak 1 arttıracak 
     uint64_t ID = id.Value();
     uint64_t uuID = uuid.GetID();
 

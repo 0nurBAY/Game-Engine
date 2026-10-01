@@ -2,6 +2,7 @@
 #pragma once
 #include "Event/Event.h"
 #include "Resource/ResourceManagerplus.h"
+#include "Scene/Components/ComponentCategory.h"
 class Entity;
 
 class Component
@@ -14,6 +15,7 @@ public:
     virtual void OnEvent  (Event& event) {};
     virtual void OnCreate () {};
     virtual void OnDestroy() {};
+    virtual CopmonentCategory GetCategory() const = 0;
 protected:
     Entity* owner = nullptr;
 };

@@ -7,6 +7,10 @@
 #include "Scene/Entity.h"
 #include "Scene/Scene.h"
 #include <iostream>
+
+CopmonentCategory DragComponent::GetCategory() const{
+    return (CopmonentCategory::Input);
+}
 void DragComponent::OnEvent(Event &event){
     EventDispatcher dispatcher(event);
     dispatcher.Dispatcher<MousePressedEvent>(

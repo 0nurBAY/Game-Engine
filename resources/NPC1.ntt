@@ -8,6 +8,7 @@ COMPONENT Drag
 COMPONENT State Idle
 COMPONENT Script NPC1Script
 
+#-----Animation-----#
 ADDANIMATION Walk Up BlackWalk_up
 ADDANIMATION Walk Down BlackWalk_down
 ADDANIMATION Walk Right BlackWalk_right
@@ -31,4 +32,6 @@ STATEPRIORITY Idle 0 0 Ignore
 
 ADDANIMATION Hold None BlackHold_down
 STATEPRIORITY Hold 3 0 Ignore
+
+
 ENTITYINIT {NAME}

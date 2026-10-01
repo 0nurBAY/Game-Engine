@@ -61,6 +61,14 @@ add_executable(engine
     src/Scene/Components/CameraComponent.cpp
     src/Scene/Components/DragComponent.cpp
     src/Scene/Components/StateComponent.cpp
+    src/Physics/PhysicSystem.cpp
+    src/Scene/Components/ColliderComponent.cpp
+    src/Physics/ColliderShape.cpp
+    src/Physics/BoxShape.cpp
+    src/Physics/SpatialGrid.cpp
+    src/Physics/CircleShape.cpp
+    src/Physics/CollisionDetector.cpp
+    src/Physics/PhysicTypes.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD

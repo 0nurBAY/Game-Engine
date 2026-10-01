@@ -15,4 +15,5 @@ private:
 public:
     virtual void Update(float dt);
     virtual void OnEvent  (Event& event);
+    CopmonentCategory GetCategory() const override;
 };

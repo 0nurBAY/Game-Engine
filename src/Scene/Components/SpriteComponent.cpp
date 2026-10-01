@@ -4,6 +4,10 @@
 
 SpriteComponent::SpriteComponent(AssetHandle<TextureAtlas> &atlas, const std::string &name):atlas(atlas),sprite(name){}
 
+CopmonentCategory SpriteComponent::GetCategory() const{
+    return (CopmonentCategory::Rendering);
+}
+
 AssetHandle<TextureAtlas> SpriteComponent::GetAtlas() const{
     return atlas;
 }

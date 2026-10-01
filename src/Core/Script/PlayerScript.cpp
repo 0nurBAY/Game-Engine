@@ -32,11 +32,17 @@ void PlayerScript::Update(float deltatime){
 
 }
 void PlayerScript::OnEvent(Event &event){
-    // EventDispatcher dispatcher(event);
-    // dispatcher.Dispatcher<MousePressedEvent>(
-    //     [this](MousePressedEvent& event){
-    //         auto state = this->GetEntity()->GetComponent<StateComponent>();
-    //         state->RequestState("Attack");
-    //     }
-    // );
+    
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatcher<MousePressedEvent>(
+        [this](MousePressedEvent& event){
+            auto state = this->GetEntity()->GetComponent<StateComponent>();
+            state->RequestState("Attack");
+        }
+    );
+    dispatcher.Dispatcher<CollisionEvent>(
+        [this](CollisionEvent& event){
+            std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther();
+        }
+    );
 }

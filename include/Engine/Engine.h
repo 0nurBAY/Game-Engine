@@ -11,6 +11,7 @@
 #include "Core/Input.h"
 #include "Event/Events.h"
 #include "Window/Time.h"
+#include "Physics/PhysicSystem.h"
 #include <memory>
 #include <vector>
 #include <unordered_map>
@@ -18,7 +19,6 @@
 class Engine
 {
 private:
-    float timepassed=0;
     std::vector<std::unique_ptr<Scene>> scenestack;
     Window window;
     Input input;
@@ -28,13 +28,13 @@ private:
     //Audio
     Time time;
     ResourceManagerPlus resoursmanager;
+    PhysicSystem physics;
     std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>> assets;
     bool running;
     void Update();
     void Render();
     void Init();
     void OnEvent(Event& event);
-    // void Physics();
     // void Shutdown();
     void GameLoop();
     void ReadResourcesFile(const std::string &path);

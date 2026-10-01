@@ -5,6 +5,10 @@
 ScriptComponent::ScriptComponent(std::unique_ptr<Script> script):script(std::move(script)){
 }
 
+CopmonentCategory ScriptComponent::GetCategory() const{
+    return (CopmonentCategory::Script);
+}
+
 void ScriptComponent::Update(float dt){
     if(!script)return;
     script->Update(dt);

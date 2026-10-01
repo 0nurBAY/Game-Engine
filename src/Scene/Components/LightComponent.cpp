@@ -17,3 +17,7 @@ glm::vec4 LightComponent::GetColor()const{
 float LightComponent::GetRadius()const{
     return radius;
 }
+
+CopmonentCategory LightComponent::GetCategory() const{
+    return (CopmonentCategory::Rendering);
+}

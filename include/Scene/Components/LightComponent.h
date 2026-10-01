@@ -16,4 +16,5 @@ public:
     void SetRadius(float new_radius);
     glm::vec4    GetColor() const;
     float       GetRadius() const;
+    CopmonentCategory GetCategory() const override;
 };

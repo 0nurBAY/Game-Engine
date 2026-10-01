@@ -46,47 +46,6 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
             else if(a.z!=b.z) return a.z<b.z;
             else return a.entity->GetID()<b.entity->GetID();
         });
-    
-    // for (auto& [entity,layer,z] : items){
-    //     TransformComp     *transformComp = entity->GetComponent<TransformComp>      ();
-    //     MeshComponent     *meshComp      = entity->GetComponent<MeshComponent>      ();
-    //     MaterialComponent *materialComp  = entity->GetComponent<MaterialComponent>  ();
-    //     SpriteComponent   *spriteComp    = entity->GetComponent<SpriteComponent>    ();
-    //     if(!transformComp||!meshComp||!materialComp) continue;
-    //     auto mesh     = resourcemanager.Resolve<Mesh>    (meshComp->GetMesh().GetName());
-    //     auto material = resourcemanager.Resolve<Material>(materialComp->GetMaterial().GetName());
-    //     auto new_shader = resourcemanager.Resolve<Shader>(material->GetShader().GetName());
-    //     if(!mesh||!material||!new_shader) continue;
-
-    //     if(currentshader != new_shader.get()){
-    //         currentshader = new_shader.get();
-    //         ApplyProjectionMatrix(currentshader);
-    //     }
-
-    //     if(spriteComp){
-    //         auto atlas = resourcemanager.Resolve<TextureAtlas>(spriteComp->GetAtlas().GetName());
-    //         AtlasUV uv = atlas->GetUV(spriteComp->GetSprite());
-    //         currentshader->SetVec2("uvMax",uv.max);
-    //         currentshader->SetVec2("uvMin",uv.min);
-    //     }else{
-    //         currentshader->SetVec2("uvMax",glm::vec2(1.0f,1.0f));
-    //         currentshader->SetVec2("uvMin",glm::vec2(0.0f,0.0f));
-    //     }
-    //     glm::mat4 model = glm::mat4(1.0f);
-    //     model = glm::translate  (model, glm::vec3(transformComp->position,0.0f));
-    //     model = glm::rotate     (model, glm::radians(transformComp->rotation), glm::vec3(0,0,1));
-    //     model = glm::scale      (model, glm::vec3(transformComp->scale, 1.0f));
-    //     currentshader->SetMat4("model",model);
-    //     material->Apply(resourcemanager);
-    //     mesh->Bind();
-
-    //     glDrawElements(
-    //         GL_TRIANGLES,
-    //         mesh->GetIndexCount(),
-    //         GL_UNSIGNED_INT,
-    //         (void*)0
-    //     );
-    // }
     framebuffer.Bind();
     glClear(GL_COLOR_BUFFER_BIT);
     for (auto& [entity,layer,z] : items){

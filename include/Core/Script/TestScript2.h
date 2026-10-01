@@ -17,5 +17,6 @@ private:
 
 public:
     void Update(float deltatime) override;
+    void OnEvent(Event& event) override;
     void Decide(float deltatime);
 };

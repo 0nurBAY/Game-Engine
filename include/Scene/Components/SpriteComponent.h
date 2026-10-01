@@ -18,4 +18,5 @@ public:
     AssetHandle<TextureAtlas> GetAtlas() const;
     const std::string& GetSprite() const;
     void SetSprite(const std::string& new_sprite);
+    CopmonentCategory  GetCategory() const override;
 };

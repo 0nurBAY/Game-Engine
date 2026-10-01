@@ -2,6 +2,7 @@
 
 #include "Core/SceneLoader.h"
 #include "Core/AssetLoader.h"
+#include "Physics/Colliders.h"
 #include <glm/glm.hpp>
 #include <stdexcept>
 #include <fstream>
@@ -15,6 +16,7 @@ void SceneLoader::Init(){
     commands.emplace("COMPONENT",   [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddComponent(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("ADDANIMATION",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddAnimation(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("STATEPRIORITY",[this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddAnimationQueue(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("ADDCOLLIDER", [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){AddCollider(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("ENTITYINIT",  [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){EntityInit(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("IMPORT",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){Import(entity,resource,assets,scriptmanager,input,camera);});
 
@@ -29,6 +31,9 @@ void SceneLoader::Init(){
     commands.emplace("Camera",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->CameraComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Drag",        [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->DragComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("State",       [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->StateComp(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("Collider",    [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->ColliderComp(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("Box",         [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->AddBoxCollider(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("Circle",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->AddCircleCollider(entity,resource,assets,scriptmanager,input,camera);});
     directions.emplace("Up",Directions::UP);
     directions.emplace("Down",Directions::DOWN);
     directions.emplace("Left",Directions::LEFT);
@@ -38,6 +43,7 @@ void SceneLoader::Init(){
     directions.emplace("DownRight",Directions::DOWNRIGHT);
     directions.emplace("DownLeft",Directions::DOWNLEFT);
     directions.emplace("None",Directions::NONE);
+
 }
 void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager &scriptmanager,Input *input,Camera &camera){
     // std::cout << "SceneLoader::LoadScene: Camera pointer: " << &camera << "\n";
@@ -171,6 +177,11 @@ void SceneLoader::StateComp(Entity *entity, ParsedResource &resource, std::unord
     entity->AddComponent<StateComponent>(resource.args[0]);
 
 }
+
+void SceneLoader::ColliderComp(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    if(!resource.args.empty()) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    entity->AddComponent<ColliderComponent>();
+}
 void SceneLoader::CreateScene(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     currentscene = std::make_unique<Scene>(resource.name);
 }
@@ -235,7 +246,52 @@ void SceneLoader::AddAnimationQueue(Entity *entity, ParsedResource &resource, st
     complete = true ? y!=0.0 : false;
     statecomp->AddState(resource.name,x,y,complete,r_mod);
 }
+void SceneLoader::AddCollider(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    // std::cout << "AddCollider: " << resource.name <<"\n";
+    auto it = commands.find(resource.name.c_str());
+    if(it == commands.end()) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    
+    it->second(currentscene->FindEntity(currentID),resource,assets,scriptmanager,input,camera);
 
+}
+void SceneLoader::AddBoxCollider(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    // std::cout << "Box Collider\n";
+    if(resource.args.size()<5) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()>5) throw std::runtime_error("To many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    
+    auto* collidercomponent = entity->GetComponent<ColliderComponent>();
+    float w,h,p1,p2,r;
+    try{
+        w  = std::stof(resource.args[0]);
+        h  = std::stof(resource.args[1]);
+        p1 = std::stof(resource.args[2]);
+        p2 = std::stof(resource.args[3]);
+        r  = std::stof(resource.args[4]);
+    }
+    catch(std::exception& e){
+            throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
+
+    }
+    collidercomponent->AddCollider<BoxShape>(w,h,glm::vec2(p1,p2),r);
+}
+void SceneLoader::AddCircleCollider(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    // std::cout << "Circle Collider\n";
+    if(resource.args.size()<3) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()>3) throw std::runtime_error("To many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    
+    auto* collidercomponent = entity->GetComponent<ColliderComponent>();
+    float r,p1,p2;
+    try{
+        r  = std::stof(resource.args[0]);
+        p1 = std::stof(resource.args[1]);
+        p2 = std::stof(resource.args[2]);
+    }
+    catch(std::exception& e){
+            throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
+
+    }
+    collidercomponent->AddCollider<CircleShape>(r,glm::vec2(p1,p2));
+}
 void SceneLoader::EntityInit(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     if(!currentID) 
     throw std::runtime_error("No Entity found: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));

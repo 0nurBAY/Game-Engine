@@ -1,6 +1,7 @@
 //Script.h
 #pragma once
 #include "Resource/ResourceManagerPlus.h"
+#include "Event/Events.h"
 class Entity;
 class Input;
 class Event;

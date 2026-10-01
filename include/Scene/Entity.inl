@@ -13,6 +13,8 @@ template <typename C, typename... Args> C* Entity::AddComponent(Args&&... args){
 
     C* ptr = comp.get();
 
+    componenttypes |= static_cast<uint32_t>(comp->GetCategory());
+    
     components.insert({key,std::move(comp)});
 
     return ptr;
