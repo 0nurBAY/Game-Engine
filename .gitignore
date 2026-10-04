@@ -1,0 +1,9 @@
+build/
+.vs/
+
+*.pdb
+*.obj
+*.ilk
+*.idb
+*.ipdb
+*.iobj
