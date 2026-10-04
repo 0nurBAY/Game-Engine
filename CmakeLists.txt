@@ -69,6 +69,7 @@ add_executable(engine
     src/Physics/CircleShape.cpp
     src/Physics/CollisionDetector.cpp
     src/Physics/PhysicTypes.cpp
+    src/Renderer/DebugRenderer.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD

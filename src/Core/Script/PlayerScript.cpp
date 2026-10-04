@@ -12,13 +12,16 @@ void PlayerScript::Update(float deltatime){
     auto* state     = e->GetComponent<StateComponent>();
     float spd = 500.0f;
     glm::vec2 direction(0.0f,0.0f);
+    float rotation = 0.0f;
     if(i->IsKeyDown(GLFW_KEY_W)){direction.y +=1.0f;}
     if(i->IsKeyDown(GLFW_KEY_A)){direction.x -=1.0f;}
     if(i->IsKeyDown(GLFW_KEY_S)){direction.y -=1.0f;}
     if(i->IsKeyDown(GLFW_KEY_D)){direction.x +=1.0f;}
+    if(i->IsKeyDown(GLFW_KEY_Z)){rotation -=1.0f;}
+    if(i->IsKeyDown(GLFW_KEY_X)){rotation +=1.0f;}
     if (glm::length(direction) > 0.0f)  direction = glm::normalize(direction);
     transform->position+=direction*spd*deltatime;
-    
+    transform->rotation+=rotation*spd*deltatime;
     if(direction.x<0.0f&&direction.y<0.0f)  {animation->SetDirection(Directions::DOWNLEFT);}
     if(direction.x<0.0f&&direction.y>0.0f)  {animation->SetDirection(Directions::UPLEFT);}
     if(direction.x<0.0f&&direction.y==0.0f) {animation->SetDirection(Directions::LEFT);}

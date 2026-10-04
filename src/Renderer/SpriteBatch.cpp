@@ -2,22 +2,33 @@
 
 #include "Renderer/SpriteBatch.h"
 #include <cstddef>
-void SpriteBatcher::AddSprite(glm::vec2 pos, glm::vec2 size, glm::vec2 uvMin, glm::vec2 uvMax, glm::vec4 color){
-    
+void SpriteBatcher::AddSprite(glm::vec2 pos, glm::vec2 size,float rotation, glm::vec2 uvMin, glm::vec2 uvMax, glm::vec4 color){
+    const float rad = glm::radians(rotation);
+    const float rcos = glm::cos(rad);
+    const float rsin = glm::sin(rad);
+    glm::vec2 leftb = glm::vec2((size.x * -0.5f)*rcos-(size.y*-0.5f)*rsin,(size.y*-0.5f)*rcos+(size.x * -0.5f)*rsin);
+    glm::vec2 rightb = glm::vec2((size.x * 0.5f)*rcos-(size.y*-0.5f)*rsin,(size.y*-0.5f)*rcos+(size.x * 0.5f)*rsin);
+    glm::vec2 leftt = glm::vec2((size.x * -0.5f)*rcos-(size.y*0.5f)*rsin,(size.y*0.5f)*rcos+(size.x * -0.5f)*rsin);
+    glm::vec2 rightt = glm::vec2((size.x * 0.5f)*rcos-(size.y*0.5f)*rsin,(size.y*0.5f)*rcos+(size.x * 0.5f)*rsin);
+    leftb += pos;
+    rightb += pos;
+    leftt += pos;
+    rightt += pos;
     vertexes.push_back({
-        {pos.x-size.x * 0.5f,pos.y-size.y*0.5f,0.0f},{uvMin.x,uvMin.y},color
+        {leftb,0.0f},{uvMin.x,uvMin.y},color
     });
     vertexes.push_back({
-        {pos.x+size.x * 0.5f,pos.y-size.y*0.5f,0.0f},{uvMax.x,uvMin.y},color
+        {rightb,0.0f},{uvMax.x,uvMin.y},color
     });
     vertexes.push_back({
-        {pos.x-size.x * 0.5f,pos.y+size.y*0.5f,0.0f},{uvMin.x,uvMax.y},color
+        {leftt,0.0f},{uvMin.x,uvMax.y},color
     });
     vertexes.push_back({
-        {pos.x+size.x * 0.5f,pos.y+size.y*0.5f,0.0f},{uvMax.x,uvMax.y},color
+        {rightt,0.0f},{uvMax.x,uvMax.y},color
     });
     spritecount++;
     if(spritecount==MaxSprite)Flush();
+
 }
 void SpriteBatcher::Begin(){
 }

@@ -35,6 +35,7 @@ public:
     void AddSprite(
         const glm::vec2 pos,
         const glm::vec2 size,
+        const float rotation,
         const glm::vec2 uvMin,
         const glm::vec2 uvMax,
         const glm::vec4 color

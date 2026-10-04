@@ -1,5 +1,6 @@
 //Renderer.cpp
 #include "Renderer/Renderer.h"
+#include "Scene/Components/ComponentCategory.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -19,11 +20,14 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
     Texture* currenttexture = nullptr;
     Texture* currentnormal = nullptr;
     for (auto& [id,entity] : scene.GetEntityManager().GetEntites()){
+        if(!(entity.get()->GetType() & static_cast<uint32_t>(CopmonentCategory::Rendering))) continue;
         if (entity->HasComponent<AmbientLightComponent>()){
             ambient = entity->GetComponent<AmbientLightComponent>()->GetColor();
             continue;
         }
-        if (entity->HasComponent<LightComponent>()&&entity->HasComponent<TransformComp>()){
+        if(!(entity.get()->GetType() & static_cast<uint32_t>(CopmonentCategory::Transform))) continue;
+
+        if (entity->HasComponent<LightComponent>()){
             TransformComp *transformComp = entity->GetComponent<TransformComp>();
             LightComponent *lightcomp    = entity->GetComponent<LightComponent>();
             lights.push_back({
@@ -33,11 +37,10 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
             });
             continue;
         }
-        if (!entity->HasComponent<RendererComponent>())continue;
         items.push_back({
             entity.get(),
             entity->GetComponent<RendererComponent>()->GetLayer(),
-            -entity->GetComponent<TransformComp>()->position.y
+            entity->GetComponent<RendererComponent>()->GetOffset()-entity->GetComponent<TransformComp>()->position.y
         });
     }
     std::sort(items.begin(),items.end(),
@@ -79,8 +82,7 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
             auto atlas = resourcemanager.Resolve<TextureAtlas>(spriteComp->GetAtlas().GetName());
             auto it = atlas->GetSprite(spriteComp->GetSprite());
             AtlasUV uv = atlas->GetUV(spriteComp->GetSprite());
-            batcher.AddSprite(transformComp->position,glm::vec2(it->w,it->h)*transformComp->scale,uv.min,uv.max,glm::vec4(1.0f,1.0f,1.0f,1.0f)
-            );
+            batcher.AddSprite(transformComp->position,glm::vec2(it->w,it->h)*transformComp->scale,transformComp->rotation,uv.min,uv.max,glm::vec4(1.0f,1.0f,1.0f,1.0f));
         }
     }
     batcher.Flush();

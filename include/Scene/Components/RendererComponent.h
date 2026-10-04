@@ -6,12 +6,12 @@ class RendererComponent : public Component
 {
 private:
     unsigned int layer;
-    float z;
+    float depht_offset;
 public:
-    RendererComponent(unsigned int new_layer,float z);
+    RendererComponent(unsigned int new_layer,float depht_offset);
     void SetLayer(unsigned int new_layer);
-    void SetZ    (float new_z);
+    void SetOffset    (float depht_offset);
     unsigned int  GetLayer();
-    float         GetZ();
+    float         GetOffset();
     CopmonentCategory GetCategory() const override;
 };

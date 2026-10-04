@@ -11,5 +11,5 @@ class CollisionDetector{
 public:
     // static bool BoxVsBox      (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
     // static bool CircleVsBox   (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
-    static bool CircleVsCircle   (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
+    static ColliderResult CircleVsCircle   (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
 };

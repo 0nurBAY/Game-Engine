@@ -1,7 +1,7 @@
 ENTITY {NAME}
 COMPONENT Transform {XPOS} {YPOS} 0 12 10
 COMPONENT Material PlayerMat
-COMPONENT Renderer 2 1
+COMPONENT Renderer 2 100
 COMPONENT Sprite CharacterAtlas BlackWalk_Down00
 COMPONENT Animation 
 COMPONENT Drag 
@@ -34,6 +34,6 @@ ADDANIMATION Hold None BlackHold_down
 STATEPRIORITY Hold 3 0 Ignore
 
 #-----Physic-----#
-ADDCOLLIDER Circle 50 0 0
+ADDCOLLIDER Circle 75 0 -25
 
 ENTITYINIT {NAME}

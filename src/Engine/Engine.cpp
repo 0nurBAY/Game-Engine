@@ -62,7 +62,8 @@ window(1200,600,"Pencere"),
 input(window),
 camera(window.GetWidth(),window.GetHeight()),
 renderer(camera,window.GetWidth(),window.GetHeight(),ReadShader("shaders/deneme.vert").c_str(),ReadShader("shaders/deneme.frag").c_str()),
-time(1.0f/60.0f)
+time(1.0f/60.0f),
+debugrenderer(ReadShader("shaders/solidcolor.vert").c_str(),ReadShader("shaders/solidcolor.frag").c_str())
 {
 }
 
@@ -121,6 +122,18 @@ void Engine::Update(){
     if(currentscene){
         currentscene->Update(dt);
         physics.FixedUpdate(fixed_dt,dt,currentscene);
+        auto physicRes = physics.GetCollisions();
+        debugrenderer.BeginFrame();
+        for(auto res: physicRes){
+            debugrenderer.DrawPoint(res.contact1,glm::vec4(1.0f,0.0,0.0f,1.0f));
+            debugrenderer.DrawPoint(res.contact2,glm::vec4(0.0f,1.0,0.0f,1.0f));
+            debugrenderer.DrawCircle(res.center1,res.radius1,glm::vec4(0.0f,1.0f,1.0f,1.0f));
+            debugrenderer.DrawCircle(res.center2,res.radius2,glm::vec4(0.0f,1.0f,1.0f,1.0f));
+            // debugrenderer.DrawPoint((glm::distance(res.center1,res.center2)/(res.radius1+res.radius2)*(res.radius1))*res.normal+res.center1,glm::vec4(0.3f,0.8,0.8f,1.0f));
+            debugrenderer.DrawLine(res.center1,res.center1+res.normal*res.radius1,glm::vec4(1.0f,0.0,0.0f,1.0f));
+            debugrenderer.DrawLine(res.center2,res.center2-res.normal*res.radius2,glm::vec4(0.0f,1.0,0.0f,1.0f));
+            debugrenderer.DrawLine(res.contact1,res.contact2,glm::vec4(1.0f,1.0,0.0f,1.0f));
+        }
         currentscene->AnimationUpdate(dt,&resoursmanager);
     }
     
@@ -142,6 +155,8 @@ void Engine::Render(){
     Scene* currentscene = GetActiveScene();
     if(!currentscene) return;
     renderer.Draw(*currentscene, resoursmanager);
+    debugrenderer.Flush(camera.GetProjectionMatrix(),camera.GetViewMatrix());
+
     ////
 }
 

@@ -2,13 +2,14 @@
 ENTITY {NAME}
 COMPONENT Transform {XPOS} {YPOS} 0 12 10
 COMPONENT Material PlayerMat
-COMPONENT Renderer 2 2
+COMPONENT Renderer 2 100
 COMPONENT Sprite CharacterAtlas PlayerWalk_Down00
 COMPONENT Animation 
 COMPONENT Drag 
 COMPONENT State Idle
 COMPONENT Script PlayerScript
 COMPONENT Collider
+
 #-----Animation-----#
 ADDANIMATION Walk Up PlayerWalk_up
 ADDANIMATION Walk Down PlayerWalk_down
@@ -44,6 +45,6 @@ ADDANIMATION Hold None PlayerHold_down
 STATEPRIORITY Hold 3 0 Ignore
 
 #-----Physic-----#
-ADDCOLLIDER Circle 50 0 0
+ADDCOLLIDER Circle 75 0 -25
 
 ENTITYINIT {NAME}

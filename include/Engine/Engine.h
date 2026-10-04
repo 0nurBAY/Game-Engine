@@ -12,6 +12,7 @@
 #include "Event/Events.h"
 #include "Window/Time.h"
 #include "Physics/PhysicSystem.h"
+#include "Renderer/DebugRenderer.h"
 #include <memory>
 #include <vector>
 #include <unordered_map>
@@ -24,6 +25,7 @@ private:
     Input input;
     Camera camera;
     Renderer renderer;
+    DebugRenderer debugrenderer;
     ScriptManager scriptmanager;
     //Audio
     Time time;

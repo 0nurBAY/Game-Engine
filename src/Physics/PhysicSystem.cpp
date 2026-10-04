@@ -4,22 +4,28 @@
 
 void PhysicSystem::Init(){
     collisions[ColliderType::Circle][ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);});
+    // collisions[ColliderType::Box]   [ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsBox(shape1, shape2, pos1, rot1, pos2, rot2);});
+    // collisions[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
+    // collisions[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsCircle(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
 }
 
 void PhysicSystem::FixedUpdate(float fixed,float dt, Scene *scene){
     accumulator+=dt;
     entities.clear();
+    collisionsres.clear();
     FindPhysicEntities(scene);
     while(accumulator>=fixed){
         Step();
         accumulator-=fixed;
     }
+
 }
 
 void PhysicSystem::Step(){
     candidates.clear();
     if(entities.empty()) {std::cout << "No physics entities to update." << "\n"; return;}
     AABBCompare();
+    NarrowPhase();
     // for(auto& candidate:candidates){
     //     std::cout << "Collision detected between Entity " << candidate.entity1->GetID() << " and Entity " << candidate.entity2->GetID() << std::endl;
     // }
@@ -71,7 +77,7 @@ void PhysicSystem::AABBCompare()
                   aabb2.maxy < aabb1.miny);
             if(collision)
             {
-                std::cout << "Collision Between Entity " << entity1->GetID() << " and Entity " << entity2->GetID() << "\n\n";
+                // std::cout << "Collision Between Entity " << entity1->GetID() << " and Entity " << entity2->GetID() << "\n\n";
                 candidates.insert({entity1,it1->collider, entity2, it2->collider});
             }
         }
@@ -92,18 +98,25 @@ void PhysicSystem::NarrowPhase(){
     for(auto& candidatepair: candidates){
         Entity* entity1 = candidatepair.entity1;
         Entity* entity2 = candidatepair.entity2;
-        ColliderShape* collider1 = candidatepair.collider1;
-        ColliderShape* collider2 = candidatepair.collider2;
+        auto* collider1 = candidatepair.collider1;
+        auto* collider2 = candidatepair.collider2;
 
         glm::vec2 pos1 = entity1->GetComponent<TransformComp>()->position;
         glm::vec2 pos2 = entity2->GetComponent<TransformComp>()->position;
         float rot1 = entity1->GetComponent<TransformComp>()->rotation;
         float rot2 = entity2->GetComponent<TransformComp>()->rotation;
-        if(collisions[collider1->GetShapeType()][collider2->GetShapeType()](collider1,collider2,pos1,rot1,pos2,rot2)){
+        auto& collision = collisions[collider1->GetShapeType()][collider2->GetShapeType()](collider1,collider2,pos1,rot1,pos2,rot2);
+        if(collision.collision){
             // entity1->OnEvent(CollisionEvent(entity2));
             // entity2->OnEvent(CollisionEvent(entity1));
-            std::cout <<"Collision detected between: "<< entity1->GetName() << entity2->GetName() <<"\n";
+            // std::cout <<"Collision detected between: "<< entity1->GetName() << entity2->GetName() <<"\n";
+            // std::cout <<"Direction: " << collision.normal.x <<","<<collision.normal.y << "\nPenetration: "<< collision.penetration <<"\n"; 
+            collisionsres.push_back(collision);
         }
     }
 
+}
+
+std::vector<ColliderResult> PhysicSystem::GetCollisions()const {
+    return collisionsres;
 }
