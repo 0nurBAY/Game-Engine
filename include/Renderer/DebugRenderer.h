@@ -29,7 +29,7 @@ public:
     void DrawLine(glm::vec2 pos1,glm::vec2 pos2,glm::vec4 color);
     void DrawCircle(glm::vec2 center,float radius,glm::vec4 color);
     void DrawPoint(glm::vec2 pos,glm::vec4 color);
-    void DrawAABB(glm::vec2 min,glm::vec2 max,glm::vec4 color);
+    void DrawBox(glm::vec2 min,glm::vec2 max,glm::vec4 color);
     void Flush(const glm::mat4& projection,const glm::mat4& view);
     
 

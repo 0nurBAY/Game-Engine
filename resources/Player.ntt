@@ -45,6 +45,6 @@ ADDANIMATION Hold None PlayerHold_down
 STATEPRIORITY Hold 3 0 Ignore
 
 #-----Physic-----#
-ADDCOLLIDER Circle 75 0 -25
+ADDCOLLIDER Box 100 75 0 -25 0
 
 ENTITYINIT {NAME}

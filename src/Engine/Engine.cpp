@@ -124,15 +124,53 @@ void Engine::Update(){
         physics.FixedUpdate(fixed_dt,dt,currentscene);
         auto physicRes = physics.GetCollisions();
         debugrenderer.BeginFrame();
-        for(auto res: physicRes){
-            debugrenderer.DrawPoint(res.contact1,glm::vec4(1.0f,0.0,0.0f,1.0f));
-            debugrenderer.DrawPoint(res.contact2,glm::vec4(0.0f,1.0,0.0f,1.0f));
-            debugrenderer.DrawCircle(res.center1,res.radius1,glm::vec4(0.0f,1.0f,1.0f,1.0f));
-            debugrenderer.DrawCircle(res.center2,res.radius2,glm::vec4(0.0f,1.0f,1.0f,1.0f));
+        for(auto& res: physicRes){
+            if(!res.collision) return;
+            // std::cout << "========== Collision Result ==========\n";
+            // std::cout << "Collision   : " << result.collision << '\n';
+
+            // std::cout << "Normal      : ("
+            //           << result.normal.x << ", "
+            //           << result.normal.y << ")\n";
+
+            // std::cout << "Penetration : " << result.penetration << '\n';
+
+            // std::cout << "Center 1    : ("
+            //           << result.center1.x << ", "
+            //           << result.center1.y << ")\n";
+
+            // std::cout << "Center 2    : ("
+            //           << result.center2.x << ", "
+            //           << result.center2.y << ")\n";
+
+            // std::cout << "Contact 1   : ("
+            //           << result.contact1.x << ", "
+            //           << result.contact1.y << ")\n";
+
+            // std::cout << "Contact 2   : ("
+            //           << result.contact2.x << ", "
+            //           << result.contact2.y << ")\n";
+
+            // std::cout << "Radius 1    : " << result.radius1 << '\n';
+            // std::cout << "Radius 2    : " << result.radius2 << '\n';
+
+            // std::cout << "HalfExtend1 : ("
+            //           << result.halfextend1.x << ", "
+            //           << result.halfextend1.y << ")\n";
+
+            // std::cout << "HalfExtend2 : ("
+            //           << result.halfextend2.x << ", "
+            //           << result.halfextend2.y << ")\n";
+
+            // std::cout << "======================================\n";
+            // debugrenderer.DrawPoint(res.contact1,glm::vec4(1.0f,0.0,0.0f,1.0f));
+            // debugrenderer.DrawPoint(res.contact2,glm::vec4(0.0f,1.0,0.0f,1.0f));
+            debugrenderer.DrawBox(glm::vec2(-res.halfextend1.x,-res.halfextend1.y)+res.center1,glm::vec2(res.halfextend1.x,res.halfextend1.y)+res.center1,glm::vec4(0.0f,1.0f,1.0f,1.0f));
+            debugrenderer.DrawBox(glm::vec2(-res.halfextend2.x,-res.halfextend2.y)+res.center2,glm::vec2(res.halfextend2.x,res.halfextend2.y)+res.center2,glm::vec4(0.0f,1.0f,1.0f,1.0f));
             // debugrenderer.DrawPoint((glm::distance(res.center1,res.center2)/(res.radius1+res.radius2)*(res.radius1))*res.normal+res.center1,glm::vec4(0.3f,0.8,0.8f,1.0f));
             debugrenderer.DrawLine(res.center1,res.center1+res.normal*res.radius1,glm::vec4(1.0f,0.0,0.0f,1.0f));
             debugrenderer.DrawLine(res.center2,res.center2-res.normal*res.radius2,glm::vec4(0.0f,1.0,0.0f,1.0f));
-            debugrenderer.DrawLine(res.contact1,res.contact2,glm::vec4(1.0f,1.0,0.0f,1.0f));
+            // debugrenderer.DrawLine(res.contact1,res.contact2,glm::vec4(1.0f,1.0,0.0f,1.0f));
         }
         currentscene->AnimationUpdate(dt,&resoursmanager);
     }

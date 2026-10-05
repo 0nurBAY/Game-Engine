@@ -42,7 +42,7 @@ void DebugRenderer::DrawPoint(glm::vec2 pos, glm::vec4 color){
     DrawLine(pos+glm::vec2(5,0),pos-glm::vec2(5,0),color);
     DrawLine(pos+glm::vec2(0,5),pos-glm::vec2(0,5),color);
 }
-void DebugRenderer::DrawAABB(glm::vec2 min, glm::vec2 max, glm::vec4 color){
+void DebugRenderer::DrawBox(glm::vec2 min, glm::vec2 max, glm::vec4 color){
     DrawLine(min,glm::vec2(min.x,max.y),color);
     DrawLine(min,glm::vec2(max.x,min.y),color);
     DrawLine(max,glm::vec2(min.x,max.y),color);

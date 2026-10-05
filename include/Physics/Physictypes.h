@@ -86,12 +86,14 @@ struct GridHash{
 struct ColliderResult{
     bool collision;
     glm::vec2 normal;
-    glm::vec2 contact1;
-    glm::vec2 contact2;
     float penetration;
     glm::vec2 center1;
     glm::vec2 center2;
+    glm::vec2 contact1;
+    glm::vec2 contact2;
     float radius1;
     float radius2;
+    glm::vec2 halfextend1;
+    glm::vec2 halfextend2;
 
 };
