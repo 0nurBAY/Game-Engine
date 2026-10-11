@@ -3,17 +3,18 @@
 #include "Renderer/ScreenQuad.h"
 #include <iostream>
 ScreenQuad::ScreenQuad(){
-    float vertices[] = {
+    float vertices[16] = {
         -1.0f,1.0f,  0.0f,1.0f,
         -1.0f,-1.0f, 0.0f,0.0f,
          1.0f,-1.0f, 1.0f,0.0f,
          1.0f,1.0f,  1.0f,1.0f,
     };
 
-    unsigned int indices[] = {
+    unsigned int indices[6] = {
         0,1,2,
         0,3,2
     };
+    
     VBO.AddBuffer(vertices,sizeof(float)*16);
 
     VAO.Bind();

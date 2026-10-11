@@ -8,6 +8,7 @@
 #include <vector>
 #include <set>
 #include <unordered_set>
+#include <array>
 
 #include <glm/vec2.hpp>
 
@@ -89,11 +90,21 @@ struct ColliderResult{
     float penetration;
     glm::vec2 center1;
     glm::vec2 center2;
-    glm::vec2 contact1;
-    glm::vec2 contact2;
-    float radius1;
-    float radius2;
-    glm::vec2 halfextend1;
-    glm::vec2 halfextend2;
+    std::vector<glm::vec2> contacts;
+    
+    // glm::vec2 ACoord1;
+    // glm::vec2 ACoord2;
+    
+    // glm::vec2 BCoord1;
+    // glm::vec2 BCoord2;
+
+    // float radius1;
+    // float radius2;
+    // glm::vec2 halfextend1;
+    // glm::vec2 halfextend2;
+    // float rot1;
+    // float rot2;
+    // std::array<glm::vec2, 2> contactPoints;
+    // int contactCount = 0;
 
 };

@@ -48,6 +48,7 @@ void DebugRenderer::DrawBox(glm::vec2 min, glm::vec2 max, glm::vec4 color){
     DrawLine(max,glm::vec2(min.x,max.y),color);
     DrawLine(max,glm::vec2(max.x,min.y),color);
 }
+
 void DebugRenderer::Flush(
     const glm::mat4 &projection,
     const glm::mat4 &view
