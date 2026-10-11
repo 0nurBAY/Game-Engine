@@ -2,6 +2,7 @@
 #pragma once
 #include "Core/UUID.h"
 #include "Event/Event.h"
+#include "Scene/Components/ComponentCategory.h"
 #include "Scene/Components/Component.h"
 #include "Scene/Components/MeshComponent.h"
 #include "Scene/Components/TransformComponent.h"
@@ -16,6 +17,7 @@
 #include "Scene/Components/DragComponent.h"
 #include "Scene/Components/StateComponent.h"
 #include "Scene/Components/ColliderComponent.h"
+#include "Scene/Components/RigidBodyComponent.h"
 
 #include <string>
 #include <unordered_map>

@@ -1,4 +1,5 @@
 ENTITY {NAME}
+#----Components----#
 COMPONENT Transform {XPOS} {YPOS} 0 12 10
 COMPONENT Material PlayerMat
 COMPONENT Renderer 2 100
@@ -6,7 +7,9 @@ COMPONENT Sprite CharacterAtlas BlackWalk_Down00
 COMPONENT Animation 
 COMPONENT Drag 
 COMPONENT State Idle
+COMPONENT Script NPC1Script
 COMPONENT Collider
+COMPONENT RigidBody 50 Dynamic 0 0
 
 #-----Animation-----#
 ADDANIMATION Walk Up BlackWalk_up
@@ -18,7 +21,6 @@ ADDANIMATION Walk DownLeft BlackWalk_downleft
 ADDANIMATION Walk UpRight BlackWalk_upright
 ADDANIMATION Walk DownRight BlackWalk_downright
 STATEPRIORITY Walk 1 0 Ignore
-
 
 ADDANIMATION Idle Up BlackIdle_up
 ADDANIMATION Idle Down BlackIdle_down
@@ -34,6 +36,6 @@ ADDANIMATION Hold None BlackHold_down
 STATEPRIORITY Hold 3 0 Ignore
 
 #-----Physic-----#
-ADDCOLLIDER Box 100 100 0 0 0
+ADDCOLLIDER Circle 200 0 0
 
 ENTITYINIT {NAME}

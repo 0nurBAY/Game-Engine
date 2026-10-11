@@ -9,7 +9,7 @@ ColliderResult CollisionDetector::CircleVsCircle(ColliderShape* shape1, Collider
     float radius1 = dynamic_cast<CircleShape*>(shape1)->GetRadius();
     float radius2 = dynamic_cast<CircleShape*>(shape2)->GetRadius();
     float sumOfRadii = radius1 + radius2;
-    ColliderResult res = {distance <= sumOfRadii,normal,sumOfRadii-distance,collider1Pos,collider2Pos,{(radius1 * normal) + collider1Pos,(radius2 * -normal) + collider2Pos}};
+    ColliderResult res = {distance <= sumOfRadii,normal,sumOfRadii-distance,{(radius1 * normal) + collider1Pos,(radius2 * -normal) + collider2Pos}};
     // res.radius1 = radius1;
     // res.radius2 = radius2;
     return res;
@@ -146,11 +146,9 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
 
         if (points.size() == 1)
         {
-            float d = glm::dot(
-                inwardNormal, points[0] - planePoint);
+            float d = glm::dot(inwardNormal, points[0] - planePoint);
 
-            if (d < -epsilon)
-                points.clear();
+            if (d < -epsilon) points.clear();
 
             return;
         }
@@ -164,23 +162,18 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
         bool insideA = dA >= -epsilon;
         bool insideB = dB >= -epsilon;
 
-        if (!insideA && !insideB)
-        {
+        if (!insideA && !insideB){
             points.clear();
             return;
         }
 
-        if (insideA != insideB)
-        {
+        if (insideA != insideB){
             float t = dA / (dA - dB);
             glm::vec2 intersection = A + t * (B - A);
 
-            if (!insideA)
-                A = intersection;
-            else
-                B = intersection;
+            if (!insideA) A = intersection;
+            else B = intersection;
         }
-
         points.clear();
         points.push_back(A);
         points.push_back(B);
@@ -193,15 +186,10 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
     std::vector<glm::vec2> contacts;
 
     for (const glm::vec2& p : clippedPoints)
-    {
-        float separation =
-            glm::dot(normal, p - R1);
+    {if (glm::dot(normal, p - R1) <= epsilon) contacts.push_back(p);}
+    
 
-        if (separation <= epsilon)
-            contacts.push_back(p);
-    }
-
-    ColliderResult res = {true,normal,min_penetration,A.position,B.position,std::move(contacts)};
+    ColliderResult res = {true,normal,min_penetration,std::move(contacts)};
     // res.halfextend1 = shapeA->Gethalves();
     // res.halfextend2 = shapeB->Gethalves();
     // res.rot1 = A.rotation;
@@ -213,6 +201,71 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
     // res.BCoord1 = IncidentCoords[Faces[incident_face].first];
     // res.BCoord2 = IncidentCoords[Faces[incident_face].second];
     return res;
+}
 
+ColliderResult CollisionDetector::CircleVsBox(ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){
+    CircleShape* shapeA = dynamic_cast<CircleShape*>(shape1);
+    BoxShape* shapeB = dynamic_cast<BoxShape*>(shape2);
+    glm::vec2 CirclePos = shapeA->GetWorldTransform(pos1,rot1).position;
+    Transform2D BoxTr = shapeB->GetWorldTransform(pos2,rot2);
+    glm::vec2 difference = CirclePos-BoxTr.position;
+    float cosB = glm::cos(glm::radians(BoxTr.rotation));
+    float sinB = glm::sin(glm::radians(BoxTr.rotation));
+    glm::vec2 Circle_relativePos = glm::vec2(difference.x*cosB+difference.y*sinB,difference.y*cosB-difference.x*sinB);
+    
+    glm::vec2 Corner = glm::vec2(glm::clamp(Circle_relativePos.x,-shapeB->Gethalves().x,shapeB->Gethalves().x),glm::clamp(Circle_relativePos.y,-shapeB->Gethalves().y,shapeB->Gethalves().y));
+    float distance_square = (Corner.x - Circle_relativePos.x)*(Corner.x - Circle_relativePos.x) + (Corner.y - Circle_relativePos.y)*(Corner.y - Circle_relativePos.y);
+    if(distance_square>shapeA->GetRadius()*shapeA->GetRadius()) return{false};
+    if(distance_square > 0){
+        float distance = sqrt(distance_square);
+        glm::vec2 normal = (Corner - Circle_relativePos)/distance;
+        normal = glm::vec2(normal.x*cosB-normal.y*sinB,normal.y*cosB+normal.x*sinB);
+        float penetration = shapeA->GetRadius() - distance;
+        glm::vec2 contactCircle = CirclePos + normal*shapeA->GetRadius();
+        glm::vec2 WorldCorner = BoxTr.position+glm::vec2(Corner.x*cosB-Corner.y*sinB,Corner.y*cosB+Corner.x*sinB);
+
+        return{true,normal,penetration,{contactCircle,WorldCorner}};
+        
+    }
+        float penetration;
+    glm::vec2 normal;
+    glm::vec2 contactBox;
+
+    float distanceX = shapeB->Gethalves().x - abs(Circle_relativePos.x);
+    float distanceY = shapeB->Gethalves().y - abs(Circle_relativePos.y);
+
+    if(distanceX < distanceY){
+        penetration = distanceX + shapeA->GetRadius();
+        normal = Circle_relativePos.x < 0 ? glm::vec2(-1.0f,0.0f) : glm::vec2(1.0f,0.0f);
+
+        contactBox = glm::vec2(
+            normal.x * shapeB->Gethalves().x,
+            glm::clamp(Circle_relativePos.y,-shapeB->Gethalves().y,shapeB->Gethalves().y)
+        );
+    }
+    else{
+        penetration = distanceY + shapeA->GetRadius();
+        normal = Circle_relativePos.y < 0 ? glm::vec2(0.0f,-1.0f) : glm::vec2(0.0f,1.0f);
+
+        contactBox = glm::vec2(
+            glm::clamp(Circle_relativePos.x,-shapeB->Gethalves().x,shapeB->Gethalves().x),
+            normal.y * shapeB->Gethalves().y
+        );
+    }
+
+    normal = glm::vec2(
+        normal.x*cosB-normal.y*sinB,
+        normal.y*cosB+normal.x*sinB
+    );
+
+    glm::vec2 contactCircle = CirclePos + normal*shapeA->GetRadius();
+
+    glm::vec2 WorldCorner = BoxTr.position + glm::vec2(
+        contactBox.x*cosB-contactBox.y*sinB,
+        contactBox.x*sinB+contactBox.y*cosB
+    );
+
+    return{true,normal,penetration,
+        {contactCircle,WorldCorner}};
 
 }

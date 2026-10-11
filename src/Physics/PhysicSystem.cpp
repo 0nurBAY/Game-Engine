@@ -2,14 +2,15 @@
 #include "Physics/PhysicSystem.h"
 #include <iostream>
 
-void PhysicSystem::Init(){
+void PhysicSystem::Init(float fixed){
+    this->fixed = fixed;
     collisions[ColliderType::Circle][ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);});
     collisions[ColliderType::Box]   [ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsBox(shape1, shape2, pos1, rot1, pos2, rot2);});
-    // collisions[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
-    // collisions[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsCircle(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
+    collisions[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
+    collisions[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
 }
 
-void PhysicSystem::FixedUpdate(float fixed,float dt, Scene *scene){
+void PhysicSystem::FixedUpdate(float dt, Scene *scene){
     accumulator+=dt;
     entities.clear();
     collisionsres.clear();
@@ -23,12 +24,11 @@ void PhysicSystem::FixedUpdate(float fixed,float dt, Scene *scene){
 
 void PhysicSystem::Step(){
     candidates.clear();
-    if(entities.empty()) {std::cout << "No physics entities to update." << "\n"; return;}
+    if(entities.empty()) return;
+    UpdatePhysicEntities();
     AABBCompare();
     NarrowPhase();
-    // for(auto& candidate:candidates){
-    //     std::cout << "Collision detected between Entity " << candidate.entity1->GetID() << " and Entity " << candidate.entity2->GetID() << std::endl;
-    // }
+    CollisionResault();
     
 }
 
@@ -56,7 +56,7 @@ void PhysicSystem::FindPhysicEntities(Scene *scene){
 void PhysicSystem::AABBCompare()
 {
     auto grid = SpatialGrid::GetGrid(entities);
-    if(grid.empty()) {std::cout << "Grid is empty, no entities to check for collisions." << "\n"; return;}
+    if(grid.empty()) {return;}
 
     for(auto& [cell, entitiesInCell]:grid){
     for(auto it1 = entitiesInCell.begin(); it1 != entitiesInCell.end(); ++it1)
@@ -111,12 +111,27 @@ void PhysicSystem::NarrowPhase(){
             // entity2->OnEvent(CollisionEvent(entity1));
             // std::cout <<"Collision detected between: "<< entity1->GetName() << entity2->GetName() <<"\n";
             // std::cout <<"Direction: " << collision.normal.x <<","<<collision.normal.y << "\nPenetration: "<< collision.penetration <<"\n"; 
+            collision.entityA = entity1;
+            collision.entityB = entity2;
             collisionsres.push_back(collision);
         }
     }
 
 }
 
+void PhysicSystem::CollisionResault(){
+    
+}
+
+void PhysicSystem::UpdatePhysicEntities(){
+    for(auto& [entity,sec]: entities){
+        if(!entity->HasComponent<RigidBodyComponent>()) continue;
+        auto* rigidbody = entity->GetComponent<RigidBodyComponent>();
+        rigidbody->UpdateRigidBody(fixed);
+        auto* transform = entity->GetComponent<TransformComp>();
+        transform->position += rigidbody->GetVelocity() * fixed;
+    }
+}
 std::vector<ColliderResult> PhysicSystem::GetCollisions()const {
     return collisionsres;
 }

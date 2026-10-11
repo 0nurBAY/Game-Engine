@@ -32,8 +32,11 @@ void SceneLoader::Init(){
     commands.emplace("Drag",        [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->DragComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("State",       [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->StateComp(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Collider",    [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->ColliderComp(entity,resource,assets,scriptmanager,input,camera);});
+    commands.emplace("RigidBody",   [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->RigidbodyComp(entity,resource,assets,scriptmanager,input,camera);});
+    
     commands.emplace("Box",         [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->AddBoxCollider(entity,resource,assets,scriptmanager,input,camera);});
     commands.emplace("Circle",      [this](Entity* entity,ParsedResource& resource,std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager& scriptmanager,Input* input,Camera& camera){this->AddCircleCollider(entity,resource,assets,scriptmanager,input,camera);});
+    
     directions.emplace("Up",Directions::UP);
     directions.emplace("Down",Directions::DOWN);
     directions.emplace("Left",Directions::LEFT);
@@ -43,6 +46,11 @@ void SceneLoader::Init(){
     directions.emplace("DownRight",Directions::DOWNRIGHT);
     directions.emplace("DownLeft",Directions::DOWNLEFT);
     directions.emplace("None",Directions::NONE);
+
+    bodytypes.emplace("Static",BodyType::Static);
+    bodytypes.emplace("Dynamic",BodyType::Dynamic);
+    bodytypes.emplace("Kinematic",BodyType::Kinematic);
+
 
 }
 void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets,ScriptManager &scriptmanager,Input *input,Camera &camera){
@@ -182,6 +190,29 @@ void SceneLoader::ColliderComp(Entity *entity, ParsedResource &resource, std::un
     if(!resource.args.empty()) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     entity->AddComponent<ColliderComponent>();
 }
+
+void SceneLoader::RigidbodyComp(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
+    if(resource.args.size()<4) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()>4) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    float mass;
+    BodyType b_type;
+    bool gravity;
+    float g_scale;
+    try{
+        mass = std::stof(resource.args[0]);
+        auto type = bodytypes.find(resource.args[1]);
+        if(type == bodytypes.end()) throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[1]);
+        b_type = type->second;
+        gravity = std::stoi(resource.args[2]);
+        g_scale = std::stof(resource.args[3]);
+        
+    }catch(std::exception& e){
+        throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
+    }
+    entity->AddComponent<RigidBodyComponent>(mass,b_type,gravity,g_scale);
+
+}
+
 void SceneLoader::CreateScene(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
     currentscene = std::make_unique<Scene>(resource.name);
 }
@@ -199,7 +230,6 @@ void SceneLoader::AddComponent(Entity *entity, ParsedResource &resource, std::un
     if(it == commands.end()) {
         // std::cout << "Unknown component type: "  << resource.name << "\n"<< resource.file << " - " << resource.line << "\n";
         throw std::runtime_error("Unknown component type: " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
-        return;
     }
     it->second(entitya,resource,assets,scriptmanager,input,camera);
 }
@@ -269,7 +299,7 @@ void SceneLoader::AddBoxCollider(Entity *entity, ParsedResource &resource, std::
         r  = std::stof(resource.args[4]);
     }
     catch(std::exception& e){
-            throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
+        throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
 
     }
     collidercomponent->AddCollider<BoxShape>(w,h,glm::vec2(p1,p2),r);
@@ -287,8 +317,7 @@ void SceneLoader::AddCircleCollider(Entity *entity, ParsedResource &resource, st
         p2 = std::stof(resource.args[2]);
     }
     catch(std::exception& e){
-            throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
-
+        throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
     }
     collidercomponent->AddCollider<CircleShape>(r,glm::vec2(p1,p2));
 }

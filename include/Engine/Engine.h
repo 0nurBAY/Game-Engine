@@ -29,6 +29,7 @@ private:
     ScriptManager scriptmanager;
     //Audio
     Time time;
+    float fixed_dt=0;
     ResourceManagerPlus resoursmanager;
     PhysicSystem physics;
     std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>> assets;

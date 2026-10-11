@@ -10,6 +10,6 @@ class CollisionDetector{
 
 public:
     static ColliderResult BoxVsBox         (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
-    // static ColliderResult CircleVsBox   (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
+    static ColliderResult CircleVsBox      (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
     static ColliderResult CircleVsCircle   (ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2);
 };

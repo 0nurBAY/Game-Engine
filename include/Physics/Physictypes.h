@@ -88,9 +88,11 @@ struct ColliderResult{
     bool collision;
     glm::vec2 normal;
     float penetration;
-    glm::vec2 center1;
-    glm::vec2 center2;
     std::vector<glm::vec2> contacts;
+    Entity* entityA;
+    Entity* entityB;
+    // glm::vec2 center1;
+    // glm::vec2 center2;
     
     // glm::vec2 ACoord1;
     // glm::vec2 ACoord2;
@@ -100,7 +102,7 @@ struct ColliderResult{
 
     // float radius1;
     // float radius2;
-    // glm::vec2 halfextend1;
+    // glm::vec2 halfextend2;
     // glm::vec2 halfextend2;
     // float rot1;
     // float rot2;

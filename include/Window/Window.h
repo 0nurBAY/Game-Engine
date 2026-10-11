@@ -30,7 +30,6 @@ private:
                                    int button,
                                    int action,
                                    int mods);
-    
     static void GLFWCursorPosCallBack(GLFWwindow *window, 
                                       double xpos,
                                       double ypos);

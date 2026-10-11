@@ -3,6 +3,7 @@
 #include "Scene/Entity.h"
 #include "Core/Input.h"
 #include "Event/Events.h"
+#include "Scene/Scene.h"
 #include <iostream>
 void PlayerScript::Update(float deltatime){
     auto* e = GetEntity();
@@ -10,9 +11,19 @@ void PlayerScript::Update(float deltatime){
     auto* transform = e->GetComponent<TransformComp>();
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
+    auto* rigidbody     = e->GetComponent<RigidBodyComponent>();
     float spd = 500.0f;
     glm::vec2 direction(0.0f,0.0f);
     float rotation = 0.0f;
+
+    // if(i->IsMouseButtonDown(GLFW_MOUSE_BUTTON_1)){
+    //     double mx = i->GetMouseX();
+    //     double my = i->GetMouseY();
+    //     auto* camera = e->GetScene()->GetEntityCamera();
+    //     glm::vec2 npos = camera->ScreentoWorld(glm::vec2(mx,my));
+    //     std::cout << "Force has applied: " << (npos.x-transform->position.x)*0.1f << "," << (npos.y-transform->position.y)*0.1f << "\n";
+    //     rigidbody->ApplyForce((npos-transform->position)*10.0f);
+    // }
     if(i->IsKeyDown(GLFW_KEY_W)){direction.y +=1.0f;}
     if(i->IsKeyDown(GLFW_KEY_A)){direction.x -=1.0f;}
     if(i->IsKeyDown(GLFW_KEY_S)){direction.y -=1.0f;}

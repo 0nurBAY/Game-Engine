@@ -21,13 +21,16 @@ private:
     std::vector<EntityCheck> entities;
     std::vector<ColliderResult> collisionsres;
     float accumulator = 0;
+    float fixed = 0;
     void Step();
 public:
-    void Init();
-    void FixedUpdate(float fixed,float dt, Scene* scene);
+    void Init(float fixed);
+    void FixedUpdate(float dt, Scene* scene);
     void AABBCompare();
     void NarrowPhase();
+    void CollisionResault();
     void FindPhysicEntities(Scene* scene);
+    void UpdatePhysicEntities();
     std::vector<ColliderResult> GetCollisions() const;
     void OnEvent(Event& event);
     

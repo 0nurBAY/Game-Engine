@@ -149,6 +149,7 @@ ATLAS_ADD CharacterAtlas BlackHold_Down03 80.0 0.0 16.0 20.0
 TEXTUREATLAS EnviormentAtlas EnviormentSprite 185 162
 
 ATLAS_ADD EnviormentAtlas Road1 0.0 110.0 111.0 52.0
+ATLAS_ADD EnviormentAtlas Platform 128.0 147.0 20.0 20.0
 ATLAS_ADD EnviormentAtlas Road2 0.0 408.0 111.0 52.0
 ATLAS_ADD EnviormentAtlas Tree1 112.0 440.0 33.0 72.0
 ATLAS_ADD EnviormentAtlas Tree2 149.0 440.0 33.0 72.0

@@ -70,6 +70,7 @@ add_executable(engine
     src/Physics/CollisionDetector.cpp
     src/Physics/PhysicTypes.cpp
     src/Renderer/DebugRenderer.cpp
+    src/Scene/Components/RigidBodyComponent.cpp
 
 )
 add_custom_command(TARGET engine POST_BUILD

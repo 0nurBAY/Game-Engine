@@ -1,22 +1,41 @@
 //TestScript2.cpp
 #include "Core/Script/TestScript2.h"
 #include "Scene/Entity.h"
+#include "Core/Input.h"
+#include "Event/Events.h"
+#include "Scene/Scene.h"
+#include <iostream>
 void TestScript2::Update(float deltatime){
+    auto* e = GetEntity();
+    auto* i = GetInput();
+    auto* transform = e->GetComponent<TransformComp>();
+    auto* rigidbody = e->GetComponent<RigidBodyComponent>();
     if(!arrived) walked+=deltatime;
     if(walked>=walktime){
         arrived = true;
         walked = 0.0f;
     }
     Decide(deltatime);
-    auto* e = GetEntity();
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
+    
+    if(i->IsMouseButtonDown(GLFW_MOUSE_BUTTON_1)){
+        std::cout << "Force required\n";
+        double mx = i->GetMouseX();
+        double my = i->GetMouseY();
+        auto* camera = e->GetScene()->GetEntityCamera();
+        glm::vec2 npos = camera->ScreentoWorld(glm::vec2(mx,my));
+        std::cout << "Force has applied: " << (npos.x-transform->position.x)*0.1f << "," << (npos.y-transform->position.y)*0.1f << "\n";
+        rigidbody->ApplyForce((npos-transform->position)*10.0f);
+        return;
+    }
+    
     if(arrived){
         state->RequestState("Idle");
         return;
     }
+    
 
-    auto* transform = e->GetComponent<TransformComp>();
     transform->position+=goal*500.0f*deltatime;
     if(goal.x<0.0f&&goal.y<0.0f)  {animation->SetDirection(Directions::DOWNLEFT);}
     if(goal.x<0.0f&&goal.y>0.0f)  {animation->SetDirection(Directions::UPLEFT);}
