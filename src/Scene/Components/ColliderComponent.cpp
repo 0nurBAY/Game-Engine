@@ -1,7 +1,12 @@
 //ColliderComponent.cpp
 
 #include "Scene/Components/ColliderComponent.h"
+#include "Physics/HitBoxDebuger.h"
 #include "Event/Events.h"
+#include "Scene/Scene.h"
+#include "Renderer/Camera.h"
+
+#include <iostream>
 ColliderComponent::ColliderComponent(){}
 
 CopmonentCategory ColliderComponent::GetCategory() const{
@@ -16,18 +21,57 @@ std::vector<ColliderShape*> ColliderComponent::Getcolliders(){
     return resault;
 }
 
+
 void ColliderComponent::EnableCollider(size_t index, bool enable){
     if(index < colliders.size()){
         colliders[index].enable = enable;
     }
 }
-
 void ColliderComponent::EnableCollider(bool enable){
     for(auto& collider: colliders){
         collider.enable = enable;
     }
 }
 
+
+
+void ColliderComponent::SetColliderColor(size_t index, glm::vec4 color){
+    if(index < colliders.size()){
+        colliders[index].color = color;
+    }
+}
+void ColliderComponent::SetColliderColor(glm::vec4 color){
+    for(auto& collider: colliders){
+        collider.color = color;
+    }
+}
+
+
+
+void ColliderComponent::ColliderColorDefault(size_t index){
+    if(index < colliders.size()){
+        colliders[index].color = glm::vec4(0.15f,0.4f,0.8f,1.0f);
+    }
+}
+void ColliderComponent::ColliderColorDefault(){
+    for(auto& collider: colliders){
+        collider.color = glm::vec4(0.15f,0.4f,0.8f,1.0f);
+    }
+}
+
+
+
+void ColliderComponent::Update(float dt){
+    // std::cout <<"--------------------\nColliderComponent::Update\n";
+    DebugRenderer* debugrenderer = owner->GetScene()->GetDebugRenderer();
+    for(auto& shape: colliders){
+        // std::cout <<"Collider: "<<shape.collider.get() << "State:\t";
+        if(shape.enable){
+            // std::cout <<"Enable\n";
+            HitBoxDebug::DrawHitBox(shape.collider.get(),owner,shape.color,debugrenderer);
+        }
+    }
+}
 // void ColliderComponent::OnEvent(Event &event){
 //     EventDispatcher dispatcher(event);
 //     dispatcher.Dispatcher<

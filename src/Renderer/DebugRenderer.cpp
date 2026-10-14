@@ -1,8 +1,36 @@
 //DebugRenderer.cpp
 
 #include "Renderer/DebugRenderer.h"
+#include <string>
+
+std::string ReadShader(const std::string &path);
+
+DebugRenderer::DebugRenderer(){
+    shader.SetSources(ReadShader("shaders/solidcolor.vert").c_str(),ReadShader("shaders/solidcolor.frag").c_str());
+    VAO.Bind();
+    VBO.Bind();
+    
+    VAO.AddAttribute(
+        0,
+        2,
+        GL_FLOAT,
+        6* sizeof(float),
+        (void*)0
+    );
+    VAO.AddAttribute(
+        1,
+        4,
+        GL_FLOAT,
+        6* sizeof(float),
+        (void*)(2*sizeof(float))
+    );
+    VAO.UnBind();
+    VBO.UnBind();
+}
+
 DebugRenderer::DebugRenderer(const char *vertexShaderSource, const char *fragmentShaderSource)
 {
+
     shader.SetSources(vertexShaderSource,fragmentShaderSource);
     VAO.Bind();
     VBO.Bind();

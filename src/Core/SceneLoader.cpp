@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
+
 void SceneLoader::Init(){
     substitute.emplace("NAME",0);
     substitute.emplace("XPOS",1);

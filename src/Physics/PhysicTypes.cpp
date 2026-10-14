@@ -15,6 +15,12 @@ std::size_t ColliderHash::operator()(const ColliderType& type) const
         static_cast<uint32_t>(type)
     );
 }
+std::size_t BodyTypeHash::operator()(const BodyType& type) const
+{
+    return std::hash<uint32_t>()(
+        static_cast<uint32_t>(type)
+    );
+}
 
 
 bool CandidatePair::operator<(const CandidatePair& other) const

@@ -24,6 +24,7 @@ private:
     VertexBuffer VBO;
     Shader shader;
 public:
+    DebugRenderer();
     DebugRenderer(const char* vertexShaderSource,const char* fragmentShaderSource);
     void BeginFrame();
     void DrawLine(glm::vec2 pos1,glm::vec2 pos2,glm::vec4 color);

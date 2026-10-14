@@ -12,6 +12,14 @@ GravityScale(GravityScale)
 void RigidBodyComponent::ApplyForce(glm::vec2 force){
     forces += force;
 }
+
+void RigidBodyComponent::SetVelocity(glm::vec2 velocity){
+    this->velocity = velocity;
+}
+
+void RigidBodyComponent::AddVelocity(glm::vec2 velocity){
+    this->velocity += velocity;
+}
 void RigidBodyComponent::UpdateRigidBody(float dt){
     if(type == BodyType::Static) return;
     if(mass == 0) return;

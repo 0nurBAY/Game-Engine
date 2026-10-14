@@ -55,5 +55,6 @@ public:
     void Run();
     void Stop();
 
+    DebugRenderer* GetDebugRenderer() {return &debugrenderer;}
 };
 

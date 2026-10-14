@@ -24,6 +24,8 @@ std::string StateComponent::GetState() const{
 void StateComponent::RequestState(std::string state){
     // std::cout<<owner->GetName()<<" State_Changed to "<<name<<"\n";
     // if(state==name)return;
+    auto st = states.find(state);
+    if(st == states.end()) throw std::runtime_error(owner->GetName() + "StateComponent::RequestState  invalid state: " + state);
     requests.push_back(state);
 
     // std::cout << "REQUEST: " << state << "\n";

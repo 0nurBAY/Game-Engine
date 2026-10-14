@@ -17,7 +17,11 @@ IMPORT NPC2.ntt NPC1 100 200
 #IMPORT NPC1.ntt NPC14 600 4200
 #IMPORT NPC1.ntt NPC15 600 4500
 #IMPORT NPC2.ntt NPC16 600 4800
-IMPORT Road.ntt Road 0 0
+#IMPORT Road.ntt Road 0 0
+#IMPORT Road.ntt Road 1200 0
+IMPORT Platform.ntt Platform0 -200 -300
+IMPORT Platform.ntt Platform1 0 -300
+IMPORT Platform.ntt Platform2 200 -300
 ENTITY Light
 COMPONENT Transform 150 250 0 0 0
 COMPONENT Light 0.7 0.7 0.7 1.0 1000

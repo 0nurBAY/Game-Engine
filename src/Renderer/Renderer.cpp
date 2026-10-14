@@ -57,11 +57,13 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
         SpriteComponent   *spriteComp    = entity->GetComponent<SpriteComponent>    ();
         if(!transformComp||!materialComp) continue;
 
-        auto material = resourcemanager.Resolve<Material>(materialComp->GetMaterial().GetName());
+        auto material    = resourcemanager.Resolve<Material>(materialComp->GetMaterial().GetName());
         auto new_shader  = resourcemanager.Resolve<Shader>(material->GetShader().GetName());
         auto new_texture = resourcemanager.Resolve<Texture>(material->GetTexture().GetName());
         auto new_normal  = resourcemanager.Resolve<Texture>(material->GetNormal().GetName());
-        if(!material||!new_shader||!new_texture) continue;
+        if(!material||!new_shader||!new_texture) {
+            std::cout << "Entity " << entity->GetName() << " Hasn't rendered\n";
+            continue;}
         if(currentshader != new_shader.get()){
             batcher.Flush();
             currentshader = new_shader.get();

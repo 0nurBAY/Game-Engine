@@ -1,6 +1,6 @@
 //Scene.cpp
 #include "Scene/Scene.h"
-
+#include "Engine/Engine.h"
 
 Scene::Scene(std::string name):name(name){}
 
@@ -37,6 +37,9 @@ EntityManager &Scene::GetEntityManager(){
 Camera *Scene::GetEntityCamera() const{
     return camera;
 }
+DebugRenderer *Scene::GetDebugRenderer() const{
+    return engine->GetDebugRenderer();
+}
 void Scene::Activate(){
     if(active||destroyed) return;
     active = true;
@@ -47,10 +50,11 @@ void Scene::Exit(){
     active = false;
     OnExit();
 }
-void Scene::Init(Camera *camera){
+void Scene::Init(Camera *camera,Engine* engine){
     if(inited||destroyed) return;
     inited = true;
     this->camera = camera;
+    this->engine = engine;
     for(auto&[id,entity]:entitymanager.GetEntites()){
         entity->init(this);
     }

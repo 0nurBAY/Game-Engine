@@ -1,12 +1,10 @@
 //RigidBodyComponent.h
-#include "Scene/Components/Component.h"
-#include <glm/glm.hpp>
 
-enum class BodyType{
-    Dynamic,
-    Static,
-    Kinematic
-};
+#pragma once
+
+#include "Scene/Components/Component.h"
+#include "Physics/Physictypes.h"
+#include <glm/glm.hpp>
 
 class RigidBodyComponent: public Component{
 private:
@@ -21,6 +19,8 @@ public:
     RigidBodyComponent(float mass,BodyType type,bool ApplyGravity,float GravityScale);
 
     void ApplyForce(glm::vec2 force);
+    void SetVelocity(glm::vec2 velocity);
+    void AddVelocity(glm::vec2 velocity);
     void UpdateRigidBody(float dt) override;
 
     glm::vec2 GetVelocity() const;

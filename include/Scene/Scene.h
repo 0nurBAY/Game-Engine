@@ -1,13 +1,17 @@
 //Scene.h
 #pragma once
 #include "Scene/EntityManager.h"
+#include "Renderer/DebugRenderer.h"
 #include <string>
 #include "Renderer/Camera.h"
+
+class Engine;
 
 class Scene
 {
 private:
     Camera* camera;
+    Engine* engine;
     EntityManager entitymanager;
     const std::string name;   
     bool active    = false;
@@ -25,13 +29,14 @@ public:
     Entity*     FindEntity(uint64_t id);
     EntityManager& GetEntityManager();
     Camera* GetEntityCamera () const;
+    DebugRenderer* GetDebugRenderer () const;
 
     void Update (float deltatime);
     void AnimationUpdate (float deltatime,ResourceManagerPlus* resoursmanager);
     void OnEvent (Event& event);
     void Activate();
     void Exit    ();
-    void Init    (Camera* camera);
+    void Init    (Camera* camera,Engine* engine);
     void Destroy ();
 
     std::string Name() const;

@@ -43,9 +43,10 @@ ADDANIMATION Idle DownRight PlayerIdle_downright
 STATEPRIORITY Idle 0 0 Ignore
 
 ADDANIMATION Hold None PlayerHold_down
-STATEPRIORITY Hold 3 0 Ignore
+STATEPRIORITY Hold 10 0 Ignore
 
 #-----Physic-----#
 ADDCOLLIDER Box 100 150 0 -25 0
+STATEPRIORITY Collision 9 0 Ignore
 
 ENTITYINIT {NAME}

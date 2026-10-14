@@ -36,6 +36,6 @@ ADDANIMATION Hold None BlackHold_down
 STATEPRIORITY Hold 3 0 Ignore
 
 #-----Physic-----#
-ADDCOLLIDER Circle 200 0 0
+ADDCOLLIDER Circle 100 0 0
 
 ENTITYINIT {NAME}

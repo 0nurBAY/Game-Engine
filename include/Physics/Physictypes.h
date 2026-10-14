@@ -9,12 +9,11 @@
 #include <set>
 #include <unordered_set>
 #include <array>
-
 #include <glm/vec2.hpp>
 
 class Entity;
 class ColliderShape;
-
+struct ColliderResult;
 
 enum class ColliderType{
     Box,
@@ -22,8 +21,18 @@ enum class ColliderType{
 };
 
 
+enum class BodyType{
+    Dynamic,
+    Static,
+    Kinematic
+};
+
 struct ColliderHash{
     std::size_t operator()(const ColliderType& type) const;
+};
+
+struct BodyTypeHash{
+    std::size_t operator()(const BodyType& type) const;
 };
 
 

@@ -4,10 +4,12 @@
 
 void PhysicSystem::Init(float fixed){
     this->fixed = fixed;
-    collisions[ColliderType::Circle][ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);});
-    collisions[ColliderType::Box]   [ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsBox(shape1, shape2, pos1, rot1, pos2, rot2);});
-    collisions[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
-    collisions[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
+    colliders[ColliderType::Circle][ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);});
+    colliders[ColliderType::Box]   [ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsBox(shape1, shape2, pos1, rot1, pos2, rot2);});
+    colliders[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
+    colliders[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
+
+    collisions[BodyType::Static][BodyType::Dynamic]       = ([this](ColliderResult* collision){CollisionSolver::StaticVsDynamic(collision);});
 }
 
 void PhysicSystem::FixedUpdate(float dt, Scene *scene){
@@ -28,7 +30,7 @@ void PhysicSystem::Step(){
     UpdatePhysicEntities();
     AABBCompare();
     NarrowPhase();
-    CollisionResault();
+    CollisionResult();
     
 }
 
@@ -80,6 +82,10 @@ void PhysicSystem::AABBCompare()
                 // std::cout << "Collision Between Entity " << entity1->GetID() << " and Entity " << entity2->GetID() << "\n\n";
                 candidates.insert({entity1,it1->collider, entity2, it2->collider});
             }
+            else{
+                entity1->GetComponent<ColliderComponent>()->ColliderColorDefault();
+                entity2->GetComponent<ColliderComponent>()->ColliderColorDefault();
+            }
         }
     }
     }
@@ -105,21 +111,27 @@ void PhysicSystem::NarrowPhase(){
         glm::vec2 pos2 = entity2->GetComponent<TransformComp>()->position;
         float rot1 = entity1->GetComponent<TransformComp>()->rotation;
         float rot2 = entity2->GetComponent<TransformComp>()->rotation;
-        auto& collision = collisions[collider1->GetShapeType()][collider2->GetShapeType()](collider1,collider2,pos1,rot1,pos2,rot2);
+        auto& collision = colliders[collider1->GetShapeType()][collider2->GetShapeType()](collider1,collider2,pos1,rot1,pos2,rot2);
         if(collision.collision){
-            // entity1->OnEvent(CollisionEvent(entity2));
-            // entity2->OnEvent(CollisionEvent(entity1));
+            entity1->OnEvent(CollisionEvent(entity2));
+            entity2->OnEvent(CollisionEvent(entity1));
+            entity1->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
+            entity2->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
             // std::cout <<"Collision detected between: "<< entity1->GetName() << entity2->GetName() <<"\n";
             // std::cout <<"Direction: " << collision.normal.x <<","<<collision.normal.y << "\nPenetration: "<< collision.penetration <<"\n"; 
+            
             collision.entityA = entity1;
             collision.entityB = entity2;
             collisionsres.push_back(collision);
         }
+        else{
+            entity1->GetComponent<ColliderComponent>()->ColliderColorDefault();
+            entity2->GetComponent<ColliderComponent>()->ColliderColorDefault();
+        }
     }
-
 }
 
-void PhysicSystem::CollisionResault(){
+void PhysicSystem::CollisionResult(){
     
 }
 
@@ -132,6 +144,6 @@ void PhysicSystem::UpdatePhysicEntities(){
         transform->position += rigidbody->GetVelocity() * fixed;
     }
 }
-std::vector<ColliderResult> PhysicSystem::GetCollisions()const {
+std::vector<ColliderResult> PhysicSystem::GetCollisions() const {
     return collisionsres;
 }

@@ -84,7 +84,7 @@ void TestScript2::OnEvent(Event &event){
     // );
     dispatcher.Dispatcher<CollisionEvent>(
         [this](CollisionEvent& event){
-            std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther();
+            // std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther();
         }
     );
 }

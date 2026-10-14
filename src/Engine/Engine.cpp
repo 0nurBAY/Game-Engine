@@ -84,7 +84,7 @@ void Engine::Init(){
 
 void Engine::PushScene(std::unique_ptr<Scene> scene){
     scenestack.push_back(std::move(scene));
-    scenestack.back()->Init(&camera);
+    scenestack.back()->Init(&camera,this);
     scenestack.back()->Activate();
 }
 
@@ -116,6 +116,7 @@ void Engine::Update(){
     //Daha sonra her Scene'i döndürür ve hepsine update verir ve hepsi kendi içinde aktif olan kısımlarını döndürür
     Scene* currentscene = GetActiveScene();
     time.Update();
+    debugrenderer.BeginFrame();
     float dt = time.GetDeltaTime();
     input.Update();
     window.clear();
@@ -124,7 +125,6 @@ void Engine::Update(){
         currentscene->Update(dt);
         physics.FixedUpdate(dt,currentscene);
         // auto physicRes = physics.GetCollisions();
-        // debugrenderer.BeginFrame();
         // for(auto& res: physicRes){
             // if(!res.collision) return;
             // std::cout << "======================================\n";

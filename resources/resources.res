@@ -149,7 +149,7 @@ ATLAS_ADD CharacterAtlas BlackHold_Down03 80.0 0.0 16.0 20.0
 TEXTUREATLAS EnviormentAtlas EnviormentSprite 185 162
 
 ATLAS_ADD EnviormentAtlas Road1 0.0 110.0 111.0 52.0
-ATLAS_ADD EnviormentAtlas Platform 128.0 147.0 20.0 20.0
+ATLAS_ADD EnviormentAtlas Platform 128.0 60.0 20.0 20.0
 ATLAS_ADD EnviormentAtlas Road2 0.0 408.0 111.0 52.0
 ATLAS_ADD EnviormentAtlas Tree1 112.0 440.0 33.0 72.0
 ATLAS_ADD EnviormentAtlas Tree2 149.0 440.0 33.0 72.0
@@ -171,6 +171,10 @@ MATERIAL RoadMat
 MATERIAL_ADD TEXTURE RoadMat EnviormentSprite
 MATERIAL_ADD SHADER RoadMat ShaderWithOutNormal
 
+MATERIAL PlatformMat
+MATERIAL_ADD TEXTURE PlatformMat EnviormentSprite
+MATERIAL_ADD NORMAL PlatformMat EnviormentNormal
+MATERIAL_ADD SHADER PlatformMat ShaderWithNormal
 
 #player animations
 ANIMATION PlayerWalk_down 0.1 loop PlayerWalk_Down00 PlayerWalk_Down01 PlayerWalk_Down02 PlayerWalk_Down03

@@ -118,17 +118,11 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
         }
     }
 
-    glm::vec2 R1 =
-        ReferenceCoords[Faces[reference_face].first];
+    glm::vec2 R1 = ReferenceCoords[Faces[reference_face].first];
+    glm::vec2 R2 = ReferenceCoords[Faces[reference_face].second];
 
-    glm::vec2 R2 =
-        ReferenceCoords[Faces[reference_face].second];
-
-    glm::vec2 P1 =
-        IncidentCoords[Faces[incident_face].first];
-
-    glm::vec2 P2 =
-        IncidentCoords[Faces[incident_face].second];
+    glm::vec2 P1 = IncidentCoords[Faces[incident_face].first];
+    glm::vec2 P2 = IncidentCoords[Faces[incident_face].second];
     
     glm::vec2 T = glm::normalize(R2 - R1);
 

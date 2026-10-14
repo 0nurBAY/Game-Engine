@@ -11,7 +11,7 @@ void PlayerScript::Update(float deltatime){
     auto* transform = e->GetComponent<TransformComp>();
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
-    auto* rigidbody     = e->GetComponent<RigidBodyComponent>();
+    auto* rigidbody = e->GetComponent<RigidBodyComponent>();
     float spd = 500.0f;
     glm::vec2 direction(0.0f,0.0f);
     float rotation = 0.0f;
@@ -31,7 +31,7 @@ void PlayerScript::Update(float deltatime){
     if(i->IsKeyDown(GLFW_KEY_Z)){rotation -=1.0f;}
     if(i->IsKeyDown(GLFW_KEY_X)){rotation +=1.0f;}
     if (glm::length(direction) > 0.0f)  direction = glm::normalize(direction);
-    transform->position+=direction*spd*deltatime;
+    transform->position += direction*spd*deltatime;
     transform->rotation+=rotation*spd*deltatime;
     if(direction.x<0.0f&&direction.y<0.0f)  {animation->SetDirection(Directions::DOWNLEFT);}
     if(direction.x<0.0f&&direction.y>0.0f)  {animation->SetDirection(Directions::UPLEFT);}
@@ -50,13 +50,16 @@ void PlayerScript::OnEvent(Event &event){
     EventDispatcher dispatcher(event);
     dispatcher.Dispatcher<MousePressedEvent>(
         [this](MousePressedEvent& event){
+            if(event.GetButton()==GLFW_MOUSE_BUTTON_2) return;
             auto state = this->GetEntity()->GetComponent<StateComponent>();
             state->RequestState("Attack");
         }
     );
     dispatcher.Dispatcher<CollisionEvent>(
         [this](CollisionEvent& event){
-            std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther();
+            // std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther() << "\n";
+            auto state = this->GetEntity()->GetComponent<StateComponent>();
+            state->RequestState("Collision");
         }
     );
 }
