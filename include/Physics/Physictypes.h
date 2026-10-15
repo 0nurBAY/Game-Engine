@@ -100,6 +100,8 @@ struct ColliderResult{
     std::vector<glm::vec2> contacts;
     Entity* entityA;
     Entity* entityB;
+    BodyType typeA;
+    BodyType typeB;
     // glm::vec2 center1;
     // glm::vec2 center2;
     

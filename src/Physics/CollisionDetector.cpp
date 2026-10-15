@@ -20,12 +20,15 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
 {   
     BoxShape* shapeA = dynamic_cast<BoxShape*>(shape1);
     BoxShape* shapeB = dynamic_cast<BoxShape*>(shape2);
+    
     Transform2D A = shapeA->GetWorldTransform(pos1,rot1);
     Transform2D B = shapeB->GetWorldTransform(pos2,rot2);
     float cosA = glm::cos(glm::radians(A.rotation));
     float sinA = glm::sin(glm::radians(A.rotation));
     float cosB = glm::cos(glm::radians(B.rotation));
     float sinB = glm::sin(glm::radians(B.rotation));
+
+
     glm::vec2 Axixes[4] ={
         glm::vec2(cosA,sinA),
         glm::vec2(-sinA,cosA),
@@ -89,7 +92,7 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
     glm::vec2* ReferenceCoords = isAreference? CoordinatesA : CoordinatesB;
     glm::vec2* IncidentCoords  = isAreference? CoordinatesB : CoordinatesA;
 
-    normal = isAreference? normal : -normal;
+    glm::vec2 refNormal = isAreference ? normal : -normal;
 
     int reference_face=0;
     int incident_face =0;
@@ -104,8 +107,8 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
         glm::vec2 normInc = IncidentCoords[Faces[i].first]-IncidentCoords[Faces[i].second];
         normInc = glm::vec2(-normInc.y,normInc.x);
 
-        float dotRef = glm::dot(normal,normRef);
-        float dotInc = glm::dot(normal,normInc);
+        float dotRef = glm::dot(refNormal,normRef);
+        float dotInc = glm::dot(refNormal,normInc);
 
         if(dotRef>Best_dotRef){
             Best_dotRef = dotRef;
@@ -180,7 +183,7 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
     std::vector<glm::vec2> contacts;
 
     for (const glm::vec2& p : clippedPoints)
-    {if (glm::dot(normal, p - R1) <= epsilon) contacts.push_back(p);}
+    {if (glm::dot(refNormal, p - R1) <= epsilon) contacts.push_back(p);}
     
 
     ColliderResult res = {true,normal,min_penetration,std::move(contacts)};

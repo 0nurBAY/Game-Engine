@@ -20,6 +20,7 @@
 class Engine
 {
 private:
+    bool pause = false, step = false, Prevp = false, Prevo = false;
     std::vector<std::unique_ptr<Scene>> scenestack;
     Window window;
     Input input;

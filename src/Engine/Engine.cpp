@@ -121,61 +121,72 @@ void Engine::Update(){
     input.Update();
     window.clear();
     camera.Update(dt);
-    if(currentscene){
-        currentscene->Update(dt);
-        physics.FixedUpdate(dt,currentscene);
-        // auto physicRes = physics.GetCollisions();
-        // for(auto& res: physicRes){
-            // if(!res.collision) return;
-            // std::cout << "======================================\n";
-            // debugrenderer.DrawPoint(res.contact1,glm::vec4(1.0f,0.0,0.0f,1.0f));
-            // debugrenderer.DrawPoint(res.contact2,glm::vec4(0.0f,1.0,0.0f,1.0f));
-            // float cosA = glm::cos(glm::radians(res.rot1));
-            // float sinA = glm::sin(glm::radians(res.rot1));
-            // float cosB = glm::cos(glm::radians(res.rot2));
-            // float sinB = glm::sin(glm::radians(res.rot2));
-            // glm::vec2 CoordinatesA[4] ={
-            //     res.center1+glm::vec2(res.halfextend1.x*cosA-res.halfextend1.y*sinA,res.halfextend1.y*cosA+res.halfextend1.x*sinA),
-            //     res.center1+glm::vec2(-res.halfextend1.x*cosA-res.halfextend1.y*sinA,res.halfextend1.y*cosA-res.halfextend1.x*sinA),
-            //     res.center1+glm::vec2(-res.halfextend1.x*cosA+res.halfextend1.y*sinA,-res.halfextend1.y*cosA-res.halfextend1.x*sinA),
-            //     res.center1+glm::vec2(res.halfextend1.x*cosA+res.halfextend1.y*sinA,-res.halfextend1.y*cosA+res.halfextend1.x*sinA)
-            // };
-            // glm::vec2 CoordinatesB[4] ={
-            //     res.center2+glm::vec2(res.halfextend2.x*cosB-res.halfextend2.y*sinB,res.halfextend2.y*cosB+res.halfextend2.x*sinB),
-            //     res.center2+glm::vec2(-res.halfextend2.x*cosB-res.halfextend2.y*sinB,res.halfextend2.y*cosB-res.halfextend2.x*sinB),
-            //     res.center2+glm::vec2(-res.halfextend2.x*cosB+res.halfextend2.y*sinB,-res.halfextend2.y*cosB-res.halfextend2.x*sinB),
-            //     res.center2+glm::vec2(res.halfextend2.x*cosB+res.halfextend2.y*sinB,-res.halfextend2.y*cosB+res.halfextend2.x*sinB)
-            // };
-            // for(int i=0; i<4; i++){
-            //     if(i<3){
-            //     debugrenderer.DrawLine(CoordinatesB[i],CoordinatesB[i+1],glm::vec4(0.3f,0.8,0.8f,1.0f));
-            //     continue;
-            //     }
-            //     debugrenderer.DrawLine(CoordinatesB[i],CoordinatesB[0],glm::vec4(0.3f,0.8,0.8f,1.0f));
+    // if(!Prevp && input.IsKeyPressed(GLFW_KEY_P))pause = !pause;
+    // if(!Prevo && input.IsKeyPressed(GLFW_KEY_O))step = true;
+    // Prevp = input.IsKeyPressed(GLFW_KEY_P);
+    // Prevo = input.IsKeyPressed(GLFW_KEY_O);
+    if(!pause || step){
+        if(currentscene){
+            currentscene->Update(dt);
+            physics.FixedUpdate(dt,currentscene);
+            // auto physicRes = physics.GetCollisions();
+            // for(auto& res: physicRes){
+                // if(!res.collision) return;
+                // std::cout << "======================================\n";
+                // debugrenderer.DrawPoint(res.contact1,glm::vec4(1.0f,0.0,0.0f,1.0f));
+                // debugrenderer.DrawPoint(res.contact2,glm::vec4(0.0f,1.0,0.0f,1.0f));
+                // float cosA = glm::cos(glm::radians(res.rot1));
+                // float sinA = glm::sin(glm::radians(res.rot1));
+                // float cosB = glm::cos(glm::radians(res.rot2));
+                // float sinB = glm::sin(glm::radians(res.rot2));
+                // glm::vec2 CoordinatesA[4] ={
+                //     res.center1+glm::vec2(res.halfextend1.x*cosA-res.halfextend1.y*sinA,res.halfextend1.y*cosA+res.halfextend1.x*sinA),
+                //     res.center1+glm::vec2(-res.halfextend1.x*cosA-res.halfextend1.y*sinA,res.halfextend1.y*cosA-res.halfextend1.x*sinA),
+                //     res.center1+glm::vec2(-res.halfextend1.x*cosA+res.halfextend1.y*sinA,-res.halfextend1.y*cosA-res.halfextend1.x*sinA),
+                //     res.center1+glm::vec2(res.halfextend1.x*cosA+res.halfextend1.y*sinA,-res.halfextend1.y*cosA+res.halfextend1.x*sinA)
+                // };
+                // glm::vec2 CoordinatesB[4] ={
+                //     res.center2+glm::vec2(res.halfextend2.x*cosB-res.halfextend2.y*sinB,res.halfextend2.y*cosB+res.halfextend2.x*sinB),
+                //     res.center2+glm::vec2(-res.halfextend2.x*cosB-res.halfextend2.y*sinB,res.halfextend2.y*cosB-res.halfextend2.x*sinB),
+                //     res.center2+glm::vec2(-res.halfextend2.x*cosB+res.halfextend2.y*sinB,-res.halfextend2.y*cosB-res.halfextend2.x*sinB),
+                //     res.center2+glm::vec2(res.halfextend2.x*cosB+res.halfextend2.y*sinB,-res.halfextend2.y*cosB+res.halfextend2.x*sinB)
+                // };
+                // for(int i=0; i<4; i++){
+                //     if(i<3){
+                //     debugrenderer.DrawLine(CoordinatesB[i],CoordinatesB[i+1],glm::vec4(0.3f,0.8,0.8f,1.0f));
+                //     continue;
+                //     }
+                //     debugrenderer.DrawLine(CoordinatesB[i],CoordinatesB[0],glm::vec4(0.3f,0.8,0.8f,1.0f));
+                // }
+                // debugrenderer.DrawCircle(res.center1,res.radius1,glm::vec4(0.0f,0.0f,1.0f,1.0f));
+                // debugrenderer.DrawBox(glm::vec2(-res.halfextend1.x,-res.halfextend1.y)+res.center1,glm::vec2(res.halfextend1.x,res.halfextend1.y)+res.center1,glm::vec4(0.0f,1.0f,1.0f,1.0f));
+                // debugrenderer.DrawBox(glm::vec2(-res.halfextend2.x,-res.halfextend2.y)+res.center2,glm::vec2(res.halfextend2.x,res.halfextend2.y)+res.center2,glm::vec4(0.0f,1.0f,1.0f,1.0f));
+                // debugrenderer.DrawPoint((glm::distance(res.center1,res.center2)/(res.radius1+res.radius2)*(res.radius1))*res.normal+res.center1,glm::vec4(0.3f,0.8,0.8f,1.0f));
+                // debugrenderer.DrawLine(res.center1,res.center1+res.normal*res.halfextend1,glm::vec4(1.0f,0.0,0.0f,1.0f));
+                // debugrenderer.DrawLine(res.center2,res.center2-res.normal*res.halfextend2,glm::vec4(0.0f,1.0,0.0f,1.0f));
+                // debugrenderer.DrawLine(res.center1,res.center1 + res.normal * res.penetration,glm::vec4(1.0f));
+                // if(res.contacts.size() == 1) debugrenderer.DrawPoint(res.contacts[0],glm::vec4(1.0f));
+                // if(res.contacts.size() > 1){
+                //     for(int k = 0; k < res.contacts.size()-1;k++){
+                //         debugrenderer.DrawLine(res.contacts[k],res.contacts[k+1],glm::vec4(1.0f,0.0,0.0f,1.0f));
+                //         debugrenderer.DrawPoint(res.contacts[k],glm::vec4(1.0f));
+                //         debugrenderer.DrawPoint(res.contacts[k+1],glm::vec4(1.0f));
+                //     }
+                // }
             // }
-            // debugrenderer.DrawCircle(res.center1,res.radius1,glm::vec4(0.0f,0.0f,1.0f,1.0f));
-            // debugrenderer.DrawBox(glm::vec2(-res.halfextend1.x,-res.halfextend1.y)+res.center1,glm::vec2(res.halfextend1.x,res.halfextend1.y)+res.center1,glm::vec4(0.0f,1.0f,1.0f,1.0f));
-            // debugrenderer.DrawBox(glm::vec2(-res.halfextend2.x,-res.halfextend2.y)+res.center2,glm::vec2(res.halfextend2.x,res.halfextend2.y)+res.center2,glm::vec4(0.0f,1.0f,1.0f,1.0f));
-            // debugrenderer.DrawPoint((glm::distance(res.center1,res.center2)/(res.radius1+res.radius2)*(res.radius1))*res.normal+res.center1,glm::vec4(0.3f,0.8,0.8f,1.0f));
-            // debugrenderer.DrawLine(res.center1,res.center1+res.normal*res.halfextend1,glm::vec4(1.0f,0.0,0.0f,1.0f));
-            // debugrenderer.DrawLine(res.center2,res.center2-res.normal*res.halfextend2,glm::vec4(0.0f,1.0,0.0f,1.0f));
-            // debugrenderer.DrawLine(res.center1,res.center1 + res.normal * res.penetration,glm::vec4(1.0f));
-            // if(res.contacts.size() == 1) debugrenderer.DrawPoint(res.contacts[0],glm::vec4(1.0f));
-            // if(res.contacts.size() > 1){
-            //     for(int k = 0; k < res.contacts.size()-1;k++){
-            //         debugrenderer.DrawLine(res.contacts[k],res.contacts[k+1],glm::vec4(1.0f,0.0,0.0f,1.0f));
-            //         debugrenderer.DrawPoint(res.contacts[k],glm::vec4(1.0f));
-            //         debugrenderer.DrawPoint(res.contacts[k+1],glm::vec4(1.0f));
-            //     }
-            // }
-        // }
-        currentscene->AnimationUpdate(dt,&resoursmanager);
+            currentscene->AnimationUpdate(dt,&resoursmanager);
+        }
     }
+    step = false;
 
 }
 void Engine::GameLoop(){
 
     while(running){
+        int count = 0;
+        for (int k = GLFW_KEY_SPACE; k <= GLFW_KEY_LAST; ++k)
+            if (glfwGetKey(window.GetWindow(), k) == GLFW_PRESS) ++count;
+        std::cout << "pressed: " << count << "\n";
         Update();
         Render();
         window.SwapBuffer();
@@ -189,7 +200,6 @@ void Engine::Render(){
     renderer.Draw(*currentscene, resoursmanager);
     debugrenderer.Flush(camera.GetProjectionMatrix(),camera.GetViewMatrix());
 
-    ////
 }
 
 void Engine::OnEvent(Event& event){
@@ -219,21 +229,23 @@ void Engine::OnEvent(Event& event){
         [this](KeyPressedEvent& event)
         {
             // std::cout << "Key pressed: "<<event.GetKey() <<"\n";
+            if(event.GetKey()==GLFW_KEY_P){
+                pause = !pause;
+            }
             if(event.GetKey()==GLFW_KEY_O){
-                this->camera.Shake(15.0f,0.2f);
+                step = true;
             }
-            if(event.GetKey()==GLFW_KEY_K){
-                this->camera.Shake(20.0f,0.2f);
-            }
-            if(event.GetKey()==GLFW_KEY_L){
-                this->camera.Shake(30.0f,0.2f);
-            }
+            // if(event.GetKey()==GLFW_KEY_K){
+            //     this->camera.Shake(20.0f,0.2f);
+            // }
+            // if(event.GetKey()==GLFW_KEY_L){
+            //     this->camera.Shake(30.0f,0.2f);
+            // }
         }
     );
     dispatcher.Dispatcher<MousePressedEvent>(
         [this](MousePressedEvent& event)
-        {
-        }
+        {}
     );
     dispatcher.Dispatcher<CursorMoveEvent>(
         [](CursorMoveEvent& event)

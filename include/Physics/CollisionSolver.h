@@ -7,5 +7,5 @@ class CollisionSolver{
 private:
 
 public:
-    static void StaticVsDynamic(ColliderResult* collision);
+    static void StaticVsDynamic(ColliderResult* collision,bool reverse);
 };

@@ -9,7 +9,8 @@ void PhysicSystem::Init(float fixed){
     colliders[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
     colliders[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
 
-    collisions[BodyType::Static][BodyType::Dynamic]       = ([this](ColliderResult* collision){CollisionSolver::StaticVsDynamic(collision);});
+    collisions[BodyType::Static][BodyType::Dynamic]       = ([this](ColliderResult* collision){CollisionSolver::StaticVsDynamic(collision,1);});
+    collisions[BodyType::Dynamic][BodyType::Static]       = ([this](ColliderResult* collision){CollisionSolver::StaticVsDynamic(collision,0);});
 }
 
 void PhysicSystem::FixedUpdate(float dt, Scene *scene){
@@ -72,6 +73,7 @@ void PhysicSystem::AABBCompare()
             // std::cout << "Grid:\t" << cell.x << ", " << cell.y << "\n";
             // std::cout << "Entity1 ID: " << entity1->GetID() << ", AABB: [" << aabb1.minx << ", " << aabb1.miny << ", " << aabb1.maxx << ", " << aabb1.maxy << "]\n";
             // std::cout << "Entity2 ID: " << entity2->GetID() << ", AABB: [" << aabb2.minx << ", " << aabb2.miny << ", " << aabb2.maxx << ", " << aabb2.maxy << "]\n";
+            if((entity1->GetComponent<RigidBodyComponent>()->GetBodyType()==BodyType::Static)&&(entity2->GetComponent<RigidBodyComponent>()->GetBodyType()==BodyType::Static))continue;
             bool collision =
                 !(aabb1.maxx < aabb2.minx ||
                   aabb2.maxx < aabb1.minx ||
@@ -122,6 +124,15 @@ void PhysicSystem::NarrowPhase(){
             
             collision.entityA = entity1;
             collision.entityB = entity2;
+            auto* rigidbodyA = entity1->GetComponent<RigidBodyComponent>();
+            auto* rigidbodyB = entity2->GetComponent<RigidBodyComponent>();
+            collision.typeA = rigidbodyA->GetBodyType();
+            collision.typeB = rigidbodyB->GetBodyType();
+
+            if(collision.penetration>0){
+
+            }
+
             collisionsres.push_back(collision);
         }
         else{
@@ -132,7 +143,9 @@ void PhysicSystem::NarrowPhase(){
 }
 
 void PhysicSystem::CollisionResult(){
-    
+    for(auto& collision: collisionsres){
+        collisions[collision.typeA][collision.typeB](&collision);
+    }
 }
 
 void PhysicSystem::UpdatePhysicEntities(){
@@ -142,6 +155,7 @@ void PhysicSystem::UpdatePhysicEntities(){
         rigidbody->UpdateRigidBody(fixed);
         auto* transform = entity->GetComponent<TransformComp>();
         transform->position += rigidbody->GetVelocity() * fixed;
+        rigidbody->ResetCorrection();
     }
 }
 std::vector<ColliderResult> PhysicSystem::GetCollisions() const {
