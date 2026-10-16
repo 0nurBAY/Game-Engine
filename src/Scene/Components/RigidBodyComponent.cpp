@@ -5,9 +5,10 @@
 #include "Scene/Entity.h"
 #include "Scene/Scene.h"
 
-RigidBodyComponent::RigidBodyComponent(float mass,BodyType type, bool ApplyGravity, float GravityScale):
+RigidBodyComponent::RigidBodyComponent(float mass,BodyType type,float restution, bool ApplyGravity, float GravityScale):
 mass(mass),
 type(type),
+restution(restution),
 ApplyGravity(ApplyGravity),
 GravityScale(GravityScale)
 {}
@@ -63,6 +64,12 @@ glm::vec2 RigidBodyComponent::GetCorrection() const{
 }
 float RigidBodyComponent::GetMass() const{
     return mass;
+}
+float RigidBodyComponent::GetInvMass() const{
+    return (type==BodyType::Static)? 0:1/mass;
+}
+float RigidBodyComponent::GetRestitution() const{
+    return restution;
 }
 bool RigidBodyComponent::IsMoving() const{
     if(velocity.x) return true;

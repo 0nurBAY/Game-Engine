@@ -12,11 +12,11 @@ void PlayerScript::Update(float deltatime){
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
     auto* rigidbody = e->GetComponent<RigidBodyComponent>();
-    float spd = 500.0f;
+    float spd = 1000.0f;
     glm::vec2 direction(0.0f,0.0f);
     float rotation = 0.0f;
 
-    if(i->IsMouseButtonDown(GLFW_MOUSE_BUTTON_1)){
+    if(i->IsMouseButtonDown(GLFW_MOUSE_BUTTON_2)){
         double mx = i->GetMouseX();
         double my = i->GetMouseY();
         auto* camera = e->GetScene()->GetEntityCamera();
@@ -37,7 +37,7 @@ void PlayerScript::Update(float deltatime){
     glm::vec2 target = direction *spd;
     glm::vec2 difference = target - vel;
     float difference_len = glm::length(difference);
-    float step = (glm::length(direction)>0.0f)? 2000.0f * deltatime: 1000.0f * deltatime;
+    float step = (glm::length(direction)>0.0f)? 2000.0f * deltatime: 0.0f;
     transform->rotation += rotation;
     vel = (difference_len > step)? vel + difference / difference_len * step : target;
     rigidbody->SetVelocity(vel);

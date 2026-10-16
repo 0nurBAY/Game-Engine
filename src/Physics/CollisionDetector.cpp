@@ -203,17 +203,20 @@ ColliderResult CollisionDetector::BoxVsBox(ColliderShape* shape1, ColliderShape*
 ColliderResult CollisionDetector::CircleVsBox(ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){
     CircleShape* shapeA = dynamic_cast<CircleShape*>(shape1);
     BoxShape* shapeB = dynamic_cast<BoxShape*>(shape2);
+
     glm::vec2 CirclePos = shapeA->GetWorldTransform(pos1,rot1).position;
     Transform2D BoxTr = shapeB->GetWorldTransform(pos2,rot2);
+
     glm::vec2 difference = CirclePos-BoxTr.position;
     float cosB = glm::cos(glm::radians(BoxTr.rotation));
     float sinB = glm::sin(glm::radians(BoxTr.rotation));
+
     glm::vec2 Circle_relativePos = glm::vec2(difference.x*cosB+difference.y*sinB,difference.y*cosB-difference.x*sinB);
     
     glm::vec2 Corner = glm::vec2(glm::clamp(Circle_relativePos.x,-shapeB->Gethalves().x,shapeB->Gethalves().x),glm::clamp(Circle_relativePos.y,-shapeB->Gethalves().y,shapeB->Gethalves().y));
     float distance_square = (Corner.x - Circle_relativePos.x)*(Corner.x - Circle_relativePos.x) + (Corner.y - Circle_relativePos.y)*(Corner.y - Circle_relativePos.y);
     if(distance_square>shapeA->GetRadius()*shapeA->GetRadius()) return{false};
-    if(distance_square > 0){
+    if(distance_square > 1e-8f){
         float distance = sqrt(distance_square);
         glm::vec2 normal = (Corner - Circle_relativePos)/distance;
         normal = glm::vec2(normal.x*cosB-normal.y*sinB,normal.y*cosB+normal.x*sinB);
@@ -233,7 +236,7 @@ ColliderResult CollisionDetector::CircleVsBox(ColliderShape* shape1, ColliderSha
 
     if(distanceX < distanceY){
         penetration = distanceX + shapeA->GetRadius();
-        normal = Circle_relativePos.x < 0 ? glm::vec2(-1.0f,0.0f) : glm::vec2(1.0f,0.0f);
+        normal = Circle_relativePos.x < 0 ? glm::vec2(1.0f,0.0f) : glm::vec2(-1.0f,0.0f);
 
         contactBox = glm::vec2(
             normal.x * shapeB->Gethalves().x,
@@ -242,7 +245,7 @@ ColliderResult CollisionDetector::CircleVsBox(ColliderShape* shape1, ColliderSha
     }
     else{
         penetration = distanceY + shapeA->GetRadius();
-        normal = Circle_relativePos.y < 0 ? glm::vec2(0.0f,-1.0f) : glm::vec2(0.0f,1.0f);
+        normal = Circle_relativePos.y < 0 ? glm::vec2(0.0f,1.0f) : glm::vec2(0.0f,-1.0f);
 
         contactBox = glm::vec2(
             glm::clamp(Circle_relativePos.x,-shapeB->Gethalves().x,shapeB->Gethalves().x),

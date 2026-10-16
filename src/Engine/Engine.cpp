@@ -122,7 +122,6 @@ void Engine::Update(){
     window.clear();
     camera.Update(dt);
     // if(!Prevp && input.IsKeyPressed(GLFW_KEY_P))pause = !pause;
-    // if(!Prevo && input.IsKeyPressed(GLFW_KEY_O))step = true;
     // Prevp = input.IsKeyPressed(GLFW_KEY_P);
     // Prevo = input.IsKeyPressed(GLFW_KEY_O);
     if(!pause || step){
@@ -183,10 +182,6 @@ void Engine::Update(){
 void Engine::GameLoop(){
 
     while(running){
-        int count = 0;
-        for (int k = GLFW_KEY_SPACE; k <= GLFW_KEY_LAST; ++k)
-            if (glfwGetKey(window.GetWindow(), k) == GLFW_PRESS) ++count;
-        std::cout << "pressed: " << count << "\n";
         Update();
         Render();
         window.SwapBuffer();

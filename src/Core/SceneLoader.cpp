@@ -193,24 +193,26 @@ void SceneLoader::ColliderComp(Entity *entity, ParsedResource &resource, std::un
 }
 
 void SceneLoader::RigidbodyComp(Entity *entity, ParsedResource &resource, std::unordered_map<std::string, std::unique_ptr<AssetHandleBase>> &assets, ScriptManager &scriptmanager, Input *input, Camera &camera){
-    if(resource.args.size()<4) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
-    if(resource.args.size()>4) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()<5) throw std::runtime_error("No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
+    if(resource.args.size()>5) throw std::runtime_error("Too many arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     float mass;
     BodyType b_type;
     bool gravity;
+    float restution;
     float g_scale;
     try{
         mass = std::stof(resource.args[0]);
         auto type = bodytypes.find(resource.args[1]);
         if(type == bodytypes.end()) throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[1]);
         b_type = type->second;
-        gravity = std::stoi(resource.args[2]);
-        g_scale = std::stof(resource.args[3]);
+        restution = std::stof(resource.args[2]);
+        gravity   = std::stoi(resource.args[3]);
+        g_scale   = std::stof(resource.args[4]);
         
     }catch(std::exception& e){
-        throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0]);
+        throw std::runtime_error("Invalid argument for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line) + "\nArgument: " + resource.args[0] + "\nExceptetion: " + e.what());
     }
-    entity->AddComponent<RigidBodyComponent>(mass,b_type,gravity,g_scale);
+    entity->AddComponent<RigidBodyComponent>(mass,b_type,restution,gravity,g_scale);
 
 }
 

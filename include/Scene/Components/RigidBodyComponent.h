@@ -15,10 +15,11 @@ private:
     glm::vec2 applied_correction = glm::vec2(0.0f);
     glm::vec2 preforces = glm::vec2(0.0f);
     BodyType type;
+    float restution;
     bool ApplyGravity = false;
     float GravityScale = 0.0f;
 public:
-    RigidBodyComponent(float mass,BodyType type,bool ApplyGravity,float GravityScale);
+    RigidBodyComponent(float mass,BodyType type,float restution,bool ApplyGravity,float GravityScale);
 
     void SetForce(glm::vec2 force);
     void SetVelocity(glm::vec2 velocity);
@@ -36,6 +37,8 @@ public:
     glm::vec2 GetCorrection() const;
     bool IsMoving() const;
     float GetMass() const;
+    float GetInvMass() const;
+    float GetRestitution() const;
     CopmonentCategory GetCategory() const override;
     BodyType GetBodyType() const;
 

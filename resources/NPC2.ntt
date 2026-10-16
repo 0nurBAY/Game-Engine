@@ -9,7 +9,7 @@ COMPONENT Drag
 COMPONENT State Idle
 COMPONENT Script NPC1Script
 COMPONENT Collider
-COMPONENT RigidBody 50 Dynamic 0 0
+COMPONENT RigidBody 50 Dynamic 0.1 0 0
 
 #-----Animation-----#
 ADDANIMATION Walk Up BlackWalk_up

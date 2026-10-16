@@ -9,7 +9,7 @@ COMPONENT Drag
 COMPONENT State Idle
 COMPONENT Script PlayerScript
 COMPONENT Collider
-COMPONENT RigidBody 50 Dynamic 0 10
+COMPONENT RigidBody 50 Dynamic 0.5 0 10
 
 #-----Animation-----#
 ADDANIMATION Walk Up PlayerWalk_up
@@ -46,7 +46,7 @@ ADDANIMATION Hold None PlayerHold_down
 STATEPRIORITY Hold 10 0 Ignore
 
 #-----Physic-----#
-ADDCOLLIDER Box 100 150 0 -25 0
+ADDCOLLIDER Circle 100 0 0
 STATEPRIORITY Collision 9 0 Ignore
 
 ENTITYINIT {NAME}

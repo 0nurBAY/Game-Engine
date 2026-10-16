@@ -6,11 +6,15 @@ void PhysicSystem::Init(float fixed){
     this->fixed = fixed;
     colliders[ColliderType::Circle][ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);});
     colliders[ColliderType::Box]   [ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsBox(shape1, shape2, pos1, rot1, pos2, rot2);});
-    colliders[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape1, shape2, pos1, rot1, pos2, rot2);}); //Box first, Circle second
-    colliders[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape2, shape1, pos2, rot2, pos1, rot1);}); //Circle first, Box second
+    colliders[ColliderType::Circle][ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsBox(shape1, shape2, pos1, rot1, pos2, rot2);}); //Circle first, Box second
+    colliders[ColliderType::Box]   [ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){
+        ColliderResult res = CollisionDetector::CircleVsBox(shape2, shape1, pos2, rot2, pos1, rot1);
+        res.normal = -res.normal;
+        return res;}); //Circle first, Box second
 
-    collisions[BodyType::Static][BodyType::Dynamic]       = ([this](ColliderResult* collision){CollisionSolver::StaticVsDynamic(collision,1);});
-    collisions[BodyType::Dynamic][BodyType::Static]       = ([this](ColliderResult* collision){CollisionSolver::StaticVsDynamic(collision,0);});
+    collisions[BodyType::Static][BodyType::Dynamic]       = ([this](ColliderResult* collision){CollisionSolver::Solve(collision,1);});
+    collisions[BodyType::Dynamic][BodyType::Static]       = ([this](ColliderResult* collision){CollisionSolver::Solve(collision,0);});
+    collisions[BodyType::Dynamic][BodyType::Dynamic]      = ([this](ColliderResult* collision){CollisionSolver::Solve(collision,0);});
 }
 
 void PhysicSystem::FixedUpdate(float dt, Scene *scene){

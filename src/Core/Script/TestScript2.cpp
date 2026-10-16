@@ -15,7 +15,7 @@ void TestScript2::Update(float deltatime){
         arrived = true;
         walked = 0.0f;
     }
-    Decide(deltatime);
+    // Decide(deltatime);
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
     
@@ -36,7 +36,15 @@ void TestScript2::Update(float deltatime){
     }
     
 
-    transform->position+=goal*500.0f*deltatime;
+    
+    glm::vec2 vel = rigidbody->GetVelocity();
+    glm::vec2 target = goal*500.0f;
+    glm::vec2 difference = target - vel;
+    float difference_len = glm::length(difference);
+    float step = (glm::length(goal)>0.0f)? 2000.0f * deltatime: 0.0f;
+    vel = (difference_len > step)? vel + difference / difference_len * step : target;
+    rigidbody->SetVelocity(vel);
+
     if(goal.x<0.0f&&goal.y<0.0f)  {animation->SetDirection(Directions::DOWNLEFT);}
     if(goal.x<0.0f&&goal.y>0.0f)  {animation->SetDirection(Directions::UPLEFT);}
     if(goal.x<0.0f&&goal.y==0.0f) {animation->SetDirection(Directions::LEFT);}
