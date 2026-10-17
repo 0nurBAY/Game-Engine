@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Event/Event.h"
-#include <string>
+#include <glm/glm.hpp>
 #include <iostream>
 
 class Entity;
@@ -48,9 +48,11 @@ class CollisionEvent : public Event
 {
 private:
     Entity* other;
+    glm::vec2 dir;
 public:
-    CollisionEvent(Entity* other):other(other){}
+    CollisionEvent(Entity* other,glm::vec2 dir):other(other),dir(dir){}
     Entity* GetOther() const {return other;}
+    glm::vec2 GetDir() const {return dir;}
     EventType GetType() const override{
        return EventType::OnCollision;
     }

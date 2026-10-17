@@ -5,16 +5,17 @@
 
 Entity::Entity(std::uint64_t id,std::uint64_t uuid,std::string name): id(id),uuid(uuid),name(name)
 {
-    std::cout << "Entity has created\n";
-    std::cout << "|->name: " << name << "\n";
-    std::cout << "|->ID: " << id <<"\n";
-    std::cout << "|->UUID: " <<uuid <<"\n";
+    // std::cout << "Entity has created\n";
+    // std::cout << "|->name: " << name << "\n";
+    // std::cout << "|->ID: " << id <<"\n";
+    // std::cout << "|->UUID: " <<uuid <<"\n";
 }
 Entity::~Entity(){
-    std::cout << "Entity has destroyed\n";
-    std::cout << "|->name: " << name << "\n";
-    std::cout << "|->ID: " << id <<"\n";
-    std::cout << "|->UUID: " <<uuid <<"\n";
+    OnDestroy();
+    // std::cout << "Entity has destroyed\n";
+    // std::cout << "|->name: " << name << "\n";
+    // std::cout << "|->ID: " << id <<"\n";
+    // std::cout << "|->UUID: " <<uuid <<"\n";
     
 }
 

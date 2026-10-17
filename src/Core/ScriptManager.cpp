@@ -2,6 +2,7 @@
 #include "Core/ScriptManager.h"
 #include "Core/Script/PlayerScript.h"
 #include "Core/Script/TestScript2.h"
+#include "Core/Script/TestScript3.h"
 #include "Core/Script/CameraScript.h"
 #include "Core/Script/HandsScript.h"
 #include <Windows.h>
@@ -17,6 +18,9 @@ void ScriptManager::Init(){
     });
     scripts.emplace("NPC1Script",[]{
         return std::make_unique<TestScript2>();
+    });
+    scripts.emplace("NPC2Script",[]{
+        return std::make_unique<TestScript3>();
     });
     scripts.emplace("CameraScript",[]{
         return std::make_unique<CameraScript>();

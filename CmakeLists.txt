@@ -73,6 +73,7 @@ add_executable(engine
     src/Scene/Components/RigidBodyComponent.cpp
     src/Physics/CollisionSolver.cpp
     src/Physics/HitBoxDebuger.cpp
+    "src/Core/Script/TestScript3.cpp"
 
 )
 add_custom_command(TARGET engine POST_BUILD

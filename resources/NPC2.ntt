@@ -7,9 +7,9 @@ COMPONENT Sprite CharacterAtlas BlackWalk_Down00
 COMPONENT Animation 
 COMPONENT Drag 
 COMPONENT State Idle
-COMPONENT Script NPC1Script
+COMPONENT Script NPC2Script
 COMPONENT Collider
-COMPONENT RigidBody 50 Dynamic 0.1 0 0
+COMPONENT RigidBody 50 Dynamic 1 0 0
 
 #-----Animation-----#
 ADDANIMATION Walk Up BlackWalk_up

@@ -20,8 +20,8 @@ void CollisionSolver::Solve(ColliderResult *collision,bool reverse){
     // float dir = glm::dot(velocityA,normal);
     // if(dir>0.0f) rigidBodyA->AddVelocity(-dir*normal);
     
-    DebugRenderer* debugrenderer = entityA->GetScene()->GetDebugRenderer();
-    debugrenderer->DrawLine(transformA->position,transformA->position+normal*collision->penetration,glm::vec4(0.5f,0.5f,0.1f,1.0f));
+    // DebugRenderer* debugrenderer = entityA->GetScene()->GetDebugRenderer();
+    // debugrenderer->DrawLine(transformA->position,transformA->position+normal*collision->penetration,glm::vec4(0.5f,0.5f,0.1f,1.0f));
     
     
     float relatives_dot = glm::dot((velocityB-velocityA),normal);
@@ -43,6 +43,8 @@ void CollisionSolver::Solve(ColliderResult *collision,bool reverse){
         rigidBodyB->AddCorrection(correction * r_massB / R_mass_sum);
     }
     
+    entityA->OnEvent(CollisionEvent(entityB,rigidBodyA->GetVelocity()));
+    entityB->OnEvent(CollisionEvent(entityA,rigidBodyB->GetVelocity()));
     // std::cout << "n=(" << normal.x << "," << normal.y << ") pen=" << collision->penetration
     //       << " depth=" << correction_distance << " velA=(" << velocityA.x << "," << velocityA.y<< ") velB=(" << velocityB.x << "," << velocityB.y << ")\n";
 

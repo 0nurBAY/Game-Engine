@@ -63,14 +63,14 @@ void ColliderComponent::ColliderColorDefault(){
 
 void ColliderComponent::Update(float dt){
     // std::cout <<"--------------------\nColliderComponent::Update\n";
-    DebugRenderer* debugrenderer = owner->GetScene()->GetDebugRenderer();
-    for(auto& shape: colliders){
-        // std::cout <<"Collider: "<<shape.collider.get() << "State:\t";
-        if(shape.enable){
-            // std::cout <<"Enable\n";
-            HitBoxDebug::DrawHitBox(shape.collider.get(),owner,shape.color,debugrenderer);
-        }
-    }
+    // DebugRenderer* debugrenderer = owner->GetScene()->GetDebugRenderer();
+    // for(auto& shape: colliders){
+    //     // std::cout <<"Collider: "<<shape.collider.get() << "State:\t";
+    //     if(shape.enable){
+    //         // std::cout <<"Enable\n";
+    //         HitBoxDebug::DrawHitBox(shape.collider.get(),owner,shape.color,debugrenderer);
+    //     }
+    // }
 }
 // void ColliderComponent::OnEvent(Event &event){
 //     EventDispatcher dispatcher(event);

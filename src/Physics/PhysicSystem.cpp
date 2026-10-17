@@ -119,8 +119,6 @@ void PhysicSystem::NarrowPhase(){
         float rot2 = entity2->GetComponent<TransformComp>()->rotation;
         auto& collision = colliders[collider1->GetShapeType()][collider2->GetShapeType()](collider1,collider2,pos1,rot1,pos2,rot2);
         if(collision.collision){
-            entity1->OnEvent(CollisionEvent(entity2));
-            entity2->OnEvent(CollisionEvent(entity1));
             entity1->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
             entity2->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
             // std::cout <<"Collision detected between: "<< entity1->GetName() << entity2->GetName() <<"\n";

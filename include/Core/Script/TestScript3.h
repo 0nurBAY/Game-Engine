@@ -1,0 +1,23 @@
+//TestScript2.h
+
+#pragma once
+#include "Core/Script/Script.h"
+#include <glm/glm.hpp>
+#include <random>
+class TestScript3 :public Script
+{
+private:
+    bool arrived = true;
+    float walktime; 
+    float walked =0.0f;
+    glm::vec2 goal;
+    glm::vec2 lastdirection = glm::vec2(0.0f,-1.0f);
+    float delay=10.0f;
+    float timepased=0.0f;
+
+public:
+    void Update(float deltatime) override;
+    void OnEvent(Event& event) override;
+    void Decide(float deltatime);
+    void CollisionDecide(glm::vec2 new_goal);
+};

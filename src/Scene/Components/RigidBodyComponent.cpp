@@ -44,12 +44,12 @@ void RigidBodyComponent::UpdateRigidBody(float dt){
     velocity += acceleration*dt;
     preforces = forces;
     forces = glm::vec2(0.0f);
-    DebugRenderer* debugrenderer = owner->GetScene()->GetDebugRenderer();
-    debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(preforces.x,0.0f),glm::vec4(0.4f,0.5f,0.8f,1.0f));
-    debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(0.0f,preforces.y),glm::vec4(0.4f,0.5f,0.8f,1.0f));
+    // DebugRenderer* debugrenderer = owner->GetScene()->GetDebugRenderer();
+    // debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(preforces.x,0.0f),glm::vec4(0.4f,0.5f,0.8f,1.0f));
+    // debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(0.0f,preforces.y),glm::vec4(0.4f,0.5f,0.8f,1.0f));
 
-    debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(velocity.x,0.0f),glm::vec4(0.13f,0.8f,0.3f,1.0f));
-    debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(0.0f,velocity.y),glm::vec4(0.13f,0.8f,0.3f,1.0f));
+    // debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(velocity.x,0.0f),glm::vec4(0.13f,0.8f,0.3f,1.0f));
+    // debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(0.0f,velocity.y),glm::vec4(0.13f,0.8f,0.3f,1.0f));
 
 }
 
