@@ -61,19 +61,37 @@ const std::unordered_map<uint64_t,std::unique_ptr<Entity>>& EntityManager::GetEn
 const unsigned int EntityManager::GetSize() const{
     return entities.size();
 }
-void EntityManager::UpdateEntities(float dt){
+void EntityManager::UpdateEntities(float dt,float x,float y,float max_r){
     for(auto& [id,entity]: GetEntites()){
+        if(entity->GetType() & static_cast<uint32_t>(CopmonentCategory::Transform)){
+            glm::vec2 tr = entity->GetComponent<TransformComp>()->position;
+
+            // std::cout << entity->GetName() << " Tr: "<<tr.x << "," <<tr.y <<"\t";
+            // std::cout << entity->GetName() << " Cam: "<<x << "," <<y <<"\t";
+            // std::cout << entity->GetName() << " Diff: "<<std::abs(tr.x-x) << "," <<std::abs(tr.y-y) <<"\n";
+            if(std::abs(tr.x-x)>max_r || std::abs(tr.y-y)>max_r) continue;
+        }
+        // std::cout << entity->GetName() << " Updated\n";
         entity->UpdateComponents(dt);
     }
     PendingDestroy();
 }
-void EntityManager::UpdateAnimations(float deltatime, ResourceManagerPlus *resoursmanager){
+void EntityManager::UpdateAnimations(float deltatime,float x,float y,float max_r, ResourceManagerPlus *resoursmanager){
     for(auto& [id,entity]: GetEntites()){
+        if(!(entity->GetType() & static_cast<uint32_t>(CopmonentCategory::Animation)))continue;
+        if(entity->GetType() & static_cast<uint32_t>(CopmonentCategory::Transform)){
+            glm::vec2 tr = entity->GetComponent<TransformComp>()->position;
+            if(std::abs(tr.x-x)>max_r || std::abs(tr.y-y)>max_r) continue;
+        }
         entity->UpdateAnimations(deltatime,resoursmanager);
     }
 }
-void EntityManager::EventEntities(Event &event){
+void EntityManager::EventEntities(Event &event,float x,float y,float max_r){
     for(auto& [id,entity]: GetEntites()){
+        if(entity->GetType() & static_cast<uint32_t>(CopmonentCategory::Transform)){
+            glm::vec2 tr = entity->GetComponent<TransformComp>()->position;
+            if(std::abs(tr.x-x)>max_r || std::abs(tr.y-y)>max_r) continue;
+        }
         entity->OnEvent(event);
     }
 }

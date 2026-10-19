@@ -113,6 +113,7 @@ void Engine::Stop(){
 }
 
 void Engine::Update(){
+    sw.reset();
     //Daha sonra her Scene'i döndürür ve hepsine update verir ve hepsi kendi içinde aktif olan kısımlarını döndürür
     Scene* currentscene = GetActiveScene();
     time.Update();
@@ -121,12 +122,16 @@ void Engine::Update(){
     input.Update();
     window.clear();
     camera.Update(dt);
+    double Gaged_Update = sw.Ms();
     // if(!Prevp && input.IsKeyPressed(GLFW_KEY_P))pause = !pause;
     // Prevp = input.IsKeyPressed(GLFW_KEY_P);
     // Prevo = input.IsKeyPressed(GLFW_KEY_O);
+    double Component_Update;
+    double Animation_Update;
     if(!pause || step){
         if(currentscene){
             currentscene->Update(dt);
+            Component_Update = sw.Ms();
             physics.FixedUpdate(dt,currentscene);
             // auto physicRes = physics.GetCollisions();
             // for(auto& res: physicRes){
@@ -174,6 +179,7 @@ void Engine::Update(){
                 // }
             // }
             currentscene->AnimationUpdate(dt,&resoursmanager);
+            Animation_Update = sw.Ms();
         }
     }
     step = false;

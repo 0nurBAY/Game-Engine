@@ -63,7 +63,7 @@ void SceneLoader::LoadScene(ParsedResource &resource, std::unordered_map<std::st
     // for(auto& arg:resource.args){
     //     printf("\t-ARG: %s\n",arg.c_str());
     // }
-    std::cout<<"\n";
+    // std::cout<<"\n";
     if(resource.name.empty()) throw std::runtime_error("0No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));
     auto it = commands.find(resource.type.c_str());
     if(it == commands.end()) throw std::runtime_error("0No enough arguments for " + resource.name + "\n" + resource.file + " - " +std::to_string(resource.line));

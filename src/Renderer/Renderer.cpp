@@ -15,6 +15,9 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
     items.clear();
     lights.clear();
     items.reserve(scene.GetEntityManager().GetSize());
+    auto* cam = scene.GetEntityCamera();
+    float cam_widht = cam->GetWidth()*0.5f*cam->GetZoom() + 200.0f;
+    float cam_height = cam->GetHeight()*0.5f*cam->GetZoom() + 200.0f;
     glm::vec4 ambient = glm::vec4(0.7f);
     Shader*  currentshader = nullptr;
     Texture* currenttexture = nullptr;
@@ -37,6 +40,9 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
             });
             continue;
         }
+        glm::vec2 entity_pos = entity->GetComponent<TransformComp>()->position;
+        if(std::abs(entity_pos.x - cam->GetPosition().x) > cam_widht ||
+           std::abs(entity_pos.y - cam->GetPosition().y) > cam_height) continue;
         items.push_back({
             entity.get(),
             entity->GetComponent<RendererComponent>()->GetLayer(),

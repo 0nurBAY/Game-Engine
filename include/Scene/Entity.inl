@@ -3,40 +3,33 @@
 #pragma once
 template <typename C, typename... Args> C* Entity::AddComponent(Args&&... args){
 
-    auto key = std::type_index(typeid(C));
-
-    auto it = components.find(key);
-    if(it != components.end()) return static_cast<C*>(it->second.get());
-
+    auto key = ComponentTypeID<C>();
     std::unique_ptr<C> comp = std::make_unique<C>(std::forward<Args>(args)...);
     comp->AddOwner(this);
 
     C* ptr = comp.get();
 
-    componenttypes |= static_cast<uint32_t>(comp->GetCategory());
-    
-    components.insert({key,std::move(comp)});
+    if(inited){
+        comp->AddOwner(this);
+        comp->OnCreate();
+        componenttypes |= static_cast<uint32_t>(comp->GetCategory());
+    }
+    components[key] = (std::move(comp));
 
     return ptr;
 }
-template <typename C> C* Entity::GetComponent(){
+template <typename C> C* Entity::GetComponent() const{
 
-    auto key = std::type_index(typeid(C));
-    auto it = components.find(key);
-    if(it != components.end()) return static_cast<C*>(it->second.get());
-    return nullptr;
+    auto key = ComponentTypeID<C>();
+    return static_cast<C*>(components[key].get());
 }
-template <typename C> bool Entity::HasComponent(){
+template <typename C> bool Entity::HasComponent() const{
     
-    auto key = std::type_index(typeid(C));
-    return components.find(key) != components.end();
+    auto key = ComponentTypeID<C>();
+    return components[key] != nullptr;
 }
-template <typename C> void Entity::RemoveComponent(){
+// template <typename C> void Entity::RemoveComponent(){
+//     auto key = ComponentTypeID<C>();
+//     components.erase(key);
     
-    // auto key = std::type_index(typeid(C));
-    // auto it = components.find(key);
-    // if(it != components.end()) components.erase(key);
-    auto key = std::type_index(typeid(C));
-    components.erase(key);
-    
-}
+// }

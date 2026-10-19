@@ -19,16 +19,16 @@ void TestScript2::Update(float deltatime){
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
     
-    if(i->IsMouseButtonDown(GLFW_MOUSE_BUTTON_1)){
-        std::cout << "Force required\n";
-        double mx = i->GetMouseX();
-        double my = i->GetMouseY();
-        auto* camera = e->GetScene()->GetEntityCamera();
-        glm::vec2 npos = camera->ScreentoWorld(glm::vec2(mx,my));
-        std::cout << "Force has applied: " << (npos.x-transform->position.x)*0.1f << "," << (npos.y-transform->position.y)*0.1f << "\n";
-        rigidbody->ApplyForce((npos-transform->position)*10.0f);
-        return;
-    }
+    // if(i->IsMouseButtonDown(GLFW_MOUSE_BUTTON_1)){
+    //     std::cout << "Force required\n";
+    //     double mx = i->GetMouseX();
+    //     double my = i->GetMouseY();
+    //     auto* camera = e->GetScene()->GetEntityCamera();
+    //     glm::vec2 npos = camera->ScreentoWorld(glm::vec2(mx,my));
+    //     std::cout << "Force has applied: " << (npos.x-transform->position.x)*0.1f << "," << (npos.y-transform->position.y)*0.1f << "\n";
+    //     rigidbody->ApplyForce((npos-transform->position)*10.0f);
+    //     return;
+    // }
     
     if(arrived){
         state->RequestState("Idle");

@@ -35,34 +35,39 @@ Scene *Entity::GetScene() const
 {
     return scene;
 }
-void Entity::ListComponents() const{
-    std::cout << "Components:\n";
-    for(auto& map:components){
-        std::cout << "|->" << map.first.name() <<"\n";
-    }
-}
-
 std::uint32_t Entity::GetType() const{
     return componenttypes;
+}
+
+
+void Entity::ListComponents() const{
+    std::cout << "Components:\n";
+    for(auto& component:components){
+        if(component == nullptr) continue;
+        std::cout << "|->" << component.get() <<"\n";
+    }
 }
 
 void Entity::UpdateComponents(float dt){
     if(pendingDestroy||!inited) return;
     for(auto& component: components){
-        component.second->Update(dt);
+        if(component == nullptr) continue;
+        component->Update(dt);
     }
 }
 void Entity::UpdateAnimations(float dt,ResourceManagerPlus *resoursmanager){
     if(pendingDestroy||!inited) return;
     for(auto& component: components){
-        component.second->AnimationUpdate(dt,resoursmanager);
+        if(component == nullptr) continue;
+        component->AnimationUpdate(dt,resoursmanager);
     }
 }
 
 void Entity::OnEvent(Event &event){
     if(pendingDestroy||!inited) return;
     for(auto& component: components){
-        component.second->OnEvent(event);
+        if(component == nullptr) continue;
+        component->OnEvent(event);
     }
 }
 
@@ -71,18 +76,21 @@ void Entity::init(Scene *scene){
     if(inited||pendingDestroy) return;
     inited = true;
     this->scene = scene;
-    for(auto& map:components){
-        map.second->AddOwner(this);
-        map.second->OnCreate();
+    for(auto& component:components){
+        if(component == nullptr) continue;
+        component->AddOwner(this);
+        component->OnCreate();
+        componenttypes |= static_cast<uint32_t>(component->GetCategory());
     }
-
 }
+
 bool Entity::IsDestroy(){
     return pendingDestroy;
 }
 void Entity::OnDestroy(){
     for(auto& component: components){
-        component.second->OnDestroy();
+        if(component == nullptr) continue;
+        component->OnDestroy();
     }
 }
 void Entity::DestroyerMark(){

@@ -19,9 +19,9 @@ public:
     void            PendingDestroy  ();
     void            DestroyEntity   (uint64_t id);
     Entity*         FindEntity      (uint64_t id);
-    void            UpdateEntities  (float dt);
-    void            UpdateAnimations(float deltatime, ResourceManagerPlus* resoursmanager);
-    void            EventEntities   (Event& event);
+    void            UpdateEntities  (float dt,float x,float y,float max_r);
+    void            UpdateAnimations(float deltatime,float x,float y,float max_r, ResourceManagerPlus* resoursmanager);
+    void            EventEntities   (Event& event,float x,float y,float max_r);
     const unsigned int GetSize() const;
     const std::unordered_map<uint64_t,std::unique_ptr<Entity>>& GetEntites() const;
 };

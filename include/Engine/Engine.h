@@ -13,6 +13,8 @@
 #include "Window/Time.h"
 #include "Physics/PhysicSystem.h"
 #include "Renderer/DebugRenderer.h"
+#include "Core/Stopwatch.h"
+
 #include <memory>
 #include <vector>
 #include <unordered_map>
@@ -28,6 +30,7 @@ private:
     Renderer renderer;
     DebugRenderer debugrenderer;
     ScriptManager scriptmanager;
+    Stopwatch sw;
     //Audio
     Time time;
     float fixed_dt=0;
