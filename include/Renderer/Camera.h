@@ -51,6 +51,7 @@ public:
     float GetHeight  () const;
     float GetResW    () const;
     float GetResH    () const;
+    float GetMaxR    () const;
 
     float GetMagnitude    () const;
     float GetShakeDuration() const;

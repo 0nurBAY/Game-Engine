@@ -22,21 +22,21 @@ void Scene::Update(float deltatime){
     if(!active||destroyed||!inited) return;
     float cam_x = camera->GetPosition().x;
     float cam_y = camera->GetPosition().y;
-    float r = std::max(cam_x,cam_y)*camera->GetZoom() + 200.f;
+    float r = camera->GetMaxR() + 200.f;
     entitymanager.UpdateEntities(deltatime,cam_x,cam_y,r);
 }
 void Scene::AnimationUpdate(float deltatime, ResourceManagerPlus *resoursmanager){
     if(!active||destroyed||!inited) return;
     float cam_x = camera->GetPosition().x;
     float cam_y = camera->GetPosition().y;
-    float r = std::max(cam_x,cam_y)*camera->GetZoom()+ 50.0f;
+    float r = camera->GetMaxR()+ 50.0f;
     entitymanager.UpdateAnimations(deltatime,cam_x,cam_y,r, resoursmanager);
 }
 void Scene::OnEvent(Event &event){
     if(!active||destroyed||!inited) return;
     float cam_x = camera->GetPosition().x;
     float cam_y = camera->GetPosition().y;
-    float r = std::max(cam_x,cam_y)*camera->GetZoom() + 200.f;
+    float r = camera->GetMaxR() + 200.f;
     entitymanager.EventEntities(event,cam_x,cam_y,r);
 }
 

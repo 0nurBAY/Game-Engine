@@ -62,16 +62,20 @@ const unsigned int EntityManager::GetSize() const{
     return entities.size();
 }
 void EntityManager::UpdateEntities(float dt,float x,float y,float max_r){
+    
     for(auto& [id,entity]: GetEntites()){
+        bool a = entity->GetName() == "Player";
         if(entity->GetType() & static_cast<uint32_t>(CopmonentCategory::Transform)){
             glm::vec2 tr = entity->GetComponent<TransformComp>()->position;
-
+            // if(a){
             // std::cout << entity->GetName() << " Tr: "<<tr.x << "," <<tr.y <<"\t";
             // std::cout << entity->GetName() << " Cam: "<<x << "," <<y <<"\t";
+            // std::cout << entity->GetName() << " Cam max: "<<max_r <<"\t";
             // std::cout << entity->GetName() << " Diff: "<<std::abs(tr.x-x) << "," <<std::abs(tr.y-y) <<"\n";
-            if(std::abs(tr.x-x)>max_r || std::abs(tr.y-y)>max_r) continue;
+            // }
+            if(std::abs(tr.x-x)>max_r || std::abs(tr.y-y)>max_r){continue;}
         }
-        // std::cout << entity->GetName() << " Updated\n";
+        // if(a)std::cout << entity->GetName() << " Updated\n";
         entity->UpdateComponents(dt);
     }
     PendingDestroy();

@@ -100,6 +100,9 @@ float Camera::GetResW() const{
 float Camera::GetResH() const{
     return resH;
 }
+float Camera::GetMaxR() const{
+    return std::max(width,height);
+}
 glm::vec2 Camera::ScreentoWorld(float ScreenX, float ScreenY){
     glm::vec2 asp = glm::vec2(GetWorldWidthAspect(),GetWorldHeightAspect());
     glm::vec2 pos = glm::vec2(ScreenX-resW * 0.5f,resH * 0.5f -ScreenY);

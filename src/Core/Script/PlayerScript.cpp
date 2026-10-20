@@ -37,8 +37,8 @@ void PlayerScript::Update(float deltatime){
     glm::vec2 target = direction *spd;
     glm::vec2 difference = target - vel;
     float difference_len = glm::length(difference);
-    float step = (glm::length(direction)>0.0f)? 2000.0f * deltatime: 0.0f;
-    transform->rotation += rotation;
+    float step = (glm::length(direction)>0.0f)? 2000.0f * deltatime: 1000.0f * deltatime;
+    transform->rotation += rotation;    
     vel = (difference_len > step)? vel + difference / difference_len * step : target;
     rigidbody->SetVelocity(vel);
 

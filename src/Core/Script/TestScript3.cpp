@@ -15,7 +15,7 @@ void TestScript3::Update(float deltatime){
         arrived = true;
         walked = 0.0f;
     }
-    // Decide(deltatime);
+    Decide(deltatime);
     auto* animation = e->GetComponent<AnimationComponent>();
     auto* state     = e->GetComponent<StateComponent>();
     
