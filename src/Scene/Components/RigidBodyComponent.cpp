@@ -78,9 +78,6 @@ bool RigidBodyComponent::IsMoving() const{
 }
 
 
-
-
-
 CopmonentCategory RigidBodyComponent::GetCategory() const{
     return (CopmonentCategory::Physic);
 }

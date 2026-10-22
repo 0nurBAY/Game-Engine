@@ -20,18 +20,20 @@ private:
     std::unordered_set<CandidatePair, CandidatePairHash> candidates;
     std::unordered_map<ColliderType, std::unordered_map<ColliderType,std::function<ColliderResult(ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2)>,ColliderHash>> colliders;
     std::unordered_map<BodyType, std::unordered_map<BodyType,std::function<void(ColliderResult* collision)>,BodyTypeHash>> collisions;
-    std::vector<EntityCheck> entities;
+    std::vector<Entity*> entities;
+    std::vector<EntityCheck> entities_with_AABBs;
     std::vector<ColliderResult> collisionsres;
     float accumulator = 0;
     float fixed = 0;
     void Step();
 public:
-    void Init(float fixed);
-    void FixedUpdate(float dt, Scene* scene);
+    void Init(float fixed, Scene* scene);
+    void FixedUpdate(float dt);
     void AABBCompare();
     void NarrowPhase();
     void CollisionResult();
     void FindPhysicEntities(Scene* scene);
+    void EntityAABB_finder();
     void UpdatePhysicEntities();
     std::vector<ColliderResult> GetCollisions() const;
     void OnEvent(Event& event);

@@ -70,7 +70,6 @@ debugrenderer(ReadShader("shaders/solidcolor.vert").c_str(),ReadShader("shaders/
 void Engine::Init(){
     scriptmanager.Init();
     fixed_dt = time.GetFixedDeltaTime();
-    physics.Init(fixed_dt);
     camera.SetPosition(glm::vec3(0.0f,0.0f,0.0f));
     camera.SetWorldSize(100000.0f, 100000.0f, 50000.0f, -50000.0f, 50000.0f, -50000.0f);
     window.SetEventCallBack([this](Event& event){
@@ -78,6 +77,8 @@ void Engine::Init(){
     });
     ReadResourcesFile("resources");
 
+    Scene* currentscene = GetActiveScene();
+    physics.Init(fixed_dt,currentscene);
     // ReadResources("resources/resources.res");
     // ReadScenes("resources/scene1.lvl");
 }
@@ -132,7 +133,7 @@ void Engine::Update(){
         if(currentscene){
             currentscene->Update(dt);
             Component_Update = sw.Ms();
-            physics.FixedUpdate(dt,currentscene);
+            physics.FixedUpdate(dt);
             // auto physicRes = physics.GetCollisions();
             // for(auto& res: physicRes){
                 // if(!res.collision) return;
@@ -182,7 +183,9 @@ void Engine::Update(){
             Animation_Update = sw.Ms();
         }
     }
+    debugrenderer.DrawBox(glm::vec2(camera.GetPosition().x-50.0f,camera.GetPosition().y-50.f),glm::vec2(camera.GetPosition().x+50.0f,camera.GetPosition().y+50.f), glm::vec4(1,0,0,1));
     step = false;
+    std::cout << "FPS: " << 1/dt << "\n";
 
 }
 void Engine::GameLoop(){
@@ -199,6 +202,11 @@ void Engine::Render(){
     Scene* currentscene = GetActiveScene();
     if(!currentscene) return;
     renderer.Draw(*currentscene, resoursmanager);
+    
+    float cam_widht  = camera.GetWidth() *0.5f*camera.GetZoom() - 200.0f;
+    float cam_height = camera.GetHeight()*0.5f*camera.GetZoom() - 200.0f;
+    debugrenderer.DrawBox(glm::vec2(camera.GetPosition().x - cam_widht,camera.GetPosition().y - cam_height),glm::vec2(camera.GetPosition().x + cam_widht,camera.GetPosition().y + cam_height),glm::vec4(0.7f,0.7f,0.2f,1.0f));
+    
     debugrenderer.Flush(camera.GetProjectionMatrix(),camera.GetViewMatrix());
 
 }

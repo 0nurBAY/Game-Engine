@@ -31,8 +31,8 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
         }
         if(!(entity.get()->GetType() & static_cast<uint32_t>(CopmonentCategory::Transform))) continue;
 
+        TransformComp *transformComp = entity->GetComponent<TransformComp>();
         if (entity->HasComponent<LightComponent>()){
-            TransformComp *transformComp = entity->GetComponent<TransformComp>();
             LightComponent *lightcomp    = entity->GetComponent<LightComponent>();
             lights.push_back({
                 transformComp->position,
@@ -41,11 +41,17 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
             });
             continue;
         }
-        glm::vec2 entity_pos = entity->GetComponent<TransformComp>()->position;
-        if(std::abs(entity_pos.x - cam->GetPosition().x) > cam_widht ||
-           std::abs(entity_pos.y - cam->GetPosition().y) > cam_height){
+        glm::vec2 entity_posX = transformComp->GetMinMaxX();
+        glm::vec2 entity_posY = transformComp->GetMinMaxY();
+        if(entity_posX.x - cam->GetPosition().x > cam_widht ||
+           entity_posX.y - cam->GetPosition().x <-cam_widht ||
+           entity_posY.y - cam->GetPosition().y <-cam_height||
+           entity_posY.x - cam->GetPosition().y > cam_height
+        ){
             //unrendered++;
+            //  if(entity->GetName() == "Platform") std::cout << "Platform X(" <<entity_posX.x<<","<<entity_posX.y<<")  "<< "Platform Y(" <<entity_posY.x<<","<<entity_posY.y<<")" <<"\n";
              continue;}
+        
         items.push_back({
             entity.get(),
             entity->GetComponent<RendererComponent>()->GetLayer(),

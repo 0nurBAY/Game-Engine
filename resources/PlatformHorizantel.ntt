@@ -1,13 +1,13 @@
 ENTITY {NAME}
 #----Components----#
-COMPONENT Transform {XPOS} {YPOS} 0 10 10
+COMPONENT Transform {XPOS} {YPOS} 0 10 1000
 COMPONENT Material PlatformMat
 COMPONENT Renderer 1 2
 COMPONENT Sprite EnviormentAtlas Platform
 COMPONENT Collider
 COMPONENT RigidBody 50 Static 0.1 0 0                  
 
-ADDCOLLIDER Box  200 200 0 0 0
+ADDCOLLIDER Box  200 20000 0 0 0
 
 ENTITYINIT {NAME}
 

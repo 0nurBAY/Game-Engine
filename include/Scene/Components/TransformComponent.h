@@ -9,8 +9,13 @@ class TransformComp: public Component
 public:
     TransformComp(/* args */);
     TransformComp(glm::vec2 position,float rotation,glm::vec2 scale);
+
     CopmonentCategory GetCategory() const override;
+
     glm::vec2 position;
     float rotation;
     glm::vec2 scale;
+
+    glm::vec2 GetMinMaxX() const;
+    glm::vec2 GetMinMaxY() const;
 };

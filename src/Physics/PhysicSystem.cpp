@@ -1,8 +1,9 @@
 //PhysicSystem.cpp
 #include "Physics/PhysicSystem.h"
+#include "Event/PhysicEvents.h"
 #include <iostream>
 
-void PhysicSystem::Init(float fixed){
+void PhysicSystem::Init(float fixed, Scene *scene){
     this->fixed = fixed;
     colliders[ColliderType::Circle][ColliderType::Circle] = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::CircleVsCircle(shape1, shape2, pos1, rot1, pos2, rot2);});
     colliders[ColliderType::Box]   [ColliderType::Box]    = ([this](ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2){return CollisionDetector::BoxVsBox(shape1, shape2, pos1, rot1, pos2, rot2);});
@@ -15,24 +16,26 @@ void PhysicSystem::Init(float fixed){
     collisions[BodyType::Static][BodyType::Dynamic]       = ([this](ColliderResult* collision){CollisionSolver::Solve(collision,1);});
     collisions[BodyType::Dynamic][BodyType::Static]       = ([this](ColliderResult* collision){CollisionSolver::Solve(collision,0);});
     collisions[BodyType::Dynamic][BodyType::Dynamic]      = ([this](ColliderResult* collision){CollisionSolver::Solve(collision,0);});
+    FindPhysicEntities(scene);
+    EntityAABB_finder();
+    // std::cout << "Test1\n";
 }
 
-void PhysicSystem::FixedUpdate(float dt, Scene *scene){
+void PhysicSystem::FixedUpdate(float dt){
     accumulator+=dt;
-    entities.clear();
     collisionsres.clear();
-    FindPhysicEntities(scene);
     while(accumulator>=fixed){
         Step();
         accumulator-=fixed;
     }
-
+    // std::cout << "Test2\n";
 }
 
 void PhysicSystem::Step(){
     candidates.clear();
     if(entities.empty()) return;
     UpdatePhysicEntities();
+    EntityAABB_finder();
     AABBCompare();
     NarrowPhase();
     CollisionResult();
@@ -42,15 +45,7 @@ void PhysicSystem::Step(){
 void PhysicSystem::FindPhysicEntities(Scene *scene){
     for(auto& entity:scene->GetEntityManager().GetEntites()){
         if(entity.second.get()->GetType() & static_cast<std::uint32_t>(CopmonentCategory::Physic)){
-            std::vector<std::pair<AABB, ColliderShape*>> second;
-            for(auto& collider:entity.second.get()->GetComponent<ColliderComponent>()->Getcolliders()){
-                collider->CalculateAABB(
-                entity.second.get()->GetComponent<TransformComp>()->position,
-                entity.second.get()->GetComponent<TransformComp>()->rotation
-                );
-                second.push_back({collider->GetAABB(), collider});
-            }
-            entities.push_back({entity.second.get(), second});
+            entities.push_back(entity.second.get());
         }
     }
     // for(auto& entity:entities){
@@ -60,24 +55,45 @@ void PhysicSystem::FindPhysicEntities(Scene *scene){
         // }
     // }
 }
+void PhysicSystem::EntityAABB_finder(){
+    entities_with_AABBs.clear();
+    for(auto entity: entities){
+        std::vector<std::pair<AABB, ColliderShape*>> second;
+        for(auto& collider:entity->GetComponent<ColliderComponent>()->Getcolliders()){
+            collider->CalculateAABB(
+            entity->GetComponent<TransformComp>()->position,
+            entity->GetComponent<TransformComp>()->rotation
+            );
+            second.push_back({collider->GetAABB(), collider});
+        }
+        entities_with_AABBs.push_back({entity,second});
+
+    }
+}
 void PhysicSystem::AABBCompare()
 {
-    auto grid = SpatialGrid::GetGrid(entities);
+    auto grid = SpatialGrid::GetGrid(entities_with_AABBs);
     if(grid.empty()) {return;}
 
     for(auto& [cell, entitiesInCell]:grid){
+
     for(auto it1 = entitiesInCell.begin(); it1 != entitiesInCell.end(); ++it1)
     {
+
         auto* entity1 = it1->entity;
         auto aabb1 = it1->collider->GetAABB();
+        RigidBodyComponent* rigidbody1 = entity1->GetComponent<RigidBodyComponent>();
+        bool sleeping = !(rigidbody1->IsMoving());
         for(auto it2 = std::next(it1); it2 != entitiesInCell.end(); ++it2)
         {
-            auto* entity2 = it2->entity;
+            auto* entity2 = it2->entity;            
+            RigidBodyComponent* rigidbody2 = entity2->GetComponent<RigidBodyComponent>();
+            if(sleeping && (!(rigidbody2->IsMoving()) && (rigidbody2->GetBodyType()!=BodyType::Static)) ) continue;
             auto aabb2 = it2->collider->GetAABB();
             // std::cout << "Grid:\t" << cell.x << ", " << cell.y << "\n";
             // std::cout << "Entity1 ID: " << entity1->GetID() << ", AABB: [" << aabb1.minx << ", " << aabb1.miny << ", " << aabb1.maxx << ", " << aabb1.maxy << "]\n";
             // std::cout << "Entity2 ID: " << entity2->GetID() << ", AABB: [" << aabb2.minx << ", " << aabb2.miny << ", " << aabb2.maxx << ", " << aabb2.maxy << "]\n";
-            if((entity1->GetComponent<RigidBodyComponent>()->GetBodyType()==BodyType::Static)&&(entity2->GetComponent<RigidBodyComponent>()->GetBodyType()==BodyType::Static))continue;
+            if((rigidbody1->GetBodyType()==BodyType::Static)&&(rigidbody2->GetBodyType()==BodyType::Static))continue;
             bool collision =
                 !(aabb1.maxx < aabb2.minx ||
                   aabb2.maxx < aabb1.minx ||
@@ -98,13 +114,31 @@ void PhysicSystem::AABBCompare()
 }
 
 
-// void PhysicSystem::OnEvent(Event &event){
-//     EventDispatcher dispatcher(event);
+void PhysicSystem::OnEvent(Event &event){
+    EventDispatcher dispatcher(event);
 
-//     dispatcher.Dispatcher<PhysicsEntityAddEvent>(
-//         [this](){}
-//     );
-// }
+    dispatcher.Dispatcher<PhysicsEntityAddEvent>(
+        [this](PhysicsEntityAddEvent event){
+            auto* entity = event.GetEntity();
+            if(entity->GetType() & static_cast<std::uint32_t>(CopmonentCategory::Physic)){
+                std::vector<std::pair<AABB, ColliderShape*>> second;
+                for(auto& collider:entity->GetComponent<ColliderComponent>()->Getcolliders()){
+                    collider->CalculateAABB(
+                    entity->GetComponent<TransformComp>()->position,
+                    entity->GetComponent<TransformComp>()->rotation
+                    );
+                    second.push_back({collider->GetAABB(), collider});
+                }
+                this->entities.push_back(entity);
+            }
+        }
+    );
+    
+    dispatcher.Dispatcher<PhysicsEntityRemoveEvent>(
+        [this](PhysicsEntityRemoveEvent){
+        }
+    );
+}
 
 void PhysicSystem::NarrowPhase(){
     for(auto& candidatepair: candidates){
@@ -119,8 +153,8 @@ void PhysicSystem::NarrowPhase(){
         float rot2 = entity2->GetComponent<TransformComp>()->rotation;
         auto& collision = colliders[collider1->GetShapeType()][collider2->GetShapeType()](collider1,collider2,pos1,rot1,pos2,rot2);
         if(collision.collision){
-            entity1->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
-            entity2->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
+            // entity1->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
+            // entity2->GetComponent<ColliderComponent>()->SetColliderColor(glm::vec4(0.8f,0.4f,0.15f,1.0f));
             // std::cout <<"Collision detected between: "<< entity1->GetName() << entity2->GetName() <<"\n";
             // std::cout <<"Direction: " << collision.normal.x <<","<<collision.normal.y << "\nPenetration: "<< collision.penetration <<"\n"; 
             
@@ -131,16 +165,12 @@ void PhysicSystem::NarrowPhase(){
             collision.typeA = rigidbodyA->GetBodyType();
             collision.typeB = rigidbodyB->GetBodyType();
 
-            if(collision.penetration>0){
-
-            }
-
             collisionsres.push_back(collision);
         }
-        else{
-            entity1->GetComponent<ColliderComponent>()->ColliderColorDefault();
-            entity2->GetComponent<ColliderComponent>()->ColliderColorDefault();
-        }
+        // else{
+        //     entity1->GetComponent<ColliderComponent>()->ColliderColorDefault();
+        //     entity2->GetComponent<ColliderComponent>()->ColliderColorDefault();
+        // }
     }
 }
 
@@ -151,7 +181,7 @@ void PhysicSystem::CollisionResult(){
 }
 
 void PhysicSystem::UpdatePhysicEntities(){
-    for(auto& [entity,sec]: entities){
+    for(auto& [entity,sec]: entities_with_AABBs){
         if(!entity->HasComponent<RigidBodyComponent>()) continue;
         auto* rigidbody = entity->GetComponent<RigidBodyComponent>();
         rigidbody->UpdateRigidBody(fixed);

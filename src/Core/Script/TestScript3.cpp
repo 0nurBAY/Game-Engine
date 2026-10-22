@@ -32,6 +32,7 @@ void TestScript3::Update(float deltatime){
     
     if(arrived){
         state->RequestState("Idle");
+        rigidbody->SetVelocity(glm::vec2(0.0f));
         return;
     }
     
@@ -82,7 +83,7 @@ void TestScript3::Decide(float deltatime){
     }
 }
 void TestScript3::CollisionDecide(glm::vec2 new_goal){
-    
+        // new_goal = glm::normalize(new_goal);
         std::random_device rd;
         std::mt19937 gen(rd());
         float x;
@@ -101,6 +102,7 @@ void TestScript3::CollisionDecide(glm::vec2 new_goal){
         lastdirection = goal;
         arrived = false;
         timepased = 0;
+        
 }
 void TestScript3::OnEvent(Event &event){
     EventDispatcher dispatcher(event);
@@ -112,8 +114,8 @@ void TestScript3::OnEvent(Event &event){
     // );
     dispatcher.Dispatcher<CollisionEvent>(
         [this](CollisionEvent& event){
-            // CollisionDecide(event.GetDir());
-            // std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther();
+            CollisionDecide(event.GetDir());
+            // std::cout<< "Entity " << this->GetEntity()->GetName() << " Colaps with "<< event.GetOther() <<"\n";
         }
     );
 }
