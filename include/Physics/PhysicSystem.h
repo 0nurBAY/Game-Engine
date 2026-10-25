@@ -17,12 +17,15 @@
 class PhysicSystem
 {
 private:
-    std::unordered_set<CandidatePair, CandidatePairHash> candidates;
+    std::vector<CandidatePair> candidates;
     std::unordered_map<ColliderType, std::unordered_map<ColliderType,std::function<ColliderResult(ColliderShape* shape1, ColliderShape* shape2,  glm::vec2 pos1, float rot1, glm::vec2 pos2, float rot2)>,ColliderHash>> colliders;
-    std::unordered_map<BodyType, std::unordered_map<BodyType,std::function<void(ColliderResult* collision)>,BodyTypeHash>> collisions;
+    std::unordered_map<Grid, std::vector<GridCell>, GridHash> grid;
     std::vector<Entity*> entities;
-    std::vector<EntityCheck> entities_with_AABBs;
+    std::vector<EntityCheck> Entities_in_Update_Box;
+    std::vector<Entity*> Entities_out_Update_Box;
     std::vector<ColliderResult> collisionsres;
+    Scene* currentScene   = nullptr;
+    Camera* currentCamera = nullptr;
     float accumulator = 0;
     float fixed = 0;
     void Step();
@@ -32,7 +35,7 @@ public:
     void AABBCompare();
     void NarrowPhase();
     void CollisionResult();
-    void FindPhysicEntities(Scene* scene);
+    void FindPhysicEntities();
     void EntityAABB_finder();
     void UpdatePhysicEntities();
     std::vector<ColliderResult> GetCollisions() const;

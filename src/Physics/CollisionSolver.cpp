@@ -4,7 +4,7 @@
 #include "Renderer/DebugRenderer.h"
 #include "Scene/Scene.h"
 #include "Scene/Entity.h"
-void CollisionSolver::Solve(ColliderResult *collision,bool reverse){
+void CollisionSolver::Solve(ColliderResult *collision){
     Entity* entityA  = collision->entityA; 
     Entity* entityB  = collision->entityB; 
     glm::vec2 normal = collision->normal; 

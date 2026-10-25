@@ -22,7 +22,7 @@
 class Engine
 {
 private:
-    bool pause = false, step = false;
+    bool pause = false, step = false; bool update_pause;
     std::vector<std::unique_ptr<Scene>> scenestack;
     Window window;
     Input input;
@@ -38,6 +38,7 @@ private:
     PhysicSystem physics;
     std::unordered_map<std::string,std::unique_ptr<AssetHandleBase>> assets;
     bool running;
+   
     void Update();
     void Render();
     void Init();

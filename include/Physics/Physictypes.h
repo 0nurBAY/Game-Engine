@@ -12,6 +12,7 @@
 #include <glm/vec2.hpp>
 
 class Entity;
+class RigidBodyComponent;
 class ColliderShape;
 struct ColliderResult;
 
@@ -76,7 +77,7 @@ struct EntityCheck{
 struct GridCell{
     Entity* entity;
     ColliderShape* collider;
-
+    RigidBodyComponent* rigidbody;
     bool operator<(const GridCell& other) const;
 };
 

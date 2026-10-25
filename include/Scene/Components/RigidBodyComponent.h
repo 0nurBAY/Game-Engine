@@ -3,18 +3,22 @@
 #pragma once
 
 #include "Scene/Components/Component.h"
-#include "Physics/Physictypes.h"
+#include "Physics/PhysicTypes.h"
 #include <glm/glm.hpp>
 
 class RigidBodyComponent: public Component{
 private:
     float mass;
     glm::vec2 velocity = glm::vec2(0.0f);
+    float velocity_value = 0.0f;
     glm::vec2 acceleration = glm::vec2(0.0f);
     glm::vec2 forces = glm::vec2(0.0f);
     glm::vec2 applied_correction = glm::vec2(0.0f);
     glm::vec2 preforces = glm::vec2(0.0f);
     BodyType type;
+    bool sleep = false;
+    float sleeptimer = 0.0f;
+    float sleepspd = 25.0f;
     float restution;
     bool ApplyGravity = false;
     float GravityScale = 0.0f;
@@ -31,11 +35,16 @@ public:
     void AddCorrection(glm::vec2 force);
 
     void UpdateRigidBody(float dt) override;
+    void Wake();
 
     glm::vec2 GetVelocity() const;
     glm::vec2 GetForces() const;
     glm::vec2 GetCorrection() const;
+
     bool IsMoving() const;
+    bool IsSleeping() const;
+    bool IsStatic() const;
+    
     float GetMass() const;
     float GetInvMass() const;
     float GetRestitution() const;

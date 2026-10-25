@@ -14,11 +14,13 @@ GravityScale(GravityScale)
 {}
 
 void RigidBodyComponent::ApplyForce(glm::vec2 force){
+    if(sleep)  Wake();
     // std::cout << "Force Apllied: [" << force.x << "," << force.y <<"]Newton\n";
     forces += force;
     // std::cout << "Current Force: [" << force.x << "," << force.y <<"]Newton\n";
 }
 void RigidBodyComponent::SetForce(glm::vec2 force){
+    if(sleep)  Wake();
     forces = force;
 }
 void RigidBodyComponent::SetCorrection(glm::vec2 force){
@@ -28,20 +30,33 @@ void RigidBodyComponent::ResetCorrection(){
     applied_correction = glm::vec2(0.0f);
 }
 void RigidBodyComponent::SetVelocity(glm::vec2 velocity){
+    if(sleep)  Wake();
     this->velocity = velocity;
 }
 void RigidBodyComponent::AddVelocity(glm::vec2 velocity){
+    if(sleep)  Wake();
     this->velocity += velocity;
 }
 void RigidBodyComponent::AddCorrection(glm::vec2 force){
     this->applied_correction += force;
 }
 void RigidBodyComponent::UpdateRigidBody(float dt){
+    if(sleep) return;
     if(type == BodyType::Static) return;
     if(mass == 0) return;
     if(ApplyGravity) forces += glm::vec2(0.0f,-GravityScale*mass);
     acceleration = forces/mass;
     velocity += acceleration*dt;
+    velocity_value = glm::dot(velocity,velocity);
+    if(velocity_value < sleepspd) sleeptimer += dt;
+    else sleeptimer = 0;
+    if(sleeptimer > 0.5f && !(glm::dot(applied_correction,applied_correction))){
+        sleeptimer = 0.0f;
+        sleep = true; 
+        velocity = glm::vec2(0.0f);
+        forces = glm::vec2(0.0f);
+        preforces = glm::vec2(0.0f);
+        return;}
     preforces = forces;
     forces = glm::vec2(0.0f);
     // DebugRenderer* debugrenderer = owner->GetScene()->GetDebugRenderer();
@@ -52,7 +67,10 @@ void RigidBodyComponent::UpdateRigidBody(float dt){
     // debugrenderer->DrawLine(owner->GetComponent<TransformComp>()->position,owner->GetComponent<TransformComp>()->position+glm::vec2(0.0f,velocity.y),glm::vec4(0.13f,0.8f,0.3f,1.0f));
 
 }
-
+void RigidBodyComponent::Wake(){
+    sleep = false;
+    sleeptimer = 0.0f;
+}
 glm::vec2 RigidBodyComponent::GetVelocity() const{
     return velocity;
 }
@@ -66,15 +84,20 @@ float RigidBodyComponent::GetMass() const{
     return mass;
 }
 float RigidBodyComponent::GetInvMass() const{
-    return (type==BodyType::Static)? 0:1/mass;
+    
+    return (type==BodyType::Static||mass == 0)? 0:1/mass;
 }
 float RigidBodyComponent::GetRestitution() const{
     return restution;
 }
 bool RigidBodyComponent::IsMoving() const{
-    if(velocity.x) return true;
-    if(velocity.y) return true;
-    return false;
+    return !sleep;
+}
+bool RigidBodyComponent::IsSleeping() const{
+    return sleep;
+}
+bool RigidBodyComponent::IsStatic() const{
+    return type==BodyType::Static;
 }
 
 

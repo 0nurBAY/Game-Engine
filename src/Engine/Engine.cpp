@@ -241,6 +241,9 @@ void Engine::OnEvent(Event& event){
             if(event.GetKey()==GLFW_KEY_P){
                 pause = !pause;
             }
+            if(event.GetKey()==GLFW_KEY_I){
+                update_pause = !update_pause;
+            }
             if(event.GetKey()==GLFW_KEY_O){
                 step = true;
             }

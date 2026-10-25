@@ -16,9 +16,11 @@ class ColliderComponent: public Component
 private:
     std::vector<ColliderData> colliders;
 public:
-    ColliderComponent();
-    void EnableCollider(size_t index, bool enable);
-    void EnableCollider(bool enable);
+    ColliderComponent   ();
+    void EnableCollider (size_t index);
+    void EnableCollider ();
+    void DisableCollider(size_t index);
+    void DisableCollider();
     
     void SetColliderColor(size_t index, glm::vec4 color);
     void SetColliderColor(glm::vec4 color);

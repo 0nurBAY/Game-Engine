@@ -2,11 +2,12 @@
 
 #include "Physics/SpatialGrid.h"
 
-std::unordered_map<Grid, std::set<GridCell>,GridHash> SpatialGrid::GetGrid(std::vector<EntityCheck>& entities){
-    std::unordered_map<Grid,std::set<GridCell>,GridHash> grid;
+void SpatialGrid::GetGrid(std::vector<EntityCheck>& entities,std::unordered_map<Grid, std::vector<GridCell>,GridHash> &grid){
+
     // std::cout << "----------------\nEntityCheck count: " << entities.size() << "----------------\n";
     for(size_t i = 0; i < entities.size(); ++i){
         auto& check = entities[i];
+        RigidBodyComponent* rigidbody = check.entity->GetComponent<RigidBodyComponent>();
         // std::cout << "Index: " << i
         //       << " Entity ID: " << check.entity->GetID()
         //       << "\n";
@@ -21,11 +22,10 @@ std::unordered_map<Grid, std::set<GridCell>,GridHash> SpatialGrid::GetGrid(std::
             // std::cout << "Grid Cells: x(" << minCellx << " to " << maxCellx << "), y(" << minCelly << " to " << maxCelly << ")\n";
             for(int x = minCellx; x <= maxCellx; x++){
                 for(int y = minCelly; y <= maxCelly; y++){
-                    grid[{x, y}].insert({check.entity, collider});
+                    grid[{x, y}].push_back({check.entity, collider,rigidbody});
                 }
             }
         }
     }
-    return grid;
     
 }

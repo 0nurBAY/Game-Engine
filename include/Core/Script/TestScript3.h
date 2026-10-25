@@ -14,7 +14,6 @@ private:
     glm::vec2 lastdirection = glm::vec2(0.0f,-1.0f);
     float delay=10.0f;
     float timepased=0.0f;
-
 public:
     void Update(float deltatime) override;
     void OnEvent(Event& event) override;

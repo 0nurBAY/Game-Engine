@@ -42,11 +42,11 @@ void Camera::SetPosition(const glm::vec3 &new_position){
 
     Baseposition = new_position;
 
-    if(realwidth > worldRight - worldLeft) {Baseposition.x = (worldRight - worldLeft)/2;}
-    else Baseposition.x = std::clamp(Baseposition.x,minX,maxX);
+    // if(realwidth > worldRight - worldLeft) {Baseposition.x = (worldRight - worldLeft)/2;}
+    // else Baseposition.x = std::clamp(Baseposition.x,minX,maxX);
     
-    if(realheight > worldTop - worldBottom) {Baseposition.y = (worldTop - worldBottom)/2;}
-    else Baseposition.y = std::clamp(Baseposition.y,minY,maxY);
+    // if(realheight > worldTop - worldBottom) {Baseposition.y = (worldTop - worldBottom)/2;}
+    // else Baseposition.y = std::clamp(Baseposition.y,minY,maxY);
     
 }
 void Camera::SetRotation(const float &new_rotation){
@@ -101,7 +101,7 @@ float Camera::GetResH() const{
     return resH;
 }
 float Camera::GetMaxR() const{
-    return std::max(width,height);
+    return std::max(width,height) * zoom;
 }
 glm::vec2 Camera::ScreentoWorld(float ScreenX, float ScreenY){
     glm::vec2 asp = glm::vec2(GetWorldWidthAspect(),GetWorldHeightAspect());

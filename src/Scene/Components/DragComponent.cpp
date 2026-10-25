@@ -11,6 +11,9 @@
 CopmonentCategory DragComponent::GetCategory() const{
     return (CopmonentCategory::Input);
 }
+void DragComponent::OnCreate(){
+    collider = owner->GetComponent<ColliderComponent>();
+}
 void DragComponent::OnEvent(Event &event){
     EventDispatcher dispatcher(event);
     dispatcher.Dispatcher<MousePressedEvent>(
@@ -27,8 +30,9 @@ void DragComponent::OnEvent(Event &event){
                 // <<"Mouse: "<< npos.x <<","<<npos.y <<"\n"
                 // <<"Distance: "<< glm::distance(npos,tr->position) <<"\n-------------------\n\n";
                 if(glm::distance(npos,tr->position) <= 50.0f) {
-                    // std::cout<< "holding the entity\n";
+                    // std::cout<< "holding the entity: "<< owner->GetName() <<"\n";
                     hold=true;
+                    if(collider) collider->DisableCollider();
                     offset = tr->position - npos;
                 }
 
@@ -37,7 +41,11 @@ void DragComponent::OnEvent(Event &event){
     dispatcher.Dispatcher<MouseReleasedEvent>(
         [this](MouseReleasedEvent &event){
             // std::cout << "Mouse button up\n";
-            if(event.GetButton() == 0) {is_mouse_button=false;hold=false;}
+            if(event.GetButton() == 0) {
+                is_mouse_button=false;
+                hold=false;
+                if(collider) collider->EnableCollider();
+            }
     });
     dispatcher.Dispatcher<CursorMoveEvent>(
         [this](CursorMoveEvent &event){

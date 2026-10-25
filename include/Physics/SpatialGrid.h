@@ -11,8 +11,7 @@
 
 
 class SpatialGrid{
-private:
-    constexpr static float CellSize = 200.0f;
 public:
-    static std::unordered_map<Grid,std::set<GridCell>,GridHash> GetGrid(std::vector<EntityCheck>& entities);
+    constexpr static float CellSize = 200.0f;
+    static void GetGrid(std::vector<EntityCheck>& entities,std::unordered_map<Grid, std::vector<GridCell>,GridHash>& grid);
 };

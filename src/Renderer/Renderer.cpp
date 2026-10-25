@@ -18,6 +18,8 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
     auto* cam = scene.GetEntityCamera();
     float cam_widht = cam->GetWidth()*0.5f  *cam->GetZoom() + 200.0f;
     float cam_height = cam->GetHeight()*0.5f*cam->GetZoom() + 200.0f;
+    float cam_x = cam->GetPosition().x;
+    float cam_y = cam->GetPosition().y;
     glm::vec4 ambient = glm::vec4(0.7f);
     Shader*  currentshader = nullptr;
     Texture* currenttexture = nullptr;
@@ -43,10 +45,10 @@ void Renderer::Draw(Scene &scene, ResourceManagerPlus &resourcemanager){
         }
         glm::vec2 entity_posX = transformComp->GetMinMaxX();
         glm::vec2 entity_posY = transformComp->GetMinMaxY();
-        if(entity_posX.x - cam->GetPosition().x > cam_widht ||
-           entity_posX.y - cam->GetPosition().x <-cam_widht ||
-           entity_posY.y - cam->GetPosition().y <-cam_height||
-           entity_posY.x - cam->GetPosition().y > cam_height
+        if(entity_posX.x - cam_x > cam_widht ||
+           entity_posX.y - cam_x <-cam_widht ||
+           entity_posY.y - cam_y <-cam_height||
+           entity_posY.x - cam_y > cam_height
         ){
             //unrendered++;
             //  if(entity->GetName() == "Platform") std::cout << "Platform X(" <<entity_posX.x<<","<<entity_posX.y<<")  "<< "Platform Y(" <<entity_posY.x<<","<<entity_posY.y<<")" <<"\n";

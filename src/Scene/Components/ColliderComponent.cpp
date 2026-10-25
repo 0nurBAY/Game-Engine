@@ -22,14 +22,25 @@ std::vector<ColliderShape*> ColliderComponent::Getcolliders(){
 }
 
 
-void ColliderComponent::EnableCollider(size_t index, bool enable){
+void ColliderComponent::EnableCollider(size_t index){
     if(index < colliders.size()){
-        colliders[index].enable = enable;
+        colliders[index].enable = true;
     }
 }
-void ColliderComponent::EnableCollider(bool enable){
+void ColliderComponent::EnableCollider(){
     for(auto& collider: colliders){
-        collider.enable = enable;
+        collider.enable = true;
+    }
+}
+
+void ColliderComponent::DisableCollider(size_t index){
+    if(index < colliders.size()){
+        colliders[index].enable = false;
+    }
+}
+void ColliderComponent::DisableCollider(){
+    for(auto& collider: colliders){
+        collider.enable = false;
     }
 }
 
